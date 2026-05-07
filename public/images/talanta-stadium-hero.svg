@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Talanta Stadium hero illustration</title>
+  <desc id="desc">A dramatic night-time illustration of Talanta Stadium in Nairobi with green pitch lighting and a modern covered stand.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#071207"/>
+      <stop offset=".55" stop-color="#0a1a0a"/>
+      <stop offset="1" stop-color="#111711"/>
+    </linearGradient>
+    <linearGradient id="pitch" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#16370c"/>
+      <stop offset=".5" stop-color="#315f16"/>
+      <stop offset="1" stop-color="#123009"/>
+    </linearGradient>
+    <linearGradient id="stand" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#263426"/>
+      <stop offset=".6" stop-color="#101810"/>
+      <stop offset="1" stop-color="#070d07"/>
+    </linearGradient>
+    <radialGradient id="fieldGlow" cx=".5" cy=".78" r=".56">
+      <stop offset="0" stop-color="#97c459" stop-opacity=".62"/>
+      <stop offset=".45" stop-color="#639922" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#639922" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <pattern id="seats" width="42" height="24" patternUnits="userSpaceOnUse">
+      <rect width="42" height="24" fill="#182318"/>
+      <rect width="13" height="7" x="0" y="0" fill="#639922" opacity=".55"/>
+      <rect width="13" height="7" x="14" y="8" fill="#d85a30" opacity=".48"/>
+      <rect width="13" height="7" x="28" y="16" fill="#f0f5ee" opacity=".34"/>
+    </pattern>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+  <path d="M0 705c245-95 438-139 676-140 297-2 548 89 824 74 175-10 301-53 420-104v545H0Z" fill="#081408" opacity=".9"/>
+  <ellipse cx="960" cy="845" rx="760" ry="255" fill="url(#fieldGlow)" filter="url(#softGlow)"/>
+
+  <g opacity=".7">
+    <path d="M0 245h1920" stroke="#639922" stroke-opacity=".07"/>
+    <path d="M0 350h1920" stroke="#639922" stroke-opacity=".05"/>
+    <path d="M0 455h1920" stroke="#639922" stroke-opacity=".04"/>
+  </g>
+
+  <g transform="translate(165 170)">
+    <path d="M126 330C262 128 506 40 820 40c312 0 557 88 695 290-102-45-230-77-383-95-207-24-417-24-627 0-151 17-278 50-379 95Z" fill="#1f2e1f"/>
+    <path d="M126 330C262 128 506 40 820 40c312 0 557 88 695 290-99-26-216-45-348-57-230-22-463-22-694 0-132 12-249 31-347 57Z" fill="#2d422d" opacity=".7"/>
+    <path d="M210 356c106-96 315-152 610-152s504 56 610 152v196H210Z" fill="url(#stand)"/>
+    <path d="M265 389c122-57 303-86 555-86 251 0 433 29 555 86v133H265Z" fill="url(#seats)" opacity=".86"/>
+    <path d="M314 530c117-49 286-74 506-74s389 25 506 74v104H314Z" fill="#0a100a"/>
+    <path d="M377 545c105-31 253-47 443-47 189 0 337 16 443 47v58H377Z" fill="#0d190b"/>
+    <path d="M215 357c141-74 343-112 605-112s464 38 605 112" fill="none" stroke="#eaf3de" stroke-opacity=".16" stroke-width="7"/>
+    <path d="M198 344c145-179 353-269 622-269s477 90 622 269" fill="none" stroke="#639922" stroke-opacity=".32" stroke-width="9"/>
+    <path d="M166 348c170-220 388-330 654-330s484 110 654 330" fill="none" stroke="#f0f5ee" stroke-opacity=".12" stroke-width="3"/>
+
+    <g opacity=".5">
+      <path d="M318 218v382M512 164v425M706 130v433M934 130v433M1128 164v425M1322 218v382" stroke="#f0f5ee" stroke-opacity=".11" stroke-width="3"/>
+      <path d="M212 363h1216M270 432h1100M324 500h992" stroke="#f0f5ee" stroke-opacity=".09" stroke-width="3"/>
+    </g>
+
+    <g>
+      <rect x="125" y="360" width="70" height="265" rx="10" fill="#0c120c"/>
+      <rect x="1445" y="360" width="70" height="265" rx="10" fill="#0c120c"/>
+      <path d="M160 360v-78M1480 360v-78" stroke="#f0f5ee" stroke-opacity=".28" stroke-width="5"/>
+      <circle cx="160" cy="270" r="8" fill="#fac775"/>
+      <circle cx="1480" cy="270" r="8" fill="#fac775"/>
+      <path d="M160 270 420 522M1480 270 1220 522" stroke="#fac775" stroke-opacity=".18" stroke-width="4"/>
+      <path d="M160 270 565 520M1480 270 1075 520" stroke="#fac775" stroke-opacity=".1" stroke-width="4"/>
+    </g>
+  </g>
+
+  <g transform="translate(190 690)">
+    <path d="M108 250c237-134 493-201 767-201s529 67 767 201c-260 75-516 113-767 113s-507-38-767-113Z" fill="url(#pitch)"/>
+    <path d="M108 250c237-134 493-201 767-201s529 67 767 201" fill="none" stroke="#eaf3de" stroke-opacity=".33" stroke-width="5"/>
+    <path d="M304 246c173-72 363-108 571-108s398 36 571 108" fill="none" stroke="#eaf3de" stroke-opacity=".18" stroke-width="3"/>
+    <ellipse cx="875" cy="239" rx="185" ry="52" fill="none" stroke="#eaf3de" stroke-opacity=".25" stroke-width="4"/>
+    <path d="M875 49v314" stroke="#eaf3de" stroke-opacity=".13" stroke-width="4"/>
+  </g>
+
+  <rect width="1920" height="1080" fill="#000" opacity=".16"/>
+  <path d="M0 0h1920v1080H0Z" fill="none" stroke="#639922" stroke-opacity=".06" stroke-width="28"/>
+</svg>

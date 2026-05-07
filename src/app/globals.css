@@ -1,26 +1,569 @@
+/* footballke.com — globals.css
+   Import order: fonts → variables → reset → base → utilities → ad slots */
+
 @import "tailwindcss";
 
+/* ─── FONTS ──────────────────────────────────────────────────────────────── */
+/* Option A: Google Fonts (simpler, slight latency)
+   Add to src/app/layout.tsx instead using next/font for zero CLS:
+   import { Bebas_Neue, DM_Sans } from "next/font/google"
+*/
+
+
+/* ─── CSS CUSTOM PROPERTIES ─────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base backgrounds */
+  --color-page:         #0a1a0a;
+  --color-surface:      #111711;
+  --color-card:         #161e16;
+  --color-elevated:     #1c261c;
+  --color-border:       #1f2e1f;
+  --color-border-hover: #2d422d;
+
+  /* Green scale */
+  --green-50:  #EAF3DE;
+  --green-100: #C0DD97;
+  --green-200: #97C459;
+  --green-400: #639922;
+  --green-600: #3B6D11;
+  --green-800: #27500A;
+  --green-900: #173404;
+
+  /* Amber scale */
+  --amber-50:  #FAEEDA;
+  --amber-200: #EF9F27;
+  --amber-400: #BA7517;
+  --amber-600: #854F0B;
+  --amber-800: #633806;
+
+  /* Red scale */
+  --red-50:  #FAECE7;
+  --red-200: #F0997B;
+  --red-400: #D85A30;
+  --red-600: #993C1D;
+  --red-800: #712B13;
+
+  /* Blue scale */
+  --blue-50:  #E6F1FB;
+  --blue-200: #85B7EB;
+  --blue-400: #378ADD;
+  --blue-600: #185FA5;
+  --blue-800: #0C447C;
+
+  /* Gray scale */
+  --gray-50:  #F1EFE8;
+  --gray-200: #B4B2A9;
+  --gray-400: #888780;
+  --gray-600: #5F5E5A;
+  --gray-800: #444441;
+
+  /* Text */
+  --text-primary:   #F0F5EE;
+  --text-secondary: #9AAD92;
+  --text-tertiary:  #627559;
+  --text-inverse:   #0a1a0a;
+  --text-brand:     #639922;
+  --text-gold:      #BA7517;
+  --text-red:       #D85A30;
+
+  /* Semantic */
+  --brand:       #639922;
+  --brand-hover: #97C459;
+  --afcon:       #BA7517;
+  --barca:       #D85A30;
+  --link:        #378ADD;
+  --muted:       #888780;
+
+  /* Layout */
+  --nav-height:    68px;
+  --page-max:      1280px;
+  --content-max:   760px;
+  --sidebar-width: 320px;
+  --page-x:        24px;
+
+  /* Typography */
+  --font-display: "Bebas Neue", sans-serif;
+  --font-body:    "DM Sans", sans-serif;
+  --font-mono:    "JetBrains Mono", "Fira Code", monospace;
+
+  /* Radius */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm:         0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:         0 4px 16px rgba(0,0,0,0.5);
+  --shadow-lg:         0 8px 32px rgba(0,0,0,0.6);
+  --shadow-glow-green: 0 0 24px rgba(99,153,34,0.25);
+  --shadow-glow-amber: 0 0 24px rgba(186,117,23,0.25);
+  --shadow-glow-red:   0 0 24px rgba(216,90,48,0.25);
+
+  /* Animation */
+  --ease:    cubic-bezier(0.4, 0, 0.2, 1);
+  --spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --fast:    150ms;
+  --normal:  250ms;
+  --slow:    400ms;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+/* ─── BASE RESET & DEFAULTS ─────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-primary);
+  background-color: var(--color-page);
+  min-height: 100vh;
 }
+
+/* Headings default to display font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: 1.5px;
+  color: var(--text-primary);
+  line-height: 1.05;
+}
+
+/* Default link styles */
+a {
+  color: var(--link);
+  text-decoration: none;
+  transition: color var(--fast) var(--ease);
+}
+a:hover { color: var(--brand-hover); }
+
+/* Focus visible — accessibility */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Images */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Remove list styles */
+ul, ol { list-style: none; }
+
+/* Selection color */
+::selection {
+  background: var(--green-400);
+  color: var(--text-inverse);
+}
+
+
+/* ─── LAYOUT UTILITIES ──────────────────────────────────────────────────── */
+@layer utilities {
+
+  .container {
+    width: 100%;
+    max-width: var(--page-max);
+    margin-inline: auto;
+    padding-inline: var(--page-x);
+  }
+
+  .container-narrow {
+    width: 100%;
+    max-width: var(--content-max);
+    margin-inline: auto;
+    padding-inline: var(--page-x);
+  }
+
+  /* Sections */
+  .section {
+    padding-block: 80px;
+  }
+
+  .section-sm {
+    padding-block: 48px;
+  }
+
+  /* Article grid (main + sidebar) */
+  .article-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  @media (min-width: 1024px) {
+    .article-grid {
+      grid-template-columns: 1fr var(--sidebar-width);
+    }
+  }
+
+  /* News card grids */
+  .news-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @media (min-width: 640px) {
+    .news-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .news-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+}
+
+
+/* ─── COMPONENT LAYER ───────────────────────────────────────────────────── */
+@layer components {
+
+  /* Badges */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .badge-green  { background: var(--green-600); color: var(--green-50); }
+  .badge-amber  { background: var(--amber-400); color: var(--amber-800); }
+  .badge-red    { background: var(--red-400);   color: var(--red-800); }
+  .badge-blue   { background: var(--blue-400);  color: var(--blue-50); }
+  .badge-muted  { background: var(--color-elevated); color: var(--text-secondary); border: 0.5px solid var(--color-border-hover); }
+
+  /* Live indicator */
+  .badge-live {
+    background: var(--red-400);
+    color: #fff;
+  }
+  .badge-live::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--color-card);
+    border: 0.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--card-pad, 24px);
+    transition: border-color var(--normal) var(--ease),
+                background var(--normal) var(--ease),
+                box-shadow var(--normal) var(--ease);
+  }
+
+  .card:hover {
+    border-color: var(--color-border-hover);
+    background: var(--color-elevated);
+    box-shadow: var(--shadow-md);
+  }
+
+  .card-green-glow:hover { box-shadow: var(--shadow-glow-green); }
+  .card-amber-glow:hover { box-shadow: var(--shadow-glow-amber); }
+  .card-red-glow:hover   { box-shadow: var(--shadow-glow-red); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: all var(--normal) var(--ease);
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: var(--brand);
+    color: var(--text-inverse);
+  }
+  .btn-primary:hover {
+    background: var(--brand-hover);
+    color: var(--text-inverse);
+    box-shadow: var(--shadow-glow-green);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 0.5px solid var(--color-border-hover);
+  }
+  .btn-outline:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+  }
+  .btn-ghost:hover {
+    background: var(--color-elevated);
+    color: var(--text-primary);
+  }
+
+  .btn-sm { padding: 8px 16px; font-size: 12px; }
+  .btn-lg { padding: 16px 32px; font-size: 16px; }
+
+  /* Section label (eyebrow text) */
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  .eyebrow-green { color: var(--brand); }
+  .eyebrow-gold  { color: var(--afcon); }
+  .eyebrow-red   { color: var(--barca); }
+
+  /* Display headline shortcut */
+  .headline {
+    font-family: var(--font-display);
+    color: var(--text-primary);
+    line-height: 0.95;
+    letter-spacing: 2px;
+  }
+
+  /* Dividers */
+  .divider {
+    border: none;
+    border-top: 0.5px solid var(--color-border);
+    margin-block: 0;
+  }
+
+  /* Skeleton loader */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--color-card) 25%,
+      var(--color-elevated) 50%,
+      var(--color-card) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.4s ease-in-out infinite;
+    border-radius: var(--radius-md);
+  }
+
+  /* Score display */
+  .score-display {
+    font-family: var(--font-display);
+    font-size: 48px;
+    letter-spacing: 4px;
+    color: var(--brand);
+    line-height: 1;
+  }
+
+  /* Countdown unit */
+  .countdown-number {
+    font-family: var(--font-display);
+    color: var(--brand);
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .countdown-label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-top: 4px;
+  }
+
+  /* Article typography (for long-form content) */
+  .article-body {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    max-width: var(--content-max);
+  }
+
+  .article-body h2 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: var(--text-primary);
+    margin-block: 40px 16px;
+    letter-spacing: 1.5px;
+  }
+
+  .article-body h3 {
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-block: 32px 12px;
+    letter-spacing: 0;
+  }
+
+  .article-body p { margin-bottom: 20px; }
+
+  .article-body a {
+    color: var(--link);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .article-body blockquote {
+    border-left: 3px solid var(--brand);
+    padding-left: 20px;
+    margin-block: 28px;
+    color: var(--text-tertiary);
+    font-style: italic;
+  }
+}
+
+
+/* ─── AD SLOT CONTAINERS ────────────────────────────────────────────────── */
+/* CRITICAL: Pre-define dimensions to prevent CLS (Cumulative Layout Shift)  */
+/* These empty containers hold space before AdSense loads                    */
+
+.ad-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Reserve exact space — prevents layout shift when ads load */
+.ad-leaderboard     { width: 728px; min-height: 90px; margin-inline: auto; }
+.ad-sidebar-top     { width: 300px; min-height: 250px; }
+.ad-sidebar-mid     { width: 300px; min-height: 200px; }
+.ad-inline          { width: 468px; min-height: 60px; margin-inline: auto; }
+.ad-mobile-footer   { width: 320px; min-height: 50px; }
+.ad-mobile-inline   { width: 320px; min-height: 100px; margin-inline: auto; }
+
+/* Sticky mobile footer ad — only show on mobile */
+.ad-sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  background: var(--color-surface);
+  border-top: 0.5px solid var(--color-border);
+  padding: 4px 0;
+}
+
+@media (min-width: 1024px) {
+  .ad-sticky-footer { display: none; } /* desktop — don't show mobile sticky */
+  .ad-mobile-inline { display: none; }
+  .ad-mobile-footer { display: none; }
+}
+
+@media (max-width: 767px) {
+  .ad-leaderboard { display: none; }   /* hide desktop leaderboard on mobile */
+  .ad-inline { width: 100%; }          /* full width on mobile */
+}
+
+
+/* ─── SCORE TICKER ──────────────────────────────────────────────────────── */
+.ticker-wrapper {
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-surface);
+  border-bottom: 0.5px solid var(--color-border);
+}
+
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker 28s linear infinite;
+}
+
+.ticker-track:hover { animation-play-state: paused; }
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 32px 8px 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.ticker-item .score {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--brand);
+}
+
+
+/* ─── KEYFRAMES ─────────────────────────────────────────────────────────── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.85); }
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+
+/* ─── SCROLLBAR STYLING ─────────────────────────────────────────────────── */
+::-webkit-scrollbar              { width: 6px; height: 6px; }
+::-webkit-scrollbar-track        { background: var(--color-surface); }
+::-webkit-scrollbar-thumb        { background: var(--color-border-hover); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover  { background: var(--muted); }
