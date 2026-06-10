@@ -108,7 +108,7 @@ export type StandingsSortField =
 export type GetStandingsParams = {
   /** Filter to a specific competition, e.g. "kpl" or "fkf-cup". */
   competitionSlug?: string;
-  /** Filter to a specific season display label, e.g. "2025/26". */
+  /** Filter to a specific season by ID slug, e.g. "2025-26". */
   season?: string;
   /** Re-order the returned rows. Canonical positions are always preserved. */
   sortBy?: StandingsSortField;

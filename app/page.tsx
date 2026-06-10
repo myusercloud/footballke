@@ -5,6 +5,9 @@ import Footer from "@/components/layout/Footer";
 import { getNews } from "@/lib/news.cache";
 import { getUpcomingFixtures } from "@/lib/fixtures.cache";
 import { formatKickoffTime } from "@/lib/fixture.utils";
+import { getCompetitionStandings } from "@/lib/standings.cache";
+import { FormBadges } from "@/components/football/fixtures/FormBadges";
+import type { TableZone } from "@/types/standings";
 
 export const metadata: Metadata = {
   title: "KPL Weekend Preview & Standings",
@@ -18,17 +21,21 @@ export const metadata: Metadata = {
   },
 };
 
-const table = [
-  { club: "Gor Mahia", pts: 46, played: 22, gd: "+18", form: "W W D W W" },
-  { club: "Tusker", pts: 42, played: 22, gd: "+12", form: "W D W L W" },
-  { club: "Police FC", pts: 39, played: 22, gd: "+9", form: "D W W W D" },
-  { club: "Bandari", pts: 36, played: 22, gd: "+4", form: "L W D W W" },
-  { club: "AFC Leopards", pts: 34, played: 22, gd: "+2", form: "W L W D L" },
-  { club: "Kakamega Homeboyz", pts: 32, played: 22, gd: "0", form: "D W L W D" },
-  { club: "Sofapaka", pts: 30, played: 22, gd: "-3", form: "L D W L D" },
-  { club: "Ulinzi Stars", pts: 28, played: 22, gd: "-7", form: "W L D L W" },
-  { club: "Shabana", pts: 22, played: 22, gd: "-15", form: "D L W L L" },
-];
+// ── Zone color maps (Tailwind v4 — complete static strings) ──────────────────
+
+const ZONE_ROW: Record<TableZone, string> = {
+  champions:             "border-l-[3px] border-l-amber-400 bg-amber-50/70",
+  continental:           "border-l-[3px] border-l-emerald-500 bg-emerald-50/50",
+  "continental-playoff": "border-l-[3px] border-l-teal-500 bg-teal-50/50",
+  relegation:            "border-l-[3px] border-l-red-500 bg-red-50/50",
+};
+
+const ZONE_POS: Record<TableZone, string> = {
+  champions:             "text-amber-500",
+  continental:           "text-emerald-600",
+  "continental-playoff": "text-teal-600",
+  relegation:            "text-red-500",
+};
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -48,38 +55,6 @@ function kickoffBadgeTime(iso: string): string {
 }
 
 // ── Sub-components ────────────────────────────────────────────────────────────
-
-function FormBadges({ form }: { form: string }) {
-  return (
-    <div className="flex gap-0.5" aria-label={`Recent form: ${form}`}>
-      {form.split(" ").map((result, i) => (
-        <span
-          key={i}
-          className={`flex h-5 w-5 items-center justify-center rounded-sm text-[9px] font-black leading-none ${
-            result === "W"
-              ? "bg-emerald-600 text-white"
-              : result === "D"
-              ? "bg-amber-400 text-amber-900"
-              : "bg-red-500 text-white"
-          }`}
-          aria-label={result === "W" ? "Win" : result === "D" ? "Draw" : "Loss"}
-        >
-          {result}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-function getTableRowClass(index: number, total: number): string {
-  if (index === 0)
-    return "border-l-[3px] border-l-amber-400 bg-amber-50/70 dark:bg-amber-950/20";
-  if (index < 3)
-    return "border-l-[3px] border-l-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/15";
-  if (index >= total - 2)
-    return "border-l-[3px] border-l-red-500 bg-red-50/50 dark:bg-red-950/15";
-  return "border-l-[3px] border-l-transparent";
-}
 
 function AdSlot({
   label,
@@ -164,9 +139,10 @@ function PitchVisual() {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function Home() {
-  const [{ articles }, upcomingFixtures] = await Promise.all([
+  const [{ articles }, upcomingFixtures, kplStandings] = await Promise.all([
     getNews({ pageSize: 7 }),
     getUpcomingFixtures(4),
+    getCompetitionStandings("kpl"),
   ]);
 
   const topStories = articles.slice(0, 3);
@@ -401,69 +377,84 @@ export default async function Home() {
             >
               <div className="flex items-center justify-between gap-3">
                 <h2 className="text-xl font-black sm:text-2xl">Table Snapshot</h2>
-                <a
-                  href="#table"
+                <Link
+                  href="/standings"
                   className="text-xs font-bold text-emerald-700 underline underline-offset-2 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
                 >
                   Full table
-                </a>
+                </Link>
               </div>
 
-              {/* Zone legend */}
-              <div className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
-                <span className="flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-sm bg-amber-400" aria-hidden="true" />
-                  Champion
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-sm bg-emerald-500" aria-hidden="true" />
-                  Continental
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-sm bg-red-500" aria-hidden="true" />
-                  Relegation
-                </span>
-              </div>
-
-              {/* Column headers */}
-              <div className="mt-3 grid grid-cols-[28px_1fr_36px_36px_auto] items-center gap-2 border-b border-zinc-200 pb-2 text-[10px] font-black uppercase tracking-[0.18em] text-zinc-400">
-                <span>#</span>
-                <span>Club</span>
-                <span className="text-right">Pts</span>
-                <span className="hidden text-right sm:block">GD</span>
-                <span className="hidden sm:block">Form</span>
-              </div>
-
-              <div className="divide-y divide-zinc-100">
-                {table.map((row, index) => (
-                  <div
-                    key={row.club}
-                    className={`grid grid-cols-[28px_1fr_36px_36px_auto] items-center gap-2 py-2.5 transition-colors hover:bg-zinc-50 sm:py-3 ${getTableRowClass(index, table.length)}`}
-                  >
-                    <span
-                      className={`text-sm font-black ${
-                        index === 0
-                          ? "text-amber-500"
-                          : index < 3
-                          ? "text-emerald-600"
-                          : index >= table.length - 2
-                          ? "text-red-500"
-                          : "text-zinc-400"
-                      }`}
-                    >
-                      {index + 1}
-                    </span>
-                    <span className="truncate text-sm font-bold">{row.club}</span>
-                    <span className="text-right text-sm font-black">{row.pts}</span>
-                    <span className="hidden text-right text-xs font-semibold text-zinc-500 sm:block">
-                      {row.gd}
-                    </span>
-                    <div className="hidden sm:flex">
-                      <FormBadges form={row.form} />
-                    </div>
+              {kplStandings ? (
+                <>
+                  {/* Zone legend */}
+                  <div className="mt-2.5 flex flex-wrap gap-x-4 gap-y-1 text-[10px] font-semibold uppercase tracking-wider text-zinc-500">
+                    {kplStandings.zones.map((z) => (
+                      <span key={z.type} className="flex items-center gap-1.5">
+                        <span
+                          className={`h-2 w-2 rounded-sm ${
+                            z.type === "champions"
+                              ? "bg-amber-400"
+                              : z.type === "continental"
+                              ? "bg-emerald-500"
+                              : z.type === "continental-playoff"
+                              ? "bg-teal-500"
+                              : "bg-red-500"
+                          }`}
+                          aria-hidden="true"
+                        />
+                        {z.label}
+                      </span>
+                    ))}
                   </div>
-                ))}
-              </div>
+
+                  {/* Column headers */}
+                  <div className="mt-3 grid grid-cols-[28px_1fr_36px_36px_auto] items-center gap-2 border-b border-zinc-200 pb-2 text-[10px] font-black uppercase tracking-[0.18em] text-zinc-400">
+                    <span>#</span>
+                    <span>Club</span>
+                    <span className="text-right">Pts</span>
+                    <span className="hidden text-right sm:block">GD</span>
+                    <span className="hidden sm:block">Form</span>
+                  </div>
+
+                  <div className="divide-y divide-zinc-100">
+                    {kplStandings.rows.map((row) => (
+                      <div
+                        key={row.club.id}
+                        className={`grid grid-cols-[28px_1fr_36px_36px_auto] items-center gap-2 py-2.5 transition-colors hover:bg-zinc-50 sm:py-3 ${
+                          row.zone !== null
+                            ? ZONE_ROW[row.zone]
+                            : "border-l-[3px] border-l-transparent"
+                        }`}
+                      >
+                        <span
+                          className={`text-sm font-black ${
+                            row.zone !== null ? ZONE_POS[row.zone] : "text-zinc-400"
+                          }`}
+                        >
+                          {row.position}
+                        </span>
+                        <span className="truncate text-sm font-bold">
+                          {row.club.shortName}
+                        </span>
+                        <span className="text-right text-sm font-black">
+                          {row.points}
+                        </span>
+                        <span className="hidden text-right text-xs font-semibold text-zinc-500 sm:block">
+                          {row.goalDifference > 0
+                            ? `+${row.goalDifference}`
+                            : row.goalDifference}
+                        </span>
+                        <div className="hidden sm:flex">
+                          <FormBadges form={row.form} size="sm" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <p className="mt-4 text-sm text-zinc-400">Standings unavailable.</p>
+              )}
             </div>
 
             {/* Right column: Quick Reads + Advertise */}

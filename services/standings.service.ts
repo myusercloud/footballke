@@ -104,7 +104,7 @@ class JsonStandingsService implements IStandingsService {
     }
 
     if (season !== undefined) {
-      entries = entries.filter((e) => e.season.label === season);
+      entries = entries.filter((e) => e.season.id === season);
     }
 
     if (entries.length === 0) return null;

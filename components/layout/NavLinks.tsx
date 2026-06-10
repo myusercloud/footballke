@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 const NAV_ITEMS = [
   { label: "News", href: "/news" },
   { label: "Fixtures", href: "/fixtures" },
-  { label: "Table", href: "/#table" },
+  { label: "Table", href: "/standings" },
   { label: "Transfers", href: "/news?category=transfer-news" },
   { label: "Opinion", href: "/news?category=opinion" },
 ] as const;
@@ -25,7 +25,8 @@ export function NavLinks() {
         // correctly without needing useSearchParams().
         const isActive =
           (item.href === "/news" && pathname.startsWith("/news")) ||
-          (item.href === "/fixtures" && pathname.startsWith("/fixtures"));
+          (item.href === "/fixtures" && pathname.startsWith("/fixtures")) ||
+          (item.href === "/standings" && pathname.startsWith("/standings"));
 
         return (
           <Link
