@@ -21,7 +21,7 @@ export default function Footer() {
               opinion every matchday.
             </p>
             <div className="mt-4 flex gap-3">
-              {["Twitter", "Facebook", "WhatsApp"].map((platform) => (
+              {["Twitter", "Facebook", "Instagram"].map((platform) => (
                 <a
                   key={platform}
                   href="#"

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { getNews } from "@/lib/news.cache";
 
 export const metadata: Metadata = {
   title: "KPL Weekend Preview & Standings",
@@ -14,35 +15,6 @@ export const metadata: Metadata = {
   },
 };
 
-const topStories = [
-  {
-    tag: "KPL",
-    title: "Gor Mahia set the tempo as the title race tightens",
-    summary:
-      "A compact midfield, sharper wing play, and strong home form keep K'Ogalo in control of the weekend conversation.",
-    meta: "Match analysis",
-    readTime: "4 min",
-    hot: true,
-  },
-  {
-    tag: "Transfers",
-    title: "Tusker and Bandari track defensive reinforcements",
-    summary:
-      "Several clubs are already moving early as coaches look for depth before the second half of the campaign.",
-    meta: "Market watch",
-    readTime: "3 min",
-    hot: false,
-  },
-  {
-    tag: "County Football",
-    title: "Rising U20 talents pushing into senior squads",
-    summary:
-      "Academy graduates from Nairobi, Kisumu, Kakamega, and Mombasa are earning meaningful minutes.",
-    meta: "Youth desk",
-    readTime: "5 min",
-    hot: false,
-  },
-];
 
 const fixtures = [
   {
@@ -91,12 +63,6 @@ const table = [
   { club: "Shabana", pts: 22, played: 22, gd: "-15", form: "D L W L L" },
 ];
 
-const quickReads = [
-  { title: "Why set pieces are deciding tight KPL matches", tag: "Tactics" },
-  { title: "Five midfielders controlling the Kenyan Premier League", tag: "Analysis" },
-  { title: "Stadium notes: attendance, travel, and ticket updates", tag: "Fan guide" },
-  { title: "Betting talk: form trends without the noise", tag: "Stats" },
-];
 
 function FormBadges({ form }: { form: string }) {
   return (
@@ -210,7 +176,10 @@ function PitchVisual() {
   );
 }
 
-export default function Home() {
+export default async function Home() {
+  const { articles } = await getNews({ pageSize: 7 });
+  const topStories = articles.slice(0, 3);
+  const quickReads = articles.slice(3);
   return (
     <>
       <a
@@ -273,7 +242,7 @@ export default function Home() {
                 <div className="mt-6 flex flex-wrap items-center gap-3">
                   <a
                     className="inline-flex items-center gap-2 rounded-sm bg-emerald-800 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 active:bg-emerald-900"
-                    href="#news"
+                    href="/news"
                   >
                     Read latest
                     <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24" aria-hidden="true">
@@ -370,7 +339,7 @@ export default function Home() {
                   Top Stories
                 </h2>
                 <a
-                  href="#news"
+                  href="/news"
                   className="text-xs font-bold text-emerald-700 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
                 >
                   All stories →
@@ -380,32 +349,32 @@ export default function Home() {
               <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
                 {topStories.map((story) => (
                   <article
-                    key={story.title}
+                    key={story.slug}
                     className="group relative flex flex-col rounded-sm border border-zinc-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md focus-within:ring-2 focus-within:ring-emerald-600"
                   >
-                    {story.hot && (
+                    {story.featured && (
                       <span className="absolute right-4 top-4 flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 text-[9px] font-black uppercase tracking-wide text-red-700">
                         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-red-600" aria-hidden="true" />
                         Hot
                       </span>
                     )}
                     <p className="text-[10px] font-black uppercase tracking-[0.22em] text-emerald-700">
-                      {story.tag}
+                      {story.category.name}
                     </p>
                     <h3 className="mt-2.5 text-base font-black leading-snug transition-colors group-hover:text-emerald-900 sm:text-lg">
-                      <a href="#news" className="focus:outline-none after:absolute after:inset-0">
+                      <a href={`/news/${story.slug}`} className="focus:outline-none after:absolute after:inset-0">
                         {story.title}
                       </a>
                     </h3>
                     <p className="mt-2.5 flex-1 text-sm leading-6 text-zinc-600">
-                      {story.summary}
+                      {story.excerpt}
                     </p>
                     <div className="mt-4 flex items-center justify-between">
                       <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-zinc-400">
-                        {story.meta}
+                        {story.author.role}
                       </p>
                       <p className="text-[10px] font-semibold text-zinc-400">
-                        {story.readTime} read
+                        {story.readingTime} min read
                       </p>
                     </div>
                   </article>
@@ -507,18 +476,18 @@ export default function Home() {
                   Quick Reads
                 </h2>
                 <div className="mt-4 divide-y divide-white/10">
-                  {quickReads.map((item, i) => (
+                  {quickReads.map((story, i) => (
                     <a
-                      key={item.title}
+                      key={story.slug}
                       className="group flex items-start gap-3 py-3.5 text-sm font-semibold leading-snug text-zinc-100 transition-colors hover:text-lime-300 focus:text-lime-300 focus:outline-none sm:items-center"
-                      href="#news"
+                      href={`/news/${story.slug}`}
                     >
                       <span className="mt-0.5 shrink-0 text-xs font-black text-zinc-600 transition-colors group-hover:text-lime-600 sm:mt-0">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="flex-1">{item.title}</span>
+                      <span className="flex-1">{story.title}</span>
                       <span className="hidden shrink-0 rounded-full bg-white/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-zinc-400 sm:inline-block">
-                        {item.tag}
+                        {story.category.name}
                       </span>
                       <svg
                         className="hidden h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity group-hover:opacity-100 sm:block"

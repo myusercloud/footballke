@@ -1,9 +1,14 @@
+import { NavLinks } from "./NavLinks";
+
 export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white/95 shadow-sm backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6 sm:py-4 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-        {/* Brand */}
-        <a href="/" className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 rounded">
+        {/* Brand — Server Component */}
+        <a
+          href="/"
+          className="flex items-center gap-3 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2"
+        >
           <div
             className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-800 text-xs font-black text-white"
             aria-hidden="true"
@@ -20,27 +25,8 @@ export default function Navbar() {
           </div>
         </a>
 
-        {/* Nav */}
-        <nav
-          aria-label="Primary navigation"
-          className="flex flex-wrap gap-1 text-sm font-semibold text-zinc-700"
-        >
-          {[
-            { label: "News", href: "#news" },
-            { label: "Fixtures", href: "#fixtures" },
-            { label: "Table", href: "#table" },
-            { label: "Transfers", href: "#news" },
-            { label: "Opinion", href: "#opinion" },
-          ].map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="rounded px-3 py-1.5 transition-all duration-150 hover:bg-emerald-50 hover:text-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-1 active:bg-emerald-100 sm:px-4 sm:py-2"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        {/* Nav — Client Component for active-state awareness */}
+        <NavLinks />
       </div>
     </header>
   );

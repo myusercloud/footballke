@@ -1,0 +1,713 @@
+{
+  "categories": [
+    {
+      "id": "cat-1",
+      "name": "Match Report",
+      "slug": "match-report",
+      "color": "emerald"
+    },
+    {
+      "id": "cat-2",
+      "name": "Transfer News",
+      "slug": "transfer-news",
+      "color": "amber"
+    },
+    {
+      "id": "cat-3",
+      "name": "Analysis",
+      "slug": "analysis",
+      "color": "blue"
+    },
+    {
+      "id": "cat-4",
+      "name": "Opinion",
+      "slug": "opinion",
+      "color": "purple"
+    },
+    {
+      "id": "cat-5",
+      "name": "Club News",
+      "slug": "club-news",
+      "color": "zinc"
+    },
+    {
+      "id": "cat-6",
+      "name": "Youth Football",
+      "slug": "youth-football",
+      "color": "lime"
+    }
+  ],
+  "authors": [
+    {
+      "id": "auth-1",
+      "name": "Omondi Baraka",
+      "role": "Chief Sports Editor",
+      "bio": "Omondi Baraka has covered Kenyan football for over a decade, reporting from KPL stadiums across the country."
+    },
+    {
+      "id": "auth-2",
+      "name": "Wanjiku Achieng",
+      "role": "Match Analyst",
+      "bio": "Wanjiku Achieng brings deep tactical knowledge to FootballKE, specialising in formation analysis and pressing systems."
+    },
+    {
+      "id": "auth-3",
+      "name": "Hassan Musa",
+      "role": "Transfer Correspondent",
+      "bio": "Hassan Musa covers the KPL transfer market with sources across East African leagues."
+    },
+    {
+      "id": "auth-4",
+      "name": "Akinyi Oduor",
+      "role": "Youth Football Writer",
+      "bio": "Akinyi Oduor specialises in KPL academies and emerging talent across Nairobi, Kisumu, and Kakamega."
+    },
+    {
+      "id": "auth-5",
+      "name": "Kariuki James",
+      "role": "Opinion Columnist",
+      "bio": "Kariuki James is a former KPL match official turned columnist, contributing his views weekly to FootballKE."
+    }
+  ],
+  "articles": [
+    {
+      "id": "art-1",
+      "slug": "gor-mahia-extend-unbeaten-run-ulinzi",
+      "title": "Gor Mahia extend unbeaten run to eight with commanding 3–1 win over Ulinzi Stars",
+      "excerpt": "K'Ogalo produced their most complete performance of the month at Nyayo, with goals from Omondi, Kipchoge, and a late Wafula strike keeping Tusker at arm's length in the title race.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Gor Mahia put on a masterclass in controlled, possession-based football on Saturday afternoon, dismantling an organised Ulinzi Stars side 3–1 to extend their unbeaten Kenyan Premier League run to eight matches. Before a packed Nyayo National Stadium, K'Ogalo sent a clear message to their title rivals: they have no intention of relinquishing their grip at the summit."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "First-half dominance sets the tone"
+        },
+        {
+          "type": "paragraph",
+          "text": "Boniface Omondi broke the deadlock on the 23rd minute, meeting a whipped Eric Kipchoge cross from the right flank to head powerfully beyond the Ulinzi goalkeeper. The goal settled K'Ogalo into their rhythm, and ten minutes later Kipchoge himself added a clinical second with a curling effort from the edge of the area that kissed the far post on its way in."
+        },
+        {
+          "type": "quote",
+          "text": "We knew what was at stake today. Every match from here is a final, and the boys delivered exactly what we prepared all week.",
+          "attribution": "Gor Mahia Head Coach"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Ulinzi's brief comeback snuffed out"
+        },
+        {
+          "type": "paragraph",
+          "text": "The visitors reduced the deficit from the penalty spot just before the hour mark after a clumsy challenge in the box, and for a brief fifteen-minute spell Ulinzi asked real questions of the Gor defence. But substitute Kelvin Wafula ended the contest on 81 minutes, latching onto a loose ball in the area and slamming home off the underside of the bar to send the Nyayo faithful into ecstasy. The win keeps Gor Mahia four points clear of second-placed Tusker FC, who face Bandari in Mombasa on Sunday."
+        }
+      ],
+      "coverImage": {
+        "src": "/images/news/gor-mahia-extend-unbeaten-run-ulinzi.jpg",
+        "alt": "Gor Mahia players celebrating their 3–1 victory over Ulinzi Stars at Nyayo National Stadium",
+        "width": 1200,
+        "height": 630
+      },
+      "authorId": "auth-1",
+      "categorySlug": "match-report",
+      "tags": ["Gor Mahia", "Ulinzi Stars", "KPL", "Match Report", "Nyayo Stadium"],
+      "publishedAt": "2026-06-09T08:30:00Z",
+      "featured": true,
+      "relatedSlugs": [
+        "gor-mahia-tusker-title-decider-preview",
+        "kcb-sofapaka-nairobi-derby"
+      ]
+    },
+    {
+      "id": "art-2",
+      "slug": "tusker-high-press-tactical-analysis",
+      "title": "Tusker FC's high-press evolution: how Matano reshaped Kenya's most consistent club",
+      "excerpt": "A deep tactical look at how Tusker's structured pressing system has transformed their season and made them the hardest side to break down in the KPL.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "When Tusker FC conceded 18 goals in the opening ten matches of the 2024/25 season, questions were being asked loudly in Nairobi about the club's direction. Fast-forward fourteen months and the Brewers have conceded fewer goals than any other side in the 2025/26 campaign — a transformation rooted almost entirely in a tactical overhaul centred on structured high pressing."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Press triggers: coordinated, not frantic"
+        },
+        {
+          "type": "paragraph",
+          "text": "Tusker's system relies on defined press triggers rather than individual effort. When an opposition centre-back receives the ball under pressure, the two forwards immediately close off forward passing lanes while one central midfielder steps aggressively into the space behind. This compresses opponents into a narrow corridor, forcing long balls that Tusker's disciplined back four read with remarkable ease."
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "Goalkeeper receives → forwards press centrally, defensive midfielder blocks switch",
+            "Full-back receives → nearest winger presses, far-side midfielder tucks inward",
+            "Centre-back on the half-turn → full front-line press triggered immediately"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Fitness as a competitive edge"
+        },
+        {
+          "type": "paragraph",
+          "text": "The press only works with a squad conditioned to sustain intensity across 90 minutes. Tusker's pre-season was notably different this campaign — six weeks of structured endurance work before a ball was kicked. The results are visible: their pressing intensity in the final twenty minutes has barely diminished from their opening-period energy, a rarity in the KPL."
+        },
+        {
+          "type": "quote",
+          "text": "The fitness work we did in July was the foundation for everything. Without that, the press collapses by the hour mark.",
+          "attribution": "Tusker FC Assistant Coach"
+        },
+        {
+          "type": "paragraph",
+          "text": "With four points separating them from leaders Gor Mahia and a direct meeting on the horizon, Tusker's press may prove the decisive tactical weapon in determining who lifts the KPL trophy in July."
+        }
+      ],
+      "coverImage": {
+        "src": "/images/news/tusker-high-press-tactical-analysis.jpg",
+        "alt": "Tusker FC midfielders pressing in coordinated formation during a KPL match",
+        "width": 1200,
+        "height": 630
+      },
+      "authorId": "auth-2",
+      "categorySlug": "analysis",
+      "tags": ["Tusker FC", "Tactics", "Analysis", "KPL", "High Press"],
+      "publishedAt": "2026-06-07T10:00:00Z",
+      "featured": true,
+      "relatedSlugs": [
+        "gor-mahia-tusker-title-decider-preview",
+        "kpl-set-piece-analysis"
+      ]
+    },
+    {
+      "id": "art-3",
+      "slug": "gor-mahia-tusker-title-decider-preview",
+      "title": "Gor Mahia vs Tusker: the KPL title decider that has football Kenya on the edge",
+      "excerpt": "Four points and one weekend stand between K'Ogalo glory and a Brewers comeback. We break down the key battles, form lines, and what each side needs from the fixture.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Kenyan football has been building to this for weeks. When Gor Mahia host Tusker FC at Nyayo National Stadium on Saturday, the 14:00 kickoff will carry the weight of an entire title race. Four points is the gap. One defeat for the leaders or one decisive Tusker win could reduce this to a final-day shootout. Both clubs know it."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The form argument"
+        },
+        {
+          "type": "paragraph",
+          "text": "Gor Mahia come in on the back of eight unbeaten matches, including five wins from the last five. Tusker have been equally ruthless, dropping points only twice in their last twelve. Head-to-head this season the sides have shared the spoils — a 1–1 draw at the Kenyatta Stadium in the first half of the campaign — making this encounter perfectly poised."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key battle: midfield control"
+        },
+        {
+          "type": "paragraph",
+          "text": "The match will be won and lost between the penalty areas. Gor Mahia's Michael Olunga-Ochieng dictates tempo with his range of passing from deep, while Tusker's defensive midfielder David Simiyu has been the engine behind their press. The ability of either player to dominate the other will likely determine which way the match swings."
+        },
+        {
+          "type": "quote",
+          "text": "We respect Tusker enormously. But Nyayo is our home and we play at home the way we train — with intensity and belief.",
+          "attribution": "Gor Mahia Captain"
+        },
+        {
+          "type": "paragraph",
+          "text": "A Gor win extends the lead to seven points with five matches remaining — almost certainly decisive. A Tusker win cuts it to one and throws the door wide open. A draw keeps the gap at four but hands the psychological momentum to the side that reads it better. Kenyan football rarely produces a more consequential 90 minutes."
+        }
+      ],
+      "coverImage": {
+        "src": "/images/news/gor-mahia-tusker-title-decider-preview.jpg",
+        "alt": "Players from Gor Mahia and Tusker FC in a tense midfield battle",
+        "width": 1200,
+        "height": 630
+      },
+      "authorId": "auth-1",
+      "categorySlug": "match-report",
+      "tags": ["Gor Mahia", "Tusker FC", "KPL", "Title Race", "Preview"],
+      "publishedAt": "2026-06-08T07:00:00Z",
+      "featured": true,
+      "relatedSlugs": [
+        "gor-mahia-extend-unbeaten-run-ulinzi",
+        "tusker-high-press-tactical-analysis"
+      ]
+    },
+    {
+      "id": "art-4",
+      "slug": "afc-leopards-sign-tanzanian-midfielder",
+      "title": "AFC Leopards complete signing of Tanzanian midfielder Hamisi Juma in major transfer coup",
+      "excerpt": "Ingwe confirm the arrival of the 24-year-old from Simba SC on a two-year deal, addressing the creative midfield gap that has frustrated their campaign.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "AFC Leopards have announced the signing of Tanzanian international midfielder Hamisi Juma from Simba SC on a two-year deal with an option for a third year. The 24-year-old is widely considered one of the most creative midfielders in East African club football and completes a transfer that Ingwe have been pursuing since the January window."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Who is Hamisi Juma?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Juma made his name at Yanga SC before his move to Simba, where he scored seven goals and registered eleven assists in 28 league appearances last season. Comfortable in a box-to-box role or operating as a number ten, his ability to beat a press with quick one-touch football directly addresses the area AFC Leopards have struggled most this campaign."
+        },
+        {
+          "type": "quote",
+          "text": "I chose AFC Leopards because of the project, the history of this club, and the ambition of the people running it. I want to win trophies here.",
+          "attribution": "Hamisi Juma, new AFC Leopards signing"
+        },
+        {
+          "type": "paragraph",
+          "text": "Ingwe are fifth in the KPL table, eight points off the top two, but the signing arrives with continental qualification as a realistic target. The CAF Confederation Cup spots are contested by the top four, and Juma's creativity could prove decisive in the remaining fixtures. He is eligible to feature this weekend against Kakamega Homeboyz."
+        }
+      ],
+      "coverImage": {
+        "src": "/images/news/afc-leopards-sign-tanzanian-midfielder.jpg",
+        "alt": "Hamisi Juma holds an AFC Leopards shirt at his official club unveiling",
+        "width": 1200,
+        "height": 630
+      },
+      "authorId": "auth-3",
+      "categorySlug": "transfer-news",
+      "tags": ["AFC Leopards", "Transfers", "Hamisi Juma", "Tanzania", "KPL"],
+      "publishedAt": "2026-06-06T11:00:00Z",
+      "featured": false,
+      "relatedSlugs": [
+        "bandari-double-transfer-swoop",
+        "five-kpl-midfielders-dominating"
+      ]
+    },
+    {
+      "id": "art-5",
+      "slug": "bandari-double-transfer-swoop",
+      "title": "Bandari FC complete double defensive signing as Mombasa club targets continental places",
+      "excerpt": "The Dockers bring in Ugandan centre-back Isaac Mulondo and local right-back Brian Karimi to shore up a defence that conceded seven in three matches last month.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Bandari FC have confirmed the signings of Ugandan international centre-back Isaac Mulondo and Kenyan right-back Brian Karimi ahead of the run-in, with the Mombasa club determined to address the defensive vulnerabilities that cost them crucial points in May. Both players are immediately available for selection."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Mulondo: the anchor Bandari needed"
+        },
+        {
+          "type": "paragraph",
+          "text": "The 26-year-old arrives from KCCA FC in Uganda, where he was consistently one of the FUFA Premier League's most composed centre-backs. Standing at 6ft 2in, Mulondo brings an aerial presence the Dockers have lacked since the departure of their previous first-choice centre-back in January. He joins on a deal until the end of the 2026/27 season."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Karimi provides cover and competition"
+        },
+        {
+          "type": "paragraph",
+          "text": "Karimi, 22, arrives from KCB FC having established himself as one of the most attack-minded right-backs in the league. His ability to overlap and deliver from wide positions adds a dimension to Bandari's build-up play that their current right-back options do not offer. The signing creates healthy competition for a position that has been filled by converted midfielders for much of this season."
+        },
+        {
+          "type": "paragraph",
+          "text": "Bandari sit fourth in the KPL table with six matches remaining. A continental place is within reach, but they must improve on a recent run that has seen them take four points from a possible twelve."
+        }
+      ],
+      "coverImage": {
+        "src": "/images/news/bandari-double-transfer-swoop.jpg",
+        "alt": "Bandari FC unveil their two new defensive signings at Mbaraki Sports Club",
+        "width": 1200,
+        "height": 630
+      },
+      "authorId": "auth-3",
+      "categorySlug": "transfer-news",
+      "tags": ["Bandari FC", "Transfers", "KPL", "Isaac Mulondo", "Brian Karimi"],
+      "publishedAt": "2026-06-05T09:30:00Z",
+      "featured": false,
+      "relatedSlugs": [
+        "afc-leopards-sign-tanzanian-midfielder",
+        "farouk-shikalo-player-of-month"
+      ]
+    },
+    {
+      "id": "art-6",
+      "slug": "kcb-sofapaka-nairobi-derby",
+      "title": "KCB edge a pulsating Nairobi derby as Sofapaka defend deep in a 2–1 thriller",
+      "excerpt": "Two second-half goals from Mwangi and a composed Otieno finish settled a tense Nairobi derby that Sofapaka made hard work right until the final whistle.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "KCB FC claimed a vital three points in a fiercely contested Nairobi derby on Sunday evening, beating Sofapaka 2–1 in a match that captured everything compelling about KPL football: fine margins, tactical chess, and the kind of atmosphere that only a city rivalry delivers. The Bankers rise to sixth; Sofapaka drop a place and into the lower half."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Sofapaka's low block frustrates for an hour"
+        },
+        {
+          "type": "paragraph",
+          "text": "Sofapaka arrived at Camp Toyoyo with a clear game plan: sit in a low 4–5–1 block, invite pressure, and threaten on the counter. For 60 minutes it worked almost perfectly. KCB had 68 percent possession but could find no way through a compact, disciplined defensive unit. The first half ended goalless, with KCB's frustrated passes drawing whistles of discontent from their own supporters."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Mwangi breaks the deadlock, Sofapaka respond"
+        },
+        {
+          "type": "paragraph",
+          "text": "Peter Mwangi finally found the breakthrough on the hour, receiving a lay-off on the edge of the box and driving a low effort through a forest of legs and into the bottom corner. Sofapaka responded bravely, equalising eleven minutes later through substitute Ochieng, who headed home from a corner to send the travelling contingent into jubilation."
+        },
+        {
+          "type": "paragraph",
+          "text": "The match looked set for a point apiece until Samuel Otieno composed himself superbly in the 88th minute, bringing down a long ball, spinning his marker, and finishing calmly past the advancing goalkeeper. The three points were KCB's — hard earned and deserved on the balance of the contest."
+        }
+      ],
+      "coverImage": {
+        "src": "/images/news/kcb-sofapaka-nairobi-derby.jpg",
+        "alt": "KCB and Sofapaka players contest a midfield challenge in their Nairobi derby",
+        "width": 1200,
+        "height": 630
+      },
+      "authorId": "auth-1",
+      "categorySlug": "match-report",
+      "tags": ["KCB FC", "Sofapaka", "KPL", "Match Report", "Nairobi Derby"],
+      "publishedAt": "2026-06-04T17:00:00Z",
+      "featured": false,
+      "relatedSlugs": [
+        "gor-mahia-extend-unbeaten-run-ulinzi",
+        "gor-mahia-tusker-title-decider-preview"
+      ]
+    },
+    {
+      "id": "art-7",
+      "slug": "shabana-revival-story",
+      "title": "From relegation shadows to KPL contenders: the remarkable Shabana FC revival",
+      "excerpt": "How a change of formation, a goalkeeper upgrade, and renewed community backing has turned Gusii Stadium into a fortress and Shabana into a genuine top-half threat.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Three months ago Shabana FC were playing relegation six-pointers and fielding questions about whether their financial situation could sustain a full KPL campaign. Today they sit seventh in the table, unbeaten in their last five, and playing some of the most attractive football outside the title contenders. The turnaround is one of the most compelling stories of the 2025/26 KPL season."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The formation shift that changed everything"
+        },
+        {
+          "type": "paragraph",
+          "text": "The turning point came in March when Shabana's technical staff abandoned their rigid 4–4–2 in favour of a fluid 3–4–3. The system liberated their two most gifted players — winger Morara and creative midfielder Bosire — from defensive tracking duties and gave them licence to operate in the half-spaces where they cause the most damage. In the twelve matches since the switch, Shabana have scored 21 goals."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Gusii Stadium becomes a fortress"
+        },
+        {
+          "type": "paragraph",
+          "text": "Shabana have not lost at Gusii Stadium since February. The atmosphere generated by a community that had grown frustrated with years of mid-table mediocrity has transformed into a genuine advantage. Home crowds averaging well above the KPL norm have turned up, sung, and driven their side to results that looked impossible six weeks ago."
+        },
+        {
+          "type": "quote",
+          "text": "The crowd here is like a twelfth man. When Gusii is behind us, we can beat anyone on our day.",
+          "attribution": "Shabana FC captain"
+        },
+        {
+          "type": "paragraph",
+          "text": "Relegation is no longer a conversation at the club. A top-half finish is the new minimum target. And with Morara attracting interest from clubs in North Africa, the coming weeks may determine whether Shabana's revival continues — or whether they lose the player most responsible for engineering it."
+        }
+      ],
+      "coverImage": {
+        "src": "/images/news/shabana-revival-story.jpg",
+        "alt": "Shabana FC players celebrate a goal at Gusii Stadium during their revival run",
+        "width": 1200,
+        "height": 630
+      },
+      "authorId": "auth-2",
+      "categorySlug": "analysis",
+      "tags": ["Shabana FC", "Analysis", "KPL", "Gusii Stadium", "Tactics"],
+      "publishedAt": "2026-06-03T09:00:00Z",
+      "featured": false,
+      "relatedSlugs": [
+        "tusker-high-press-tactical-analysis",
+        "kpl-set-piece-analysis"
+      ]
+    },
+    {
+      "id": "art-8",
+      "slug": "five-kpl-midfielders-dominating",
+      "title": "The engine room: five KPL midfielders who are defining the 2025/26 season",
+      "excerpt": "From Gor Mahia's deep-lying conductor to Tusker's press-setter, these are the players doing the unglamorous, essential work that separates title contenders from the rest.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Goals and assists grab the headlines. But the KPL's most influential players this season have often been the ones who create the conditions for headlines rather than generating them directly. These five midfielders have been the heartbeat of their clubs — and in several cases, the difference between a genuine title challenge and mid-table anonymity."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "1. Michael Olunga-Ochieng — Gor Mahia"
+        },
+        {
+          "type": "paragraph",
+          "text": "The most complete midfielder in the league. Olunga-Ochieng has the defensive discipline to play as a six, the range of passing to operate as an eight, and the goal threat to function as a ten. His season-average of 72 accurate passes per match is the highest in the division. Gor Mahia's unbeaten run of eight matches has coincided almost exactly with his return from injury in April."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "2. David Simiyu — Tusker FC"
+        },
+        {
+          "type": "paragraph",
+          "text": "The defensive midfielder who makes Tusker's press function. Simiyu intercepts more than any other player in the KPL this season and has an almost supernatural ability to read second-ball situations. Without him anchoring the base, Tusker's aggressive defensive structure would be an open invitation to be countered."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "3. Brian Bosire — Shabana FC"
+        },
+        {
+          "type": "paragraph",
+          "text": "The man most responsible for Shabana's remarkable revival. Bosire operates in the pockets of space between the opposition's midfield and defensive lines, and his ability to receive under pressure, turn, and drive has made Shabana almost impossible to defend in transition."
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "4. Junior Okeyo (AFC Leopards) — eight assists in ten matches since January",
+            "5. Hassan Odhiambo (KCB FC) — the most fouled player in the KPL, drawing 4.2 fouls per game"
+          ]
+        }
+      ],
+      "coverImage": {
+        "src": "/images/news/five-kpl-midfielders-dominating.jpg",
+        "alt": "A collage of five KPL midfielders in action for their respective clubs",
+        "width": 1200,
+        "height": 630
+      },
+      "authorId": "auth-5",
+      "categorySlug": "opinion",
+      "tags": ["Opinion", "KPL", "Midfielders", "Analysis", "Player Rankings"],
+      "publishedAt": "2026-06-02T08:00:00Z",
+      "featured": false,
+      "relatedSlugs": [
+        "tusker-high-press-tactical-analysis",
+        "afc-leopards-sign-tanzanian-midfielder"
+      ]
+    },
+    {
+      "id": "art-9",
+      "slug": "kpl-academy-graduates-senior-squads",
+      "title": "The next generation: KPL academy graduates making senior squads their home",
+      "excerpt": "From Nairobi to Kakamega, a new wave of under-21 players is earning meaningful minutes and challenging the established order in Kenya's top flight.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The 2025/26 KPL season has been notable not just for the title race but for a broader, more structural shift: academy-trained players are finally breaking into first teams in meaningful numbers. Across eight of the sixteen clubs, at least one graduate of their own youth system has started ten or more league matches this season. That figure has doubled from two seasons ago."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Kakamega Homeboyz lead the way"
+        },
+        {
+          "type": "paragraph",
+          "text": "No club has been more deliberate in this area than Kakamega Homeboyz. Three players from their Western Kenya Academy are in regular first-team contention, including 19-year-old left-back Victor Shikuku, who was voted the KPL's Young Player of the Month in April. Shikuku combines exceptional pace with a composure in possession that belies his age."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Nairobi clubs slow to follow"
+        },
+        {
+          "type": "paragraph",
+          "text": "The contrast with Nairobi's big clubs remains stark. Both Gor Mahia and AFC Leopards have invested in their academies publicly, but the pipeline from youth team to first-team minutes remains blocked by a preference for established, known quantities. Neither club has fielded an academy graduate for more than 20 minutes in a competitive fixture this season."
+        },
+        {
+          "type": "quote",
+          "text": "There is immense talent in these academies. The question is whether the coaches trust it enough to play it when the pressure is on.",
+          "attribution": "Akinyi Oduor, FootballKE Youth Desk"
+        },
+        {
+          "type": "paragraph",
+          "text": "The KPL is set to introduce a mandatory minimum minutes rule for U21 players from the 2026/27 season. For the academies that have been patient, that rule cannot come fast enough."
+        }
+      ],
+      "coverImage": {
+        "src": "/images/news/kpl-academy-graduates-senior-squads.jpg",
+        "alt": "Young KPL academy players train on a pitch in Western Kenya",
+        "width": 1200,
+        "height": 630
+      },
+      "authorId": "auth-4",
+      "categorySlug": "youth-football",
+      "tags": ["Youth Football", "Academies", "KPL", "Kakamega Homeboyz", "U21"],
+      "publishedAt": "2026-06-01T07:30:00Z",
+      "featured": false,
+      "relatedSlugs": [
+        "five-kpl-midfielders-dominating",
+        "shabana-revival-story"
+      ]
+    },
+    {
+      "id": "art-10",
+      "slug": "farouk-shikalo-player-of-month",
+      "title": "Farouk Shikalo named KPL Player of the Month as Bandari goalkeeper draws continental scouts",
+      "excerpt": "The 27-year-old has kept five clean sheets in six May fixtures, making him the standout performer in a month that has elevated his profile far beyond the Kenyan coast.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Bandari FC goalkeeper Farouk Shikalo has been named the Kenyan Premier League's Player of the Month for May, following an extraordinary run of form that included five clean sheets in six appearances. The award, voted on by a panel of KPL coaches and technical directors, recognises a level of consistency that has made Shikalo one of the most talked-about players in East African football."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The saves that defined a month"
+        },
+        {
+          "type": "paragraph",
+          "text": "Shikalo's defining moment came in the 76th minute against Police FC, when he produced a full-stretch save from a point-blank header that would have equalised and ended Bandari's unbeaten May run. The stop was named the KPL Save of the Month and drew widespread commentary on social media across the continent. It was part of a wider pattern: Shikalo faced 32 shots on target in May and stopped 30 of them."
+        },
+        {
+          "type": "quote",
+          "text": "I don't think about individual awards during the season. But receiving this from the coaches means more to me than any supporter vote.",
+          "attribution": "Farouk Shikalo, Bandari FC"
+        },
+        {
+          "type": "paragraph",
+          "text": "FootballKE has learned that scouts from two CAF Champions League-participating clubs were present at Bandari's home match against Ulinzi Stars last month. Shikalo's contract runs until June 2027 and Bandari are understood to have no intention of selling this window. Whether that position holds if the interest becomes formal offers remains to be seen."
+        }
+      ],
+      "coverImage": {
+        "src": "/images/news/farouk-shikalo-player-of-month.jpg",
+        "alt": "Farouk Shikalo holds the KPL Player of the Month award at Mbaraki Sports Club",
+        "width": 1200,
+        "height": 630
+      },
+      "authorId": "auth-1",
+      "categorySlug": "club-news",
+      "tags": ["Bandari FC", "Farouk Shikalo", "Player of the Month", "KPL", "Goalkeeper"],
+      "publishedAt": "2026-05-30T10:00:00Z",
+      "featured": false,
+      "relatedSlugs": [
+        "bandari-double-transfer-swoop",
+        "kcb-sofapaka-nairobi-derby"
+      ]
+    },
+    {
+      "id": "art-11",
+      "slug": "nyayo-stadium-fan-guide",
+      "title": "Your complete guide to watching KPL football at Nyayo National Stadium",
+      "excerpt": "Tickets, transport, the best seating sections, food, and everything else you need to enjoy a matchday at Nairobi's premier football venue.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Nyayo National Stadium remains the spiritual home of top-flight Kenyan football. Whether you are attending your first KPL match or a seasoned regular looking for tips, this guide covers everything — from buying tickets in advance to where to find the best nyama choma within walking distance of the ground."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Getting tickets"
+        },
+        {
+          "type": "paragraph",
+          "text": "Tickets for KPL matches at Nyayo are available through the official FKF ticketing platform online and at gate kiosks from two hours before kickoff. For derby fixtures involving Gor Mahia or AFC Leopards, online booking is strongly recommended — sold-out situations have occurred three times this season. General admission is KSh 200, with VIP and corporate hospitality packages available through the respective clubs."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Getting there"
+        },
+        {
+          "type": "list",
+          "ordered": false,
+          "items": [
+            "Matatu: Routes 19, 33, and 46 all stop within five minutes of the main gate on Mombasa Road",
+            "Boda boda: readily available from the CBD; agree the fare before you board",
+            "Car: limited parking inside the grounds — street parking on Langata Road fills quickly for big matches",
+            "On foot from the CBD: approximately 35 minutes, feasible in the cooler evening kickoffs"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Best seating sections"
+        },
+        {
+          "type": "paragraph",
+          "text": "The North Stand offers the best unobstructed view of both penalty areas and is where the most vocal home support sits for Gor Mahia matches. The South Stand is typically where the visiting club's fans congregate and generates excellent atmosphere when the away following is strong. The East Stand is the family-friendly option, with slightly less noise but excellent sightlines and proximity to the main concourse food vendors."
+        }
+      ],
+      "coverImage": {
+        "src": "/images/news/nyayo-stadium-fan-guide.jpg",
+        "alt": "A packed Nyayo National Stadium during a KPL weekend match",
+        "width": 1200,
+        "height": 630
+      },
+      "authorId": "auth-5",
+      "categorySlug": "club-news",
+      "tags": ["Fan Guide", "Nyayo Stadium", "KPL", "Matchday", "Nairobi"],
+      "publishedAt": "2026-05-28T08:00:00Z",
+      "featured": false,
+      "relatedSlugs": [
+        "gor-mahia-tusker-title-decider-preview",
+        "gor-mahia-extend-unbeaten-run-ulinzi"
+      ]
+    },
+    {
+      "id": "art-12",
+      "slug": "kpl-set-piece-analysis",
+      "title": "Set-piece mastery: how dead ball situations are deciding KPL matches in 2026",
+      "excerpt": "Forty-three percent of all KPL goals this season have come from set pieces. We break down the routines, the deliverers, and the clubs using dead balls as a primary weapon.",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A quieter tactical revolution is reshaping how Kenyan Premier League matches are decided. While coaches debate pressing systems and build-up structures in post-match interviews, the data from the 2025/26 season tells a more specific story: teams that invest in set-piece design are winning matches at a disproportionate rate, and the gap between the most and least effective clubs in this area is wider than at any point in recent memory."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Corners: where the contest is fiercest"
+        },
+        {
+          "type": "paragraph",
+          "text": "Police FC lead the KPL in goals from corners with eleven this season — nearly one every other match. Their routine involves a short corner variation that draws opposing defenders out of position before a driven ball into the near post area, where a late runner attacks the flicker. Three other clubs have attempted to replicate the pattern after studying it on video, but the execution of the delivery and the timing of the run has proved difficult to copy without Police's specific personnel."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Free kicks: the Gor Mahia advantage"
+        },
+        {
+          "type": "paragraph",
+          "text": "No club scores more from direct free kicks than Gor Mahia. Their designated taker has converted six this season from outside the box — three of which proved to be match-winning goals. Analysis of these strikes reveals a consistent pattern: the ball is struck low and across the wall rather than over it, attacking the near post side of the goalkeeper's dive. Simple in concept; devastatingly effective in practice."
+        },
+        {
+          "type": "quote",
+          "text": "Set pieces are not a luxury anymore. In a league where matches are often decided by one goal, they are thirty percent of your attacking plan.",
+          "attribution": "Anonymous KPL Assistant Coach"
+        },
+        {
+          "type": "paragraph",
+          "text": "For clubs in the bottom half, defensive set-piece organisation is equally critical. The three sides with the worst record defending dead balls — conceding 28 goals between them — are all in the bottom six. Correlation is not causation, but when nearly half your goals conceded come from situations where you are organised and stationary, the case for specialist coaching investment becomes unanswerable."
+        }
+      ],
+      "coverImage": {
+        "src": "/images/news/kpl-set-piece-analysis.jpg",
+        "alt": "KPL players form a defensive wall as a free kick is prepared",
+        "width": 1200,
+        "height": 630
+      },
+      "authorId": "auth-2",
+      "categorySlug": "analysis",
+      "tags": ["Analysis", "KPL", "Set Pieces", "Tactics", "Statistics"],
+      "publishedAt": "2026-05-25T09:00:00Z",
+      "featured": false,
+      "relatedSlugs": [
+        "tusker-high-press-tactical-analysis",
+        "shabana-revival-story"
+      ]
+    }
+  ]
+}
