@@ -1,0 +1,716 @@
+{
+  "teams": [
+    {
+      "id": "gor-mahia",
+      "name": "Gor Mahia FC",
+      "shortName": "Gor Mahia",
+      "abbreviation": "GOR",
+      "slug": "gor-mahia",
+      "logo": "/images/teams/gor-mahia.png",
+      "colors": { "primary": "#006B2D", "secondary": "#FFFFFF" }
+    },
+    {
+      "id": "afc-leopards",
+      "name": "AFC Leopards",
+      "shortName": "AFC Leopards",
+      "abbreviation": "AFC",
+      "slug": "afc-leopards",
+      "logo": "/images/teams/afc-leopards.png",
+      "colors": { "primary": "#000000", "secondary": "#FFFFFF" }
+    },
+    {
+      "id": "tusker-fc",
+      "name": "Tusker FC",
+      "shortName": "Tusker",
+      "abbreviation": "TUS",
+      "slug": "tusker-fc",
+      "logo": "/images/teams/tusker-fc.png",
+      "colors": { "primary": "#003087", "secondary": "#FFD700" }
+    },
+    {
+      "id": "kcb-fc",
+      "name": "KCB FC",
+      "shortName": "KCB",
+      "abbreviation": "KCB",
+      "slug": "kcb-fc",
+      "logo": "/images/teams/kcb-fc.png",
+      "colors": { "primary": "#007A3D", "secondary": "#CC0000" }
+    },
+    {
+      "id": "bandari-fc",
+      "name": "Bandari FC",
+      "shortName": "Bandari",
+      "abbreviation": "BAN",
+      "slug": "bandari-fc",
+      "logo": "/images/teams/bandari-fc.png",
+      "colors": { "primary": "#0057B8", "secondary": "#FFFFFF" }
+    },
+    {
+      "id": "police-fc",
+      "name": "Police FC",
+      "shortName": "Police",
+      "abbreviation": "POL",
+      "slug": "police-fc",
+      "logo": "/images/teams/police-fc.png",
+      "colors": { "primary": "#001F5B", "secondary": "#CC0000" }
+    },
+    {
+      "id": "shabana-fc",
+      "name": "Shabana FC",
+      "shortName": "Shabana",
+      "abbreviation": "SHA",
+      "slug": "shabana-fc",
+      "logo": "/images/teams/shabana-fc.png",
+      "colors": { "primary": "#006400", "secondary": "#FFD700" }
+    },
+    {
+      "id": "sofapaka-fc",
+      "name": "Sofapaka FC",
+      "shortName": "Sofapaka",
+      "abbreviation": "SOF",
+      "slug": "sofapaka-fc",
+      "logo": "/images/teams/sofapaka-fc.png",
+      "colors": { "primary": "#CC0000", "secondary": "#000000" }
+    },
+    {
+      "id": "kakamega-homeboyz",
+      "name": "Kakamega Homeboyz",
+      "shortName": "Homeboyz",
+      "abbreviation": "KHB",
+      "slug": "kakamega-homeboyz",
+      "logo": "/images/teams/kakamega-homeboyz.png",
+      "colors": { "primary": "#228B22", "secondary": "#FFD700" }
+    },
+    {
+      "id": "ulinzi-stars",
+      "name": "Ulinzi Stars",
+      "shortName": "Ulinzi",
+      "abbreviation": "ULS",
+      "slug": "ulinzi-stars",
+      "logo": "/images/teams/ulinzi-stars.png",
+      "colors": { "primary": "#1A1A1A", "secondary": "#FFD700" }
+    }
+  ],
+
+  "competitions": [
+    {
+      "id": "kpl",
+      "name": "Kenyan Premier League",
+      "slug": "kpl",
+      "logo": "/images/competitions/kpl.png",
+      "country": "Kenya",
+      "season": "2025/26"
+    },
+    {
+      "id": "fkf-cup",
+      "name": "FKF Cup",
+      "slug": "fkf-cup",
+      "logo": "/images/competitions/fkf-cup.png",
+      "country": "Kenya",
+      "season": "2025/26"
+    }
+  ],
+
+  "venues": [
+    {
+      "id": "nyayo",
+      "name": "Nyayo National Stadium",
+      "city": "Nairobi",
+      "capacity": 30000
+    },
+    {
+      "id": "kasarani",
+      "name": "Moi International Sports Centre",
+      "city": "Nairobi",
+      "capacity": 60000
+    },
+    {
+      "id": "gusii",
+      "name": "Gusii Stadium",
+      "city": "Kisii",
+      "capacity": 18000
+    },
+    {
+      "id": "mbaraki",
+      "name": "Mbaraki Sports Club",
+      "city": "Mombasa",
+      "capacity": 10000
+    },
+    {
+      "id": "camp-toyoyo",
+      "name": "Camp Toyoyo",
+      "city": "Nairobi",
+      "capacity": 8000
+    },
+    {
+      "id": "afraha",
+      "name": "Afraha Stadium",
+      "city": "Nakuru",
+      "capacity": 12000
+    }
+  ],
+
+  "fixtures": [
+    {
+      "id": "fix-001",
+      "homeTeamId": "gor-mahia",
+      "awayTeamId": "afc-leopards",
+      "competitionId": "kpl",
+      "venueId": "nyayo",
+      "kickoff": "2026-05-30T15:00:00+03:00",
+      "status": "fulltime",
+      "matchday": 24,
+      "score": {
+        "home": 2,
+        "away": 1,
+        "halfTime": { "home": 1, "away": 0 }
+      },
+      "stats": {
+        "home": {
+          "possession": 54,
+          "shots": 14,
+          "shotsOnTarget": 6,
+          "corners": 7,
+          "fouls": 11,
+          "yellowCards": 2,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 46,
+          "shots": 9,
+          "shotsOnTarget": 4,
+          "corners": 4,
+          "fouls": 14,
+          "yellowCards": 3,
+          "redCards": 1
+        }
+      },
+      "homeForm": ["W", "D", "W", "W", "L"],
+      "awayForm": ["L", "W", "D", "L", "W"],
+      "preview": "Gor Mahia secured all three points against rivals AFC Leopards in a tense Mashemeji Derby at Nyayo. Benson Omalla's brace proved decisive, with the Ingwe pulling one back late through Peter Thiong'o.",
+      "relatedNewsSlugs": [],
+      "featured": true
+    },
+    {
+      "id": "fix-002",
+      "homeTeamId": "tusker-fc",
+      "awayTeamId": "kcb-fc",
+      "competitionId": "kpl",
+      "venueId": "kasarani",
+      "kickoff": "2026-05-31T15:00:00+03:00",
+      "status": "fulltime",
+      "matchday": 24,
+      "score": {
+        "home": 1,
+        "away": 1,
+        "halfTime": { "home": 0, "away": 1 }
+      },
+      "stats": {
+        "home": {
+          "possession": 58,
+          "shots": 12,
+          "shotsOnTarget": 5,
+          "corners": 6,
+          "fouls": 10,
+          "yellowCards": 1,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 42,
+          "shots": 8,
+          "shotsOnTarget": 3,
+          "corners": 3,
+          "fouls": 13,
+          "yellowCards": 2,
+          "redCards": 0
+        }
+      },
+      "homeForm": ["W", "D", "W", "L", "W"],
+      "awayForm": ["D", "L", "W", "D", "L"],
+      "preview": "Tusker and KCB shared the spoils in a cagey encounter at Kasarani. Daniel Sakari broke the deadlock before the interval but substitute Amos Asembeka levelled for the Brewers in the second half.",
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-003",
+      "homeTeamId": "bandari-fc",
+      "awayTeamId": "police-fc",
+      "competitionId": "kpl",
+      "venueId": "mbaraki",
+      "kickoff": "2026-06-01T15:00:00+03:00",
+      "status": "fulltime",
+      "matchday": 24,
+      "score": {
+        "home": 3,
+        "away": 0,
+        "halfTime": { "home": 2, "away": 0 }
+      },
+      "stats": {
+        "home": {
+          "possession": 62,
+          "shots": 18,
+          "shotsOnTarget": 9,
+          "corners": 8,
+          "fouls": 8,
+          "yellowCards": 1,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 38,
+          "shots": 5,
+          "shotsOnTarget": 1,
+          "corners": 2,
+          "fouls": 15,
+          "yellowCards": 4,
+          "redCards": 0
+        }
+      },
+      "homeForm": ["W", "L", "W", "D", "W"],
+      "awayForm": ["D", "W", "W", "D", "L"],
+      "preview": "Bandari produced a dominant home display at Mbaraki, with Hassan Kagere scoring twice in the first half to put the Dockers firmly in control. Stephen Onyango added a third after the break.",
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-004",
+      "homeTeamId": "shabana-fc",
+      "awayTeamId": "sofapaka-fc",
+      "competitionId": "kpl",
+      "venueId": "gusii",
+      "kickoff": "2026-06-01T15:00:00+03:00",
+      "status": "fulltime",
+      "matchday": 24,
+      "score": {
+        "home": 0,
+        "away": 2,
+        "halfTime": { "home": 0, "away": 1 }
+      },
+      "stats": {
+        "home": {
+          "possession": 48,
+          "shots": 7,
+          "shotsOnTarget": 2,
+          "corners": 4,
+          "fouls": 16,
+          "yellowCards": 3,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 52,
+          "shots": 11,
+          "shotsOnTarget": 5,
+          "corners": 5,
+          "fouls": 9,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "homeForm": ["D", "L", "W", "L", "L"],
+      "awayForm": ["L", "D", "W", "L", "D"],
+      "preview": "Sofapaka picked up a valuable away win at Gusii Stadium. Umaru Kasumba broke the deadlock before half time and Enock Agwanda doubled the advantage in the second period, condemning Shabana to another home defeat.",
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-005",
+      "homeTeamId": "kakamega-homeboyz",
+      "awayTeamId": "ulinzi-stars",
+      "competitionId": "kpl",
+      "venueId": "afraha",
+      "kickoff": "2026-06-04T15:00:00+03:00",
+      "status": "fulltime",
+      "matchday": 25,
+      "score": {
+        "home": 2,
+        "away": 2,
+        "halfTime": { "home": 1, "away": 1 }
+      },
+      "stats": {
+        "home": {
+          "possession": 51,
+          "shots": 13,
+          "shotsOnTarget": 5,
+          "corners": 6,
+          "fouls": 12,
+          "yellowCards": 2,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 49,
+          "shots": 11,
+          "shotsOnTarget": 4,
+          "corners": 4,
+          "fouls": 11,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "homeForm": ["D", "W", "L", "W", "D"],
+      "awayForm": ["W", "L", "D", "L", "W"],
+      "preview": "An entertaining draw at Afraha Stadium saw both sides twice take the lead. Homeboyz remain in contention for a continental spot, while Ulinzi will be disappointed not to hold on for all three points.",
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-006",
+      "homeTeamId": "kcb-fc",
+      "awayTeamId": "gor-mahia",
+      "competitionId": "kpl",
+      "venueId": "camp-toyoyo",
+      "kickoff": "2026-06-05T15:00:00+03:00",
+      "status": "fulltime",
+      "matchday": 25,
+      "score": {
+        "home": 0,
+        "away": 3,
+        "halfTime": { "home": 0, "away": 1 }
+      },
+      "stats": {
+        "home": {
+          "possession": 41,
+          "shots": 6,
+          "shotsOnTarget": 1,
+          "corners": 3,
+          "fouls": 14,
+          "yellowCards": 2,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 59,
+          "shots": 16,
+          "shotsOnTarget": 8,
+          "corners": 7,
+          "fouls": 9,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "homeForm": ["D", "L", "W", "D", "L"],
+      "awayForm": ["W", "W", "D", "W", "W"],
+      "preview": "Gor Mahia ran riot at Camp Toyoyo, dismantling KCB to further reinforce their title credentials. Three different scorers got on the sheet in a dominant away performance from K'Ogalo.",
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-007",
+      "homeTeamId": "afc-leopards",
+      "awayTeamId": "bandari-fc",
+      "competitionId": "kpl",
+      "venueId": "nyayo",
+      "kickoff": "2026-06-06T15:00:00+03:00",
+      "status": "fulltime",
+      "matchday": 25,
+      "score": {
+        "home": 1,
+        "away": 1,
+        "halfTime": { "home": 0, "away": 0 }
+      },
+      "stats": {
+        "home": {
+          "possession": 53,
+          "shots": 10,
+          "shotsOnTarget": 4,
+          "corners": 5,
+          "fouls": 13,
+          "yellowCards": 2,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 47,
+          "shots": 9,
+          "shotsOnTarget": 4,
+          "corners": 4,
+          "fouls": 12,
+          "yellowCards": 2,
+          "redCards": 0
+        }
+      },
+      "homeForm": ["L", "W", "D", "L", "W"],
+      "awayForm": ["W", "L", "W", "D", "W"],
+      "preview": "AFC Leopards and Bandari served up an entertaining draw at Nyayo. The Ingwe opened the scoring through Shami Kibwana but the Dockers hit back with a stunning long-range effort from Hassan Mohamed.",
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-008",
+      "homeTeamId": "police-fc",
+      "awayTeamId": "tusker-fc",
+      "competitionId": "kpl",
+      "venueId": "camp-toyoyo",
+      "kickoff": "2026-06-07T15:00:00+03:00",
+      "status": "fulltime",
+      "matchday": 25,
+      "score": {
+        "home": 0,
+        "away": 1,
+        "halfTime": { "home": 0, "away": 0 }
+      },
+      "stats": {
+        "home": {
+          "possession": 44,
+          "shots": 8,
+          "shotsOnTarget": 2,
+          "corners": 4,
+          "fouls": 13,
+          "yellowCards": 3,
+          "redCards": 0
+        },
+        "away": {
+          "possession": 56,
+          "shots": 12,
+          "shotsOnTarget": 5,
+          "corners": 6,
+          "fouls": 10,
+          "yellowCards": 1,
+          "redCards": 0
+        }
+      },
+      "homeForm": ["D", "W", "W", "D", "L"],
+      "awayForm": ["W", "D", "W", "L", "W"],
+      "preview": "A second-half winner from Eric Ouma was the difference at Camp Toyoyo. Police had their moments but could not find a way past Tusker's goalkeeper, leaving the Brewers to claim all three points.",
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-009",
+      "homeTeamId": "gor-mahia",
+      "awayTeamId": "tusker-fc",
+      "competitionId": "kpl",
+      "venueId": "nyayo",
+      "kickoff": "2026-06-10T15:00:00+03:00",
+      "status": "live",
+      "matchday": 26,
+      "score": {
+        "home": 1,
+        "away": 0,
+        "halfTime": { "home": 0, "away": 0 }
+      },
+      "liveMinute": 62,
+      "homeForm": ["W", "W", "D", "W", "W"],
+      "awayForm": ["W", "D", "W", "L", "W"],
+      "preview": "The crucial top-of-the-table clash is underway at a packed Nyayo Stadium. Eric Ouma's stunning volley on 55 minutes separates the title rivals, with Tusker pressing hard for an equaliser.",
+      "relatedNewsSlugs": [],
+      "featured": true
+    },
+    {
+      "id": "fix-010",
+      "homeTeamId": "afc-leopards",
+      "awayTeamId": "kcb-fc",
+      "competitionId": "kpl",
+      "venueId": "kasarani",
+      "kickoff": "2026-06-10T15:00:00+03:00",
+      "status": "halftime",
+      "matchday": 26,
+      "score": {
+        "home": 0,
+        "away": 0
+      },
+      "homeForm": ["W", "D", "L", "W", "D"],
+      "awayForm": ["L", "W", "D", "D", "L"],
+      "preview": "A cagey first half at Kasarani has seen both sides cancel each other out. AFC Leopards will need to be more adventurous in the second period if they are to take all three points.",
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-011",
+      "homeTeamId": "bandari-fc",
+      "awayTeamId": "sofapaka-fc",
+      "competitionId": "kpl",
+      "venueId": "mbaraki",
+      "kickoff": "2026-06-10T18:00:00+03:00",
+      "status": "scheduled",
+      "matchday": 26,
+      "homeForm": ["L", "W", "W", "D", "W"],
+      "awayForm": ["D", "L", "W", "L", "D"],
+      "preview": "Bandari host Sofapaka at Mbaraki looking to extend their unbeaten home run. The Dockers have lost just once at home all season, while Sofapaka are struggling for consistency on the road.",
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-012",
+      "homeTeamId": "police-fc",
+      "awayTeamId": "kakamega-homeboyz",
+      "competitionId": "kpl",
+      "venueId": "camp-toyoyo",
+      "kickoff": "2026-06-10T19:00:00+03:00",
+      "status": "scheduled",
+      "matchday": 26,
+      "homeForm": ["W", "D", "W", "W", "D"],
+      "awayForm": ["D", "W", "D", "W", "L"],
+      "preview": "Police FC look to bounce back as they welcome Kakamega Homeboyz to Camp Toyoyo. Homeboyz will look to build on their strong away form and keep the pressure on the continental places.",
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-013",
+      "homeTeamId": "ulinzi-stars",
+      "awayTeamId": "shabana-fc",
+      "competitionId": "kpl",
+      "venueId": "afraha",
+      "kickoff": "2026-06-14T15:00:00+03:00",
+      "status": "scheduled",
+      "matchday": 27,
+      "homeForm": ["L", "D", "W", "D", "L"],
+      "awayForm": ["L", "W", "L", "L", "D"],
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-014",
+      "homeTeamId": "gor-mahia",
+      "awayTeamId": "bandari-fc",
+      "competitionId": "kpl",
+      "venueId": "nyayo",
+      "kickoff": "2026-06-14T15:00:00+03:00",
+      "status": "scheduled",
+      "matchday": 27,
+      "homeForm": ["W", "W", "D", "W", "W"],
+      "awayForm": ["W", "L", "W", "D", "W"],
+      "preview": "K'Ogalo host a Bandari side who have been impressive on the road this season. The coastal outfit's defensive record will be tested against Gor Mahia's free-scoring attack at a packed Nyayo Stadium.",
+      "relatedNewsSlugs": [],
+      "featured": true
+    },
+    {
+      "id": "fix-015",
+      "homeTeamId": "tusker-fc",
+      "awayTeamId": "afc-leopards",
+      "competitionId": "kpl",
+      "venueId": "kasarani",
+      "kickoff": "2026-06-15T15:00:00+03:00",
+      "status": "scheduled",
+      "matchday": 27,
+      "homeForm": ["W", "D", "W", "L", "W"],
+      "awayForm": ["L", "W", "D", "L", "W"],
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-016",
+      "homeTeamId": "kcb-fc",
+      "awayTeamId": "police-fc",
+      "competitionId": "kpl",
+      "venueId": "camp-toyoyo",
+      "kickoff": "2026-06-15T18:00:00+03:00",
+      "status": "scheduled",
+      "matchday": 27,
+      "homeForm": ["D", "L", "W", "D", "L"],
+      "awayForm": ["W", "D", "W", "W", "D"],
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-017",
+      "homeTeamId": "sofapaka-fc",
+      "awayTeamId": "ulinzi-stars",
+      "competitionId": "kpl",
+      "venueId": "gusii",
+      "kickoff": "2026-06-17T15:00:00+03:00",
+      "status": "scheduled",
+      "matchday": 27,
+      "homeForm": ["D", "L", "W", "L", "D"],
+      "awayForm": ["W", "L", "D", "L", "W"],
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-018",
+      "homeTeamId": "shabana-fc",
+      "awayTeamId": "gor-mahia",
+      "competitionId": "kpl",
+      "venueId": "gusii",
+      "kickoff": "2026-06-20T15:00:00+03:00",
+      "status": "scheduled",
+      "matchday": 28,
+      "homeForm": ["L", "W", "L", "D", "L"],
+      "awayForm": ["W", "W", "D", "W", "W"],
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-019",
+      "homeTeamId": "bandari-fc",
+      "awayTeamId": "kcb-fc",
+      "competitionId": "kpl",
+      "venueId": "mbaraki",
+      "kickoff": "2026-06-21T15:00:00+03:00",
+      "status": "scheduled",
+      "matchday": 28,
+      "homeForm": ["L", "W", "W", "D", "W"],
+      "awayForm": ["L", "D", "W", "D", "L"],
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-020",
+      "homeTeamId": "police-fc",
+      "awayTeamId": "afc-leopards",
+      "competitionId": "kpl",
+      "venueId": "camp-toyoyo",
+      "kickoff": "2026-06-21T15:00:00+03:00",
+      "status": "scheduled",
+      "matchday": 28,
+      "homeForm": ["W", "D", "W", "W", "D"],
+      "awayForm": ["W", "D", "L", "W", "D"],
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-021",
+      "homeTeamId": "tusker-fc",
+      "awayTeamId": "shabana-fc",
+      "competitionId": "kpl",
+      "venueId": "kasarani",
+      "kickoff": "2026-06-24T15:00:00+03:00",
+      "status": "scheduled",
+      "matchday": 28,
+      "homeForm": ["D", "W", "L", "W", "W"],
+      "awayForm": ["L", "W", "L", "D", "L"],
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-022",
+      "homeTeamId": "kakamega-homeboyz",
+      "awayTeamId": "gor-mahia",
+      "competitionId": "kpl",
+      "venueId": "afraha",
+      "kickoff": "2026-06-24T15:00:00+03:00",
+      "status": "scheduled",
+      "matchday": 28,
+      "homeForm": ["D", "W", "L", "W", "D"],
+      "awayForm": ["W", "W", "D", "W", "W"],
+      "preview": "One of the season's most anticipated clashes sees league leaders Gor Mahia travel to a resurgent Kakamega Homeboyz side at Afraha Stadium. The Homeboyz have lost just once at home all season and will make K'Ogalo work for every point.",
+      "relatedNewsSlugs": [],
+      "featured": true
+    },
+    {
+      "id": "fix-023",
+      "homeTeamId": "gor-mahia",
+      "awayTeamId": "sofapaka-fc",
+      "competitionId": "fkf-cup",
+      "venueId": "nyayo",
+      "kickoff": "2026-06-28T15:00:00+03:00",
+      "status": "scheduled",
+      "homeForm": ["W", "W", "D", "W", "W"],
+      "awayForm": ["L", "D", "W", "L", "D"],
+      "preview": "Gor Mahia host Sofapaka in the FKF Cup quarter-final at Nyayo Stadium. K'Ogalo are chasing a domestic double while Sofapaka will be looking for a deep cup run to salvage their season.",
+      "relatedNewsSlugs": [],
+      "featured": false
+    },
+    {
+      "id": "fix-024",
+      "homeTeamId": "ulinzi-stars",
+      "awayTeamId": "kcb-fc",
+      "competitionId": "kpl",
+      "venueId": "afraha",
+      "kickoff": "2026-06-28T15:00:00+03:00",
+      "status": "postponed",
+      "matchday": 29,
+      "homeForm": ["W", "L", "D", "L", "W"],
+      "awayForm": ["D", "L", "W", "D", "L"],
+      "preview": "This fixture has been postponed as Afraha Stadium is required for the FKF Cup quarter-final on the same date. The Football Kenya Federation will confirm a rescheduled date in due course.",
+      "relatedNewsSlugs": [],
+      "featured": false
+    }
+  ]
+}
