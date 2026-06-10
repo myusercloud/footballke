@@ -6,7 +6,9 @@ import { getNews } from "@/lib/news.cache";
 import { getUpcomingFixtures } from "@/lib/fixtures.cache";
 import { formatKickoffTime } from "@/lib/fixture.utils";
 import { getCompetitionStandings } from "@/lib/standings.cache";
+import { getTransfers } from "@/lib/transfers.cache";
 import { FormBadges } from "@/components/football/fixtures/FormBadges";
+import { TransferBadge } from "@/components/football/transfers/TransferBadge";
 import type { TableZone } from "@/types/standings";
 
 export const metadata: Metadata = {
@@ -139,11 +141,13 @@ function PitchVisual() {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function Home() {
-  const [{ articles }, upcomingFixtures, kplStandings] = await Promise.all([
-    getNews({ pageSize: 7 }),
-    getUpcomingFixtures(4),
-    getCompetitionStandings("kpl"),
-  ]);
+  const [{ articles }, upcomingFixtures, kplStandings, { transfers: latestTransfers }] =
+    await Promise.all([
+      getNews({ pageSize: 7 }),
+      getUpcomingFixtures(4),
+      getCompetitionStandings("kpl"),
+      getTransfers({ status: "confirmed", pageSize: 3 }),
+    ]);
 
   const topStories = articles.slice(0, 3);
   const quickReads = articles.slice(3);
@@ -519,6 +523,76 @@ export default async function Home() {
               </section>
             </div>
           </section>
+
+          {/* ── Latest Transfers ── */}
+          {latestTransfers.length > 0 && (
+            <section
+              id="transfers"
+              className="mt-7 rounded-sm border border-zinc-200 bg-white p-5 shadow-sm sm:p-6"
+              aria-labelledby="transfers-heading"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <h2 id="transfers-heading" className="text-xl font-black sm:text-2xl">
+                  Latest Transfers
+                </h2>
+                <Link
+                  href="/transfers"
+                  className="text-xs font-bold text-emerald-700 underline underline-offset-2 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
+                >
+                  All transfers
+                </Link>
+              </div>
+
+              <div className="mt-4 divide-y divide-zinc-100">
+                {latestTransfers.map((t) => (
+                  <div
+                    key={t.id}
+                    className="flex flex-col gap-1.5 py-3.5 sm:flex-row sm:items-center sm:gap-4"
+                  >
+                    {/* Badge */}
+                    <div className="shrink-0">
+                      <TransferBadge status={t.status} confidence={t.confidence} />
+                    </div>
+
+                    {/* Player + movement */}
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-black text-zinc-950">
+                        {t.player.name}
+                      </p>
+                      <div className="mt-0.5 flex flex-wrap items-center gap-1 text-[11px] text-zinc-500">
+                        <span className="font-semibold">{t.fromClub.shortName}</span>
+                        <svg
+                          className="h-3 w-3 shrink-0 text-zinc-400"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          aria-hidden="true"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span className="font-semibold text-emerald-700">{t.toClub.shortName}</span>
+                        <span className="text-zinc-300">·</span>
+                        <span>{t.fee}</span>
+                      </div>
+                    </div>
+
+                    {/* Article link */}
+                    {t.linkedArticleSlug && (
+                      <Link
+                        href={`/news/${t.linkedArticleSlug}`}
+                        className="hidden shrink-0 text-[11px] font-bold text-zinc-400 underline underline-offset-2 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 sm:inline-block"
+                      >
+                        Full story
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
           <AdSlot
             label="In-feed sponsor strip"

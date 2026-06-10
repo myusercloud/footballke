@@ -15,6 +15,7 @@ Dockerfile.dev
 docker-compose.yml
 docker-compose.dev.yml
 .dockerignore
+Dockerfile*
 
 # Env files — injected at runtime, never baked into the image
 .env
