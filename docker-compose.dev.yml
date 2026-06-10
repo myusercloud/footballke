@@ -1,0 +1,42 @@
+name: footballke-dev
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # Bind-mount the full source tree for hot reload.
+      - .:/app
+      # Named volume shadows node_modules so the Linux-built modules
+      # are never replaced by the host's (Windows/Mac) modules.
+      - nm:/app/node_modules
+      # Prevent .next from being mounted from the host — built inside the container.
+      - next_cache:/app/.next
+    environment:
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1
+      # Force filesystem polling so hot reload works on Windows/WSL2 hosts.
+      # inotify events from the Windows filesystem do not propagate reliably
+      # into Linux containers; polling is the reliable fallback.
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      # Override any of these in a .env file at the project root.
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-}
+      - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+      - NEXT_PUBLIC_ANALYTICS_ID=${NEXT_PUBLIC_ANALYTICS_ID:-}
+    env_file:
+      # Loaded automatically when the file exists; silently ignored when absent.
+      - path: .env
+        required: false
+      - path: .env.local
+        required: false
+    restart: unless-stopped
+    stdin_open: true   # Keeps the container alive when attached interactively.
+    tty: true
+
+volumes:
+  nm:
+  next_cache:
