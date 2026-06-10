@@ -14,6 +14,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://footballke.com"),
+  icons: {
+    icon: "trophy.png",
+    shortcut: "trophy.png",
+    apple: "trophy.png",
+  },
   title: {
     default: "FootballKE",
     template: "%s | FootballKE",
