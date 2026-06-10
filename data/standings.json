@@ -1,0 +1,233 @@
+{
+  "clubs": [
+    {
+      "id": "gor-mahia",
+      "name": "Gor Mahia FC",
+      "shortName": "Gor Mahia",
+      "slug": "gor-mahia",
+      "logo": "/images/teams/gor-mahia.png",
+      "colors": { "primary": "#006B2D", "secondary": "#FFFFFF" }
+    },
+    {
+      "id": "tusker-fc",
+      "name": "Tusker FC",
+      "shortName": "Tusker",
+      "slug": "tusker-fc",
+      "logo": "/images/teams/tusker-fc.png",
+      "colors": { "primary": "#003087", "secondary": "#FFD700" }
+    },
+    {
+      "id": "police-fc",
+      "name": "Police FC",
+      "shortName": "Police",
+      "slug": "police-fc",
+      "logo": "/images/teams/police-fc.png",
+      "colors": { "primary": "#001F5B", "secondary": "#CC0000" }
+    },
+    {
+      "id": "bandari-fc",
+      "name": "Bandari FC",
+      "shortName": "Bandari",
+      "slug": "bandari-fc",
+      "logo": "/images/teams/bandari-fc.png",
+      "colors": { "primary": "#0057B8", "secondary": "#FFFFFF" }
+    },
+    {
+      "id": "afc-leopards",
+      "name": "AFC Leopards",
+      "shortName": "AFC Leopards",
+      "slug": "afc-leopards",
+      "logo": "/images/teams/afc-leopards.png",
+      "colors": { "primary": "#000000", "secondary": "#FFFFFF" }
+    },
+    {
+      "id": "kcb-fc",
+      "name": "KCB FC",
+      "shortName": "KCB",
+      "slug": "kcb-fc",
+      "logo": "/images/teams/kcb-fc.png",
+      "colors": { "primary": "#007A3D", "secondary": "#CC0000" }
+    },
+    {
+      "id": "kakamega-homeboyz",
+      "name": "Kakamega Homeboyz",
+      "shortName": "Homeboyz",
+      "slug": "kakamega-homeboyz",
+      "logo": "/images/teams/kakamega-homeboyz.png",
+      "colors": { "primary": "#228B22", "secondary": "#FFD700" }
+    },
+    {
+      "id": "sofapaka-fc",
+      "name": "Sofapaka FC",
+      "shortName": "Sofapaka",
+      "slug": "sofapaka-fc",
+      "logo": "/images/teams/sofapaka-fc.png",
+      "colors": { "primary": "#CC0000", "secondary": "#000000" }
+    },
+    {
+      "id": "ulinzi-stars",
+      "name": "Ulinzi Stars",
+      "shortName": "Ulinzi",
+      "slug": "ulinzi-stars",
+      "logo": "/images/teams/ulinzi-stars.png",
+      "colors": { "primary": "#1A1A1A", "secondary": "#FFD700" }
+    },
+    {
+      "id": "kariobangi-sharks",
+      "name": "Kariobangi Sharks FC",
+      "shortName": "Kariobangi",
+      "slug": "kariobangi-sharks",
+      "logo": "/images/teams/kariobangi-sharks.png",
+      "colors": { "primary": "#FF6B00", "secondary": "#000000" }
+    },
+    {
+      "id": "bidco-united",
+      "name": "Bidco United FC",
+      "shortName": "Bidco United",
+      "slug": "bidco-united",
+      "logo": "/images/teams/bidco-united.png",
+      "colors": { "primary": "#003580", "secondary": "#FFFFFF" }
+    },
+    {
+      "id": "shabana-fc",
+      "name": "Shabana FC",
+      "shortName": "Shabana",
+      "slug": "shabana-fc",
+      "logo": "/images/teams/shabana-fc.png",
+      "colors": { "primary": "#006400", "secondary": "#FFD700" }
+    },
+    {
+      "id": "muranga-seal",
+      "name": "Muranga Seal FC",
+      "shortName": "Muranga Seal",
+      "slug": "muranga-seal",
+      "logo": "/images/teams/muranga-seal.png",
+      "colors": { "primary": "#8B0000", "secondary": "#FFFFFF" }
+    },
+    {
+      "id": "posta-rangers",
+      "name": "Posta Rangers FC",
+      "shortName": "Posta Rangers",
+      "slug": "posta-rangers",
+      "logo": "/images/teams/posta-rangers.png",
+      "colors": { "primary": "#003087", "secondary": "#FFD700" }
+    },
+    {
+      "id": "wazito-fc",
+      "name": "Wazito FC",
+      "shortName": "Wazito",
+      "slug": "wazito-fc",
+      "logo": "/images/teams/wazito-fc.png",
+      "colors": { "primary": "#FFD700", "secondary": "#000000" }
+    },
+    {
+      "id": "city-stars",
+      "name": "Nairobi City Stars FC",
+      "shortName": "City Stars",
+      "slug": "city-stars",
+      "logo": "/images/teams/city-stars.png",
+      "colors": { "primary": "#00A3E0", "secondary": "#FFFFFF" }
+    },
+    {
+      "id": "zoo-kericho",
+      "name": "Zoo FC Kericho",
+      "shortName": "Zoo Kericho",
+      "slug": "zoo-kericho",
+      "logo": "/images/teams/zoo-kericho.png",
+      "colors": { "primary": "#1A1A1A", "secondary": "#FFFFFF" }
+    },
+    {
+      "id": "ushuru-fc",
+      "name": "Ushuru FC",
+      "shortName": "Ushuru",
+      "slug": "ushuru-fc",
+      "logo": "/images/teams/ushuru-fc.png",
+      "colors": { "primary": "#C8A800", "secondary": "#002060" }
+    }
+  ],
+
+  "competitions": [
+    {
+      "id": "kpl",
+      "name": "Kenyan Premier League",
+      "slug": "kpl",
+      "logo": "/images/competitions/kpl.png",
+      "country": "Kenya"
+    },
+    {
+      "id": "fkf-cup",
+      "name": "FKF Cup",
+      "slug": "fkf-cup",
+      "logo": "/images/competitions/fkf-cup.png",
+      "country": "Kenya"
+    }
+  ],
+
+  "standings": [
+    {
+      "id": "kpl-2025-26",
+      "competitionId": "kpl",
+      "season": { "id": "2025-26", "label": "2025/26" },
+      "updatedAt": "2026-06-10T10:00:00+03:00",
+      "zones": [
+        { "from": 1, "to": 1, "type": "champions",            "label": "Champions" },
+        { "from": 2, "to": 3, "type": "continental",          "label": "CAF Champions League" },
+        { "from": 4, "to": 5, "type": "continental-playoff",  "label": "CAF Confederation Cup" },
+        { "from": 16,"to": 18,"type": "relegation",           "label": "Relegation" }
+      ],
+      "rows": [
+        { "clubId": "gor-mahia",         "played": 26, "won": 17, "drawn": 6, "lost": 3,  "goalsFor": 51, "goalsAgainst": 22, "form": ["W","W","L","W","W"] },
+        { "clubId": "tusker-fc",         "played": 26, "won": 15, "drawn": 7, "lost": 4,  "goalsFor": 44, "goalsAgainst": 21, "form": ["W","D","W","W","D"] },
+        { "clubId": "police-fc",         "played": 26, "won": 14, "drawn": 8, "lost": 4,  "goalsFor": 38, "goalsAgainst": 22, "form": ["W","W","D","W","L"] },
+        { "clubId": "bandari-fc",        "played": 26, "won": 14, "drawn": 6, "lost": 6,  "goalsFor": 39, "goalsAgainst": 24, "form": ["W","L","D","W","W"] },
+        { "clubId": "afc-leopards",      "played": 26, "won": 13, "drawn": 8, "lost": 5,  "goalsFor": 36, "goalsAgainst": 23, "form": ["D","W","W","D","W"] },
+        { "clubId": "kcb-fc",            "played": 26, "won": 13, "drawn": 5, "lost": 8,  "goalsFor": 33, "goalsAgainst": 26, "form": ["W","D","L","W","W"] },
+        { "clubId": "kakamega-homeboyz", "played": 26, "won": 11, "drawn": 8, "lost": 7,  "goalsFor": 31, "goalsAgainst": 27, "form": ["D","W","L","D","W"] },
+        { "clubId": "sofapaka-fc",       "played": 26, "won": 11, "drawn": 7, "lost": 8,  "goalsFor": 29, "goalsAgainst": 28, "form": ["W","L","W","D","L"] },
+        { "clubId": "ulinzi-stars",      "played": 26, "won": 10, "drawn": 9, "lost": 7,  "goalsFor": 28, "goalsAgainst": 25, "form": ["D","D","W","L","D"] },
+        { "clubId": "kariobangi-sharks", "played": 26, "won": 10, "drawn": 8, "lost": 8,  "goalsFor": 30, "goalsAgainst": 31, "form": ["W","L","D","W","L"] },
+        { "clubId": "bidco-united",      "played": 26, "won": 10, "drawn": 6, "lost": 10, "goalsFor": 27, "goalsAgainst": 29, "form": ["L","W","D","L","W"] },
+        { "clubId": "shabana-fc",        "played": 26, "won": 9,  "drawn": 6, "lost": 11, "goalsFor": 25, "goalsAgainst": 33, "form": ["L","D","L","W","D"] },
+        { "clubId": "muranga-seal",      "played": 26, "won": 8,  "drawn": 8, "lost": 10, "goalsFor": 24, "goalsAgainst": 34, "form": ["D","L","D","L","W"] },
+        { "clubId": "posta-rangers",     "played": 26, "won": 8,  "drawn": 5, "lost": 13, "goalsFor": 25, "goalsAgainst": 37, "form": ["W","L","L","D","L"] },
+        { "clubId": "wazito-fc",         "played": 26, "won": 6,  "drawn": 9, "lost": 11, "goalsFor": 24, "goalsAgainst": 35, "form": ["D","L","D","D","L"] },
+        { "clubId": "city-stars",        "played": 26, "won": 6,  "drawn": 8, "lost": 12, "goalsFor": 25, "goalsAgainst": 38, "form": ["L","D","W","L","L"] },
+        { "clubId": "zoo-kericho",       "played": 26, "won": 5,  "drawn": 6, "lost": 15, "goalsFor": 22, "goalsAgainst": 43, "form": ["L","L","W","L","D"] },
+        { "clubId": "ushuru-fc",         "played": 26, "won": 3,  "drawn": 5, "lost": 18, "goalsFor": 18, "goalsAgainst": 51, "form": ["L","W","L","L","L"] }
+      ]
+    },
+
+    {
+      "id": "kpl-2024-25",
+      "competitionId": "kpl",
+      "season": { "id": "2024-25", "label": "2024/25" },
+      "updatedAt": "2025-05-31T18:00:00+03:00",
+      "zones": [
+        { "from": 1, "to": 1, "type": "champions",            "label": "Champions" },
+        { "from": 2, "to": 3, "type": "continental",          "label": "CAF Champions League" },
+        { "from": 4, "to": 5, "type": "continental-playoff",  "label": "CAF Confederation Cup" },
+        { "from": 16,"to": 18,"type": "relegation",           "label": "Relegated" }
+      ],
+      "rows": [
+        { "clubId": "tusker-fc",         "played": 34, "won": 22, "drawn": 7,  "lost": 5,  "goalsFor": 67, "goalsAgainst": 29, "form": ["W","D","W","W","W"] },
+        { "clubId": "gor-mahia",         "played": 34, "won": 21, "drawn": 6,  "lost": 7,  "goalsFor": 61, "goalsAgainst": 32, "form": ["W","W","D","L","W"] },
+        { "clubId": "police-fc",         "played": 34, "won": 19, "drawn": 6,  "lost": 9,  "goalsFor": 54, "goalsAgainst": 34, "form": ["W","D","W","L","W"] },
+        { "clubId": "afc-leopards",      "played": 34, "won": 17, "drawn": 8,  "lost": 9,  "goalsFor": 49, "goalsAgainst": 36, "form": ["W","L","W","D","W"] },
+        { "clubId": "kcb-fc",            "played": 34, "won": 16, "drawn": 8,  "lost": 10, "goalsFor": 46, "goalsAgainst": 38, "form": ["W","D","L","W","D"] },
+        { "clubId": "bandari-fc",        "played": 34, "won": 15, "drawn": 9,  "lost": 10, "goalsFor": 44, "goalsAgainst": 38, "form": ["D","W","W","L","D"] },
+        { "clubId": "kariobangi-sharks", "played": 34, "won": 14, "drawn": 9,  "lost": 11, "goalsFor": 41, "goalsAgainst": 40, "form": ["W","D","W","L","D"] },
+        { "clubId": "kakamega-homeboyz", "played": 34, "won": 13, "drawn": 10, "lost": 11, "goalsFor": 39, "goalsAgainst": 40, "form": ["D","L","W","D","W"] },
+        { "clubId": "ulinzi-stars",      "played": 34, "won": 13, "drawn": 8,  "lost": 13, "goalsFor": 37, "goalsAgainst": 40, "form": ["L","W","D","W","L"] },
+        { "clubId": "sofapaka-fc",       "played": 34, "won": 12, "drawn": 9,  "lost": 13, "goalsFor": 35, "goalsAgainst": 41, "form": ["D","W","L","D","W"] },
+        { "clubId": "bidco-united",      "played": 34, "won": 11, "drawn": 10, "lost": 13, "goalsFor": 34, "goalsAgainst": 42, "form": ["W","L","D","W","L"] },
+        { "clubId": "shabana-fc",        "played": 34, "won": 11, "drawn": 8,  "lost": 15, "goalsFor": 32, "goalsAgainst": 44, "form": ["L","D","W","L","D"] },
+        { "clubId": "muranga-seal",      "played": 34, "won": 10, "drawn": 9,  "lost": 15, "goalsFor": 30, "goalsAgainst": 46, "form": ["D","W","L","L","D"] },
+        { "clubId": "wazito-fc",         "played": 34, "won": 9,  "drawn": 10, "lost": 15, "goalsFor": 29, "goalsAgainst": 46, "form": ["L","D","L","W","D"] },
+        { "clubId": "posta-rangers",     "played": 34, "won": 8,  "drawn": 9,  "lost": 17, "goalsFor": 27, "goalsAgainst": 49, "form": ["L","D","W","L","L"] },
+        { "clubId": "city-stars",        "played": 34, "won": 7,  "drawn": 8,  "lost": 19, "goalsFor": 25, "goalsAgainst": 53, "form": ["L","L","D","L","W"] },
+        { "clubId": "zoo-kericho",       "played": 34, "won": 5,  "drawn": 8,  "lost": 21, "goalsFor": 22, "goalsAgainst": 56, "form": ["L","D","L","L","W"] },
+        { "clubId": "ushuru-fc",         "played": 34, "won": 4,  "drawn": 6,  "lost": 24, "goalsFor": 19, "goalsAgainst": 61, "form": ["D","L","L","W","L"] }
+      ]
+    }
+  ]
+}
