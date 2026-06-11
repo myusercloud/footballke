@@ -6,7 +6,7 @@ import type {
   NewsResponse,
 } from "@/types/news";
 import type { NewsProvider } from "@/providers/news/NewsProvider";
-import { JsonNewsProvider } from "@/providers/news/JsonNewsProvider";
+import { getNewsProvider } from "@/providers/config";
 
 // ── Implementation ────────────────────────────────────────────────────────────
 
@@ -88,8 +88,8 @@ class NewsService implements INewsService {
 }
 
 // ── Singleton export ──────────────────────────────────────────────────────────
-// UI code imports this. To swap providers, change the argument below.
-// When providers/config.ts is in place, use: new NewsService(getNewsProvider())
+// UI code imports this. To switch backends, set CONTENT_SOURCE in .env.local.
+// Provider selection lives in providers/config.ts.
 
-const newsService: INewsService = new NewsService(new JsonNewsProvider());
+const newsService: INewsService = new NewsService(getNewsProvider());
 export default newsService;

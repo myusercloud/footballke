@@ -8,7 +8,7 @@ import type {
   Team,
 } from "@/types/fixture";
 import type { FixturesProvider } from "@/providers/fixtures/FixturesProvider";
-import { JsonFixturesProvider } from "@/providers/fixtures/JsonFixturesProvider";
+import { getFixturesProvider } from "@/providers/config";
 
 // ── Sort helpers ──────────────────────────────────────────────────────────────
 
@@ -137,8 +137,8 @@ class FixturesService implements IFixturesService {
 }
 
 // ── Singleton export ──────────────────────────────────────────────────────────
-// UI code imports this. To swap providers, change the argument below.
-// When providers/config.ts is in place, use: new FixturesService(getFixturesProvider())
+// UI code imports this. To switch backends, set CONTENT_SOURCE in .env.local.
+// Provider selection lives in providers/config.ts.
 
-const fixturesService: IFixturesService = new FixturesService(new JsonFixturesProvider());
+const fixturesService: IFixturesService = new FixturesService(getFixturesProvider());
 export default fixturesService;

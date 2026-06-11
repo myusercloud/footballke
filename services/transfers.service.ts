@@ -7,7 +7,7 @@ import type {
   TransfersResponse,
 } from "@/types/transfer";
 import type { TransfersProvider } from "@/providers/transfers/TransfersProvider";
-import { JsonTransfersProvider } from "@/providers/transfers/JsonTransfersProvider";
+import { getTransfersProvider } from "@/providers/config";
 
 // ── Implementation ────────────────────────────────────────────────────────────
 
@@ -73,8 +73,9 @@ class TransfersService implements ITransfersService {
 }
 
 // ── Singleton export ──────────────────────────────────────────────────────────
-// UI code imports this. To swap providers, change the argument below.
+// UI code imports this. To switch backends, set CONTENT_SOURCE in .env.local.
+// Provider selection lives in providers/config.ts.
 // When providers/config.ts is in place, use: new TransfersService(getTransfersProvider())
 
-const transfersService: ITransfersService = new TransfersService(new JsonTransfersProvider());
+const transfersService: ITransfersService = new TransfersService(getTransfersProvider());
 export default transfersService;

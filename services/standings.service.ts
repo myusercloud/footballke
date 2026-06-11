@@ -15,7 +15,7 @@ import type {
   ProviderStandingsEntry,
   StandingsProvider,
 } from "@/providers/standings/StandingsProvider";
-import { JsonStandingsProvider } from "@/providers/standings/JsonStandingsProvider";
+import { getStandingsProvider } from "@/providers/config";
 
 // ── Sort helpers ──────────────────────────────────────────────────────────────
 
@@ -311,8 +311,8 @@ class StandingsService implements IStandingsService {
 }
 
 // ── Singleton export ──────────────────────────────────────────────────────────
-// UI code imports this. To swap providers, change the argument below.
-// When providers/config.ts is in place, use: new StandingsService(getStandingsProvider())
+// UI code imports this. To switch backends, set CONTENT_SOURCE in .env.local.
+// Provider selection lives in providers/config.ts.
 
-const standingsService: IStandingsService = new StandingsService(new JsonStandingsProvider());
+const standingsService: IStandingsService = new StandingsService(getStandingsProvider());
 export default standingsService;
