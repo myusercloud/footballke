@@ -9,47 +9,21 @@ import type {
   StandingsTable,
   StandingsSortField,
   TableZone,
-  ZoneConfig,
 } from "@/types/standings";
-import rawData from "@/data/standings.json";
-
-// ── Internal JSON shape ───────────────────────────────────────────────────────
-// Mirrors data/standings.json exactly. Private to this module — UI only ever
-// sees the computed types from types/standings.ts.
-
-type RawRow = {
-  clubId: string;
-  played: number;
-  won: number;
-  drawn: number;
-  lost: number;
-  goalsFor: number;
-  goalsAgainst: number;
-  form: string[];
-};
-
-type RawStandings = {
-  id: string;
-  competitionId: string;
-  season: Season;
-  updatedAt: string;
-  zones: ZoneConfig[];
-  rows: RawRow[];
-};
-
-type RawData = {
-  clubs: Club[];
-  competitions: StandingsCompetition[];
-  standings: RawStandings[];
-};
+import type {
+  ProviderStandingRow,
+  ProviderStandingsEntry,
+  StandingsProvider,
+} from "@/providers/standings/StandingsProvider";
+import { JsonStandingsProvider } from "@/providers/standings/JsonStandingsProvider";
 
 // ── Sort helpers ──────────────────────────────────────────────────────────────
 
-function calcPoints(row: RawRow): number {
+function calcPoints(row: ProviderStandingRow): number {
   return row.won * 3 + row.drawn;
 }
 
-function calcGD(row: RawRow): number {
+function calcGD(row: ProviderStandingRow): number {
   return row.goalsFor - row.goalsAgainst;
 }
 
@@ -57,8 +31,8 @@ function calcGD(row: RawRow): number {
 // Used both to assign the true league position and as the tiebreaker when
 // sorting by any other field.
 function canonicalCompare(
-  a: RawRow,
-  b: RawRow,
+  a: ProviderStandingRow,
+  b: ProviderStandingRow,
   clubs: Club[]
 ): number {
   const ptsDiff = calcPoints(b) - calcPoints(a);
@@ -77,51 +51,54 @@ function canonicalCompare(
 
 // ── Implementation ────────────────────────────────────────────────────────────
 
-class JsonStandingsService implements IStandingsService {
-  private readonly data: RawData = rawData as RawData;
+class StandingsService implements IStandingsService {
+  constructor(private readonly provider: StandingsProvider) {}
 
   // ── Private helpers ─────────────────────────────────────────────────────────
 
-  private findClub(id: string): Club {
-    const club = this.data.clubs.find((c) => c.id === id);
+  private findClub(id: string, clubs: Club[]): Club {
+    const club = clubs.find((c) => c.id === id);
     if (!club) throw new Error(`Club not found in standings data: ${id}`);
     return club;
   }
 
   /** Find the standings entry that best matches the given params. */
   private findEntry(
+    entries: ProviderStandingsEntry[],
+    competitions: StandingsCompetition[],
     competitionSlug?: string,
     season?: string
-  ): RawStandings | null {
-    let entries = this.data.standings as RawStandings[];
+  ): ProviderStandingsEntry | null {
+    let filtered = entries;
 
     if (competitionSlug !== undefined) {
-      const comp = this.data.competitions.find(
-        (c) => c.slug === competitionSlug
-      );
+      const comp = competitions.find((c) => c.slug === competitionSlug);
       if (!comp) return null;
-      entries = entries.filter((e) => e.competitionId === comp.id);
+      filtered = filtered.filter((e) => e.competitionId === comp.id);
     }
 
     if (season !== undefined) {
-      entries = entries.filter((e) => e.season.id === season);
+      filtered = filtered.filter((e) => e.season.id === season);
     }
 
-    if (entries.length === 0) return null;
+    if (filtered.length === 0) return null;
 
     // Default: most recently updated entry (latest season floats to the top).
-    return [...entries].sort(
+    return [...filtered].sort(
       (a, b) =>
         new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
     )[0];
   }
 
-  /** All seasons that have data, scoped to a competition if provided. */
-  private availableSeasonsFor(competitionId: string): Season[] {
+  /** All seasons that have data, scoped to a competition. */
+  private availableSeasonsFor(
+    entries: ProviderStandingsEntry[],
+    competitionId: string
+  ): Season[] {
     const seen = new Set<string>();
     const seasons: Season[] = [];
 
-    for (const entry of this.data.standings as RawStandings[]) {
+    for (const entry of entries) {
       if (
         entry.competitionId === competitionId &&
         !seen.has(entry.season.id)
@@ -145,18 +122,16 @@ class JsonStandingsService implements IStandingsService {
    * regardless of the display sort order.
    */
   private buildTable(
-    entry: RawStandings,
+    entry: ProviderStandingsEntry,
+    clubs: Club[],
+    competitions: StandingsCompetition[],
     sortBy: StandingsSortField = "position"
   ): StandingsTable {
-    const competition = this.data.competitions.find(
-      (c) => c.id === entry.competitionId
-    );
+    const competition = competitions.find((c) => c.id === entry.competitionId);
     if (!competition)
       throw new Error(
         `Competition not found in standings data: ${entry.competitionId}`
       );
-
-    const clubs = this.data.clubs;
 
     // Step 1 — canonical sort to determine true positions.
     const canonical = [...entry.rows].sort((a, b) =>
@@ -171,8 +146,8 @@ class JsonStandingsService implements IStandingsService {
       }
     }
 
-    // Step 3 — attach canonical position + zone to each raw row.
-    type Annotated = { raw: RawRow; position: number; zone: TableZone | null };
+    // Step 3 — attach canonical position + zone to each row.
+    type Annotated = { raw: ProviderStandingRow; position: number; zone: TableZone | null };
     const annotated: Annotated[] = canonical.map((raw, i) => ({
       raw,
       position: i + 1,
@@ -204,7 +179,7 @@ class JsonStandingsService implements IStandingsService {
     // Step 5 — map to fully-computed StandingRow.
     const rows: StandingRow[] = annotated.map(({ raw, position, zone }) => ({
       position,
-      club: this.findClub(raw.clubId),
+      club: this.findClub(raw.clubId, clubs),
       played: raw.played,
       won: raw.won,
       drawn: raw.drawn,
@@ -234,15 +209,21 @@ class JsonStandingsService implements IStandingsService {
   ): Promise<StandingsResponse | null> {
     const { competitionSlug, season, sortBy = "position" } = params;
 
-    const entry = this.findEntry(competitionSlug, season);
+    const [entries, clubs, competitions] = await Promise.all([
+      this.provider.getAllEntries(),
+      this.provider.getAllClubs(),
+      this.provider.getAllCompetitions(),
+    ]);
+
+    const entry = this.findEntry(entries, competitions, competitionSlug, season);
     if (!entry) return null;
 
-    const table = this.buildTable(entry, sortBy);
+    const table = this.buildTable(entry, clubs, competitions, sortBy);
 
     return {
       table,
-      availableSeasons: this.availableSeasonsFor(entry.competitionId),
-      availableCompetitions: this.data.competitions,
+      availableSeasons: this.availableSeasonsFor(entries, entry.competitionId),
+      availableCompetitions: competitions,
     };
   }
 
@@ -251,13 +232,19 @@ class JsonStandingsService implements IStandingsService {
     competitionSlug?: string,
     season?: string
   ): Promise<StandingRow | null> {
-    const entry = this.findEntry(competitionSlug, season);
+    const [entries, clubs, competitions] = await Promise.all([
+      this.provider.getAllEntries(),
+      this.provider.getAllClubs(),
+      this.provider.getAllCompetitions(),
+    ]);
+
+    const entry = this.findEntry(entries, competitions, competitionSlug, season);
     if (!entry) return null;
 
-    const club = this.data.clubs.find((c) => c.slug === clubSlug);
+    const club = clubs.find((c) => c.slug === clubSlug);
     if (!club) return null;
 
-    const table = this.buildTable(entry);
+    const table = this.buildTable(entry, clubs, competitions);
     return table.rows.find((r) => r.club.slug === clubSlug) ?? null;
   }
 
@@ -265,24 +252,33 @@ class JsonStandingsService implements IStandingsService {
     competitionSlug: string,
     season?: string
   ): Promise<StandingsTable | null> {
-    const entry = this.findEntry(competitionSlug, season);
+    const [entries, clubs, competitions] = await Promise.all([
+      this.provider.getAllEntries(),
+      this.provider.getAllClubs(),
+      this.provider.getAllCompetitions(),
+    ]);
+
+    const entry = this.findEntry(entries, competitions, competitionSlug, season);
     if (!entry) return null;
-    return this.buildTable(entry);
+    return this.buildTable(entry, clubs, competitions);
   }
 
   async getSeasons(competitionSlug?: string): Promise<Season[]> {
+    const [entries, competitions] = await Promise.all([
+      this.provider.getAllEntries(),
+      this.provider.getAllCompetitions(),
+    ]);
+
     if (competitionSlug !== undefined) {
-      const comp = this.data.competitions.find(
-        (c) => c.slug === competitionSlug
-      );
+      const comp = competitions.find((c) => c.slug === competitionSlug);
       if (!comp) return [];
-      return this.availableSeasonsFor(comp.id);
+      return this.availableSeasonsFor(entries, comp.id);
     }
 
     // No competition scope — return all unique seasons across all competitions.
     const seen = new Set<string>();
     const seasons: Season[] = [];
-    for (const entry of this.data.standings as RawStandings[]) {
+    for (const entry of entries) {
       if (!seen.has(entry.season.id)) {
         seen.add(entry.season.id);
         seasons.push(entry.season);
@@ -295,22 +291,28 @@ class JsonStandingsService implements IStandingsService {
     competitionSlug?: string,
     season?: string
   ): Promise<string | null> {
-    const entry = this.findEntry(competitionSlug, season);
+    const [entries, competitions] = await Promise.all([
+      this.provider.getAllEntries(),
+      this.provider.getAllCompetitions(),
+    ]);
+    const entry = this.findEntry(entries, competitions, competitionSlug, season);
     return entry?.updatedAt ?? null;
   }
 
   async getCompetitions(): Promise<StandingsCompetition[]> {
+    const [entries, competitions] = await Promise.all([
+      this.provider.getAllEntries(),
+      this.provider.getAllCompetitions(),
+    ]);
     // Return only competitions that have at least one standings entry.
-    const activeIds = new Set(
-      (this.data.standings as RawStandings[]).map((e) => e.competitionId)
-    );
-    return this.data.competitions.filter((c) => activeIds.has(c.id));
+    const activeIds = new Set(entries.map((e) => e.competitionId));
+    return competitions.filter((c) => activeIds.has(c.id));
   }
 }
 
 // ── Singleton export ──────────────────────────────────────────────────────────
-// UI code imports this. To swap implementations (REST API, sports provider),
-// change only this line — nothing else in the codebase changes.
+// UI code imports this. To swap providers, change the argument below.
+// When providers/config.ts is in place, use: new StandingsService(getStandingsProvider())
 
-const standingsService: IStandingsService = new JsonStandingsService();
+const standingsService: IStandingsService = new StandingsService(new JsonStandingsProvider());
 export default standingsService;

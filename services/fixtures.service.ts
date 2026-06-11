@@ -4,88 +4,19 @@ import type {
   FixtureResponse,
   GetFixturesParams,
   IFixturesService,
-  MatchStats,
   MatchStatus,
-  Score,
   Team,
-  Venue,
 } from "@/types/fixture";
-import rawData from "@/data/fixtures.json";
-
-// ── Internal JSON shape ───────────────────────────────────────────────────────
-// Matches data/fixtures.json exactly. Kept private — UI only ever sees the
-// joined Fixture type from types/fixture.ts.
-
-type RawFixture = {
-  id: string;
-  homeTeamId: string;
-  awayTeamId: string;
-  competitionId: string;
-  venueId: string;
-  kickoff: string;
-  status: MatchStatus;
-  matchday?: number;
-  score?: Score;
-  liveMinute?: number;
-  stats?: MatchStats;
-  homeForm: string[];
-  awayForm: string[];
-  preview?: string;
-  relatedNewsSlugs: string[];
-  featured: boolean;
-};
-
-type RawData = {
-  teams: Team[];
-  competitions: Competition[];
-  venues: Venue[];
-  fixtures: RawFixture[];
-};
-
-// ── Mapper ────────────────────────────────────────────────────────────────────
-
-function mapFixture(raw: RawFixture, data: RawData): Fixture {
-  const homeTeam = data.teams.find((t) => t.id === raw.homeTeamId);
-  const awayTeam = data.teams.find((t) => t.id === raw.awayTeamId);
-  const competition = data.competitions.find((c) => c.id === raw.competitionId);
-  const venue = data.venues.find((v) => v.id === raw.venueId);
-
-  if (!homeTeam)
-    throw new Error(`Home team not found: ${raw.homeTeamId} (fixture: ${raw.id})`);
-  if (!awayTeam)
-    throw new Error(`Away team not found: ${raw.awayTeamId} (fixture: ${raw.id})`);
-  if (!competition)
-    throw new Error(`Competition not found: ${raw.competitionId} (fixture: ${raw.id})`);
-  if (!venue)
-    throw new Error(`Venue not found: ${raw.venueId} (fixture: ${raw.id})`);
-
-  return {
-    id: raw.id,
-    homeTeam,
-    awayTeam,
-    competition,
-    venue,
-    kickoff: raw.kickoff,
-    status: raw.status,
-    matchday: raw.matchday,
-    score: raw.score,
-    liveMinute: raw.liveMinute,
-    stats: raw.stats,
-    homeForm: raw.homeForm,
-    awayForm: raw.awayForm,
-    preview: raw.preview,
-    relatedNewsSlugs: raw.relatedNewsSlugs,
-    featured: raw.featured,
-  };
-}
+import type { FixturesProvider } from "@/providers/fixtures/FixturesProvider";
+import { JsonFixturesProvider } from "@/providers/fixtures/JsonFixturesProvider";
 
 // ── Sort helpers ──────────────────────────────────────────────────────────────
 
-function byKickoffAsc(a: RawFixture, b: RawFixture): number {
+function byKickoffAsc(a: Fixture, b: Fixture): number {
   return new Date(a.kickoff).getTime() - new Date(b.kickoff).getTime();
 }
 
-function byKickoffDesc(a: RawFixture, b: RawFixture): number {
+function byKickoffDesc(a: Fixture, b: Fixture): number {
   return new Date(b.kickoff).getTime() - new Date(a.kickoff).getTime();
 }
 
@@ -100,7 +31,7 @@ const STATUS_ORDER: Record<MatchStatus, number> = {
   postponed: 4,
 };
 
-function defaultSort(a: RawFixture, b: RawFixture): number {
+function defaultSort(a: Fixture, b: Fixture): number {
   const statusDiff = STATUS_ORDER[a.status] - STATUS_ORDER[b.status];
   if (statusDiff !== 0) return statusDiff;
   if (a.status === "fulltime") return byKickoffDesc(a, b);
@@ -109,8 +40,8 @@ function defaultSort(a: RawFixture, b: RawFixture): number {
 
 // ── Implementation ────────────────────────────────────────────────────────────
 
-class JsonFixturesService implements IFixturesService {
-  private readonly data: RawData = rawData as RawData;
+class FixturesService implements IFixturesService {
+  constructor(private readonly provider: FixturesProvider) {}
 
   async getFixtures(params: GetFixturesParams = {}): Promise<FixtureResponse> {
     const {
@@ -123,22 +54,16 @@ class JsonFixturesService implements IFixturesService {
       dateTo,
     } = params;
 
-    let filtered = this.data.fixtures as RawFixture[];
+    let filtered = await this.provider.getAllFixtures();
 
     if (competitionSlug !== undefined) {
-      const comp = this.data.competitions.find((c) => c.slug === competitionSlug);
-      filtered = comp
-        ? filtered.filter((f) => f.competitionId === comp.id)
-        : [];
+      filtered = filtered.filter((f) => f.competition.slug === competitionSlug);
     }
 
     if (teamSlug !== undefined) {
-      const team = this.data.teams.find((t) => t.slug === teamSlug);
-      filtered = team
-        ? filtered.filter(
-            (f) => f.homeTeamId === team.id || f.awayTeamId === team.id
-          )
-        : [];
+      filtered = filtered.filter(
+        (f) => f.homeTeam.slug === teamSlug || f.awayTeam.slug === teamSlug
+      );
     }
 
     if (status !== undefined) {
@@ -165,7 +90,7 @@ class JsonFixturesService implements IFixturesService {
     const paginated = sorted.slice(start, start + pageSize);
 
     return {
-      fixtures: paginated.map((f) => mapFixture(f, this.data)),
+      fixtures: paginated,
       total,
       page,
       pageSize,
@@ -174,50 +99,46 @@ class JsonFixturesService implements IFixturesService {
   }
 
   async getFixtureById(id: string): Promise<Fixture | null> {
-    const raw = (this.data.fixtures as RawFixture[]).find((f) => f.id === id);
-    return raw ? mapFixture(raw, this.data) : null;
+    return this.provider.getFixtureById(id);
   }
 
   async getUpcomingFixtures(limit = 5): Promise<Fixture[]> {
     const now = new Date();
-    return (this.data.fixtures as RawFixture[])
+    const fixtures = await this.provider.getAllFixtures();
+    return fixtures
       .filter((f) => f.status === "scheduled" && new Date(f.kickoff) >= now)
       .sort(byKickoffAsc)
-      .slice(0, limit)
-      .map((f) => mapFixture(f, this.data));
+      .slice(0, limit);
   }
 
   async getCompletedFixtures(limit = 10): Promise<Fixture[]> {
-    return (this.data.fixtures as RawFixture[])
+    const fixtures = await this.provider.getAllFixtures();
+    return fixtures
       .filter((f) => f.status === "fulltime")
       .sort(byKickoffDesc)
-      .slice(0, limit)
-      .map((f) => mapFixture(f, this.data));
+      .slice(0, limit);
   }
 
   async getClubFixtures(teamSlug: string, limit = 10): Promise<Fixture[]> {
-    const team = this.data.teams.find((t) => t.slug === teamSlug);
-    if (!team) return [];
-
-    return (this.data.fixtures as RawFixture[])
-      .filter((f) => f.homeTeamId === team.id || f.awayTeamId === team.id)
+    const fixtures = await this.provider.getAllFixtures();
+    return fixtures
+      .filter((f) => f.homeTeam.slug === teamSlug || f.awayTeam.slug === teamSlug)
       .sort(defaultSort)
-      .slice(0, limit)
-      .map((f) => mapFixture(f, this.data));
+      .slice(0, limit);
   }
 
   async getCompetitions(): Promise<Competition[]> {
-    return this.data.competitions;
+    return this.provider.getAllCompetitions();
   }
 
   async getTeams(): Promise<Team[]> {
-    return this.data.teams;
+    return this.provider.getAllTeams();
   }
 }
 
 // ── Singleton export ──────────────────────────────────────────────────────────
-// UI code imports this. To swap implementations (REST API, sports provider),
-// change only the line below — nothing else in the codebase changes.
+// UI code imports this. To swap providers, change the argument below.
+// When providers/config.ts is in place, use: new FixturesService(getFixturesProvider())
 
-const fixturesService: IFixturesService = new JsonFixturesService();
+const fixturesService: IFixturesService = new FixturesService(new JsonFixturesProvider());
 export default fixturesService;
