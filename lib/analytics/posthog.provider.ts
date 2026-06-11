@@ -1,32 +1,41 @@
+import posthog from "posthog-js";
 import type { AnalyticsProvider } from "./provider";
 
-// ── PostHogProvider — Phase 2 stub ────────────────────────────────────────────
-//
-// Full implementation is Phase 4.
-// Phase 4 will:
-//   1. npm install posthog-js
-//   2. Read NEXT_PUBLIC_POSTHOG_KEY and NEXT_PUBLIC_POSTHOG_HOST
-//   3. Call posthog.init() inside the constructor
-//   4. Implement each method with the real posthog-js calls
-//
-// Until Phase 4, this class is a silent no-op. initAnalytics() in Phase 5's
-// <AnalyticsProvider> component will not instantiate this until Phase 4 wires
-// it up.
+// ── PostHogProvider ───────────────────────────────────────────────────────────
+// Wraps posthog-js. Constructed once by <AnalyticsProvider> (Phase 5) only
+// when NEXT_PUBLIC_POSTHOG_KEY is present. If the key is missing,
+// initAnalytics(null) is called instead and all analytics silently no-op.
 
 export class PostHogProvider implements AnalyticsProvider {
-  capture(_eventName: string, _properties: Record<string, unknown>): void {
-    // Phase 4: posthog.capture(eventName, properties)
+  constructor(key: string, host: string) {
+    posthog.init(key, {
+      api_host: host,
+      // We fire $pageview ourselves via page() — disable PostHog's auto-capture
+      // so we don't double-count page views on route changes.
+      capture_pageview: false,
+      capture_pageleave: true,
+      // All events are fired explicitly through track() — no click/input capture.
+      autocapture: false,
+      persistence: "localStorage+cookie",
+      loaded: (ph) => {
+        if (process.env.NEXT_PUBLIC_ANALYTICS_DEBUG === "true") ph.debug(true);
+      },
+    });
   }
 
-  identify(_userId: string, _traits?: Record<string, unknown>): void {
-    // Phase 4: posthog.identify(userId, traits)
+  capture(eventName: string, properties: Record<string, unknown>): void {
+    posthog.capture(eventName, properties);
   }
 
-  page(_properties: Record<string, unknown>): void {
-    // Phase 4: posthog.capture("$pageview", properties)
+  identify(userId: string, traits?: Record<string, unknown>): void {
+    posthog.identify(userId, traits);
+  }
+
+  page(properties: Record<string, unknown>): void {
+    posthog.capture("$pageview", properties);
   }
 
   reset(): void {
-    // Phase 4: posthog.reset()
+    posthog.reset();
   }
 }

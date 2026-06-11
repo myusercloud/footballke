@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
+import { events } from "@/lib/analytics/events";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import AdSlot from "@/components/layout/AdSlot";
@@ -123,21 +125,23 @@ export default async function Home() {
                   </p>
                 </div>
                 <div className="mt-6 flex flex-wrap items-center gap-3">
-                  <Link
+                  <TrackedLink
                     href="/news"
+                    trackEvent={events.ctaClick({ label: "Read latest", destination: "/news", type: "internal" })}
                     className="inline-flex items-center gap-2 rounded-sm bg-emerald-800 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 active:bg-emerald-900"
                   >
                     Read latest
                     <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                     </svg>
-                  </Link>
-                  <Link
+                  </TrackedLink>
+                  <TrackedLink
                     href="/fixtures"
+                    trackEvent={events.ctaClick({ label: "View fixtures", destination: "/fixtures", type: "internal" })}
                     className="inline-flex items-center gap-2 rounded-sm border border-zinc-300 px-5 py-2.5 text-sm font-bold transition-colors hover:border-zinc-400 hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2 active:bg-zinc-100"
                   >
                     View fixtures
-                  </Link>
+                  </TrackedLink>
                 </div>
               </div>
             </article>
@@ -163,9 +167,15 @@ export default async function Home() {
                 {upcomingFixtures.length > 0 ? (
                   <div className="mt-3 divide-y divide-zinc-100">
                     {upcomingFixtures.map((fixture) => (
-                      <Link
+                      <TrackedLink
                         key={fixture.id}
                         href={`/fixtures/${fixture.id}`}
+                        trackEvent={events.fixtureOpen({
+                          fixture_id: fixture.id,
+                          home_team: fixture.homeTeam.shortName,
+                          away_team: fixture.awayTeam.shortName,
+                          source: "widget",
+                        })}
                         className="group flex items-center gap-3 py-3 transition-colors hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-inset"
                       >
                         {/* Day + time badge */}
@@ -200,7 +210,7 @@ export default async function Home() {
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                         </svg>
-                      </Link>
+                      </TrackedLink>
                     ))}
                   </div>
                 ) : (
@@ -209,12 +219,13 @@ export default async function Home() {
                   </p>
                 )}
 
-                <Link
+                <TrackedLink
                   href="/fixtures"
+                  trackEvent={events.ctaClick({ label: "All fixtures", destination: "/fixtures", type: "internal" })}
                   className="mt-3 block text-center text-xs font-bold text-emerald-700 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
                 >
                   All fixtures →
-                </Link>
+                </TrackedLink>
               </section>
             </div>
           </section>
@@ -230,12 +241,13 @@ export default async function Home() {
                 <h2 id="news-heading" className="text-xl font-black sm:text-2xl">
                   Top Stories
                 </h2>
-                <Link
+                <TrackedLink
                   href="/news"
+                  trackEvent={events.ctaClick({ label: "All stories", destination: "/news", type: "internal" })}
                   className="text-xs font-bold text-emerald-700 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
                 >
                   All stories →
-                </Link>
+                </TrackedLink>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
@@ -292,12 +304,13 @@ export default async function Home() {
             >
               <div className="flex items-center justify-between gap-3">
                 <h2 className="text-xl font-black sm:text-2xl">Table Snapshot</h2>
-                <Link
+                <TrackedLink
                   href="/standings"
+                  trackEvent={events.ctaClick({ label: "Full table", destination: "/standings", type: "internal" })}
                   className="text-xs font-bold text-emerald-700 underline underline-offset-2 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
                 >
                   Full table
-                </Link>
+                </TrackedLink>
               </div>
 
               {kplStandings ? (
@@ -416,15 +429,16 @@ export default async function Home() {
                   Leaderboard, sidebar, in-feed, and sponsored placements
                   for clubs, brands, and agencies.
                 </p>
-                <a
-                  className="mt-5 inline-flex items-center gap-2 rounded-sm border border-white/60 px-4 py-2.5 text-sm font-bold transition-all hover:bg-white hover:text-emerald-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-emerald-800 active:scale-[.98]"
+                <TrackedLink
                   href="mailto:ads@footballke.com"
+                  trackEvent={events.ctaClick({ label: "ads@footballke.com", destination: "mailto:ads@footballke.com", type: "mailto" })}
+                  className="mt-5 inline-flex items-center gap-2 rounded-sm border border-white/60 px-4 py-2.5 text-sm font-bold transition-all hover:bg-white hover:text-emerald-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-emerald-800 active:scale-[.98]"
                 >
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   ads@footballke.com
-                </a>
+                </TrackedLink>
               </section>
             </div>
           </section>
@@ -440,12 +454,13 @@ export default async function Home() {
                 <h2 id="transfers-heading" className="text-xl font-black sm:text-2xl">
                   Latest Transfers
                 </h2>
-                <Link
+                <TrackedLink
                   href="/transfers"
+                  trackEvent={events.ctaClick({ label: "All transfers", destination: "/transfers", type: "internal" })}
                   className="text-xs font-bold text-emerald-700 underline underline-offset-2 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
                 >
                   All transfers
-                </Link>
+                </TrackedLink>
               </div>
 
               <div className="mt-4 divide-y divide-zinc-100">

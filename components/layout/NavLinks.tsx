@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { track } from "@/lib/analytics/analytics";
+import { events } from "@/lib/analytics/events";
 
 const NAV_ITEMS = [
   { label: "News",      href: "/news",                    prefix: "/news",      category: null        },
@@ -53,6 +55,9 @@ export function NavLinks() {
             key={item.label}
             href={item.href}
             aria-current={active ? "page" : undefined}
+            onClick={() =>
+              track(events.navClick({ label: item.label, destination: item.href }))
+            }
             className={`rounded px-3 py-1.5 transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-1 active:bg-emerald-100 sm:px-4 sm:py-2 ${
               active
                 ? "bg-emerald-50 font-black text-emerald-800"

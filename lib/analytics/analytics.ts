@@ -4,10 +4,31 @@ import type { BaseProperties, DeviceType } from "./types";
 
 // ── Module state ──────────────────────────────────────────────────────────────
 // One provider instance shared across the process lifetime.
-// Set once by initAnalytics() — called from <AnalyticsProvider> (Phase 5).
+// Set once by initAnalytics() — called from <AnalyticsProvider>.
 
 let _provider: AnalyticsProvider | null = null;
 let _sessionId: string | null = null;
+
+// ── Debug infrastructure ──────────────────────────────────────────────────────
+// Listeners are notified on every track() call regardless of whether the
+// provider is initialised, so the debug panel works without a PostHog key.
+
+export type DebugEntry = {
+  name: string;
+  properties: Record<string, unknown>;
+  /** true = sent to PostHog; false = no-op'd (no key, DNT, SSR, etc.) */
+  captured: boolean;
+  ts: number;
+};
+
+type DebugListener = (entry: DebugEntry) => void;
+const _debugListeners = new Set<DebugListener>();
+
+/** Subscribe to analytics events. Returns an unsubscribe function. */
+export function addDebugListener(listener: DebugListener): () => void {
+  _debugListeners.add(listener);
+  return () => void _debugListeners.delete(listener);
+}
 
 // ── Internal helpers ──────────────────────────────────────────────────────────
 
@@ -64,13 +85,38 @@ export function initAnalytics(provider: AnalyticsProvider | null): void {
 /**
  * Fire a named event. Base properties are enriched automatically.
  * No-op if the provider is not initialised, window is undefined, or DNT is set.
+ * Debug listeners are always notified (even without a provider) so the panel
+ * works during local development without a PostHog key.
  */
 export function track(event: AnalyticsEvent): void {
-  if (!isEnabled()) return;
-  _provider!.capture(event.name, {
-    ...buildBaseProperties(),
-    ...(event.properties ?? {}),
-  });
+  const props = (event as { name: string; properties?: Record<string, unknown> }).properties;
+  const enabled = isEnabled();
+  const inBrowser = typeof window !== "undefined";
+  const hasListeners = _debugListeners.size > 0 && inBrowser;
+
+  if (!enabled && !hasListeners) return;
+
+  // Build enriched properties once — used by both the provider and listeners.
+  const enriched: Record<string, unknown> = inBrowser
+    ? { ...buildBaseProperties(), ...(props ?? {}) }
+    : { ...(props ?? {}) };
+
+  if (enabled) {
+    _provider!.capture(event.name, enriched);
+  }
+
+  if (hasListeners) {
+    const entry: DebugEntry = { name: event.name, properties: enriched, captured: enabled, ts: Date.now() };
+    _debugListeners.forEach((l) => l(entry));
+  }
+
+  // Console output — inlined build-time constant, tree-shaken in production.
+  if (process.env.NEXT_PUBLIC_ANALYTICS_DEBUG === "true") {
+    console.group(`%c[FK Analytics] ${event.name}`, "color:#84cc16;font-weight:bold");
+    console.log("properties:", enriched);
+    console.log("captured:", enabled);
+    console.groupEnd();
+  }
 }
 
 /**
@@ -84,7 +130,7 @@ export function identify(userId: string, traits?: Record<string, unknown>): void
 
 /**
  * Fire a page-view event. Base properties are enriched automatically.
- * Called by <AnalyticsProvider> on every route change (Phase 5) — pages
+ * Called by <AnalyticsProvider> on every route change — pages
  * and components should not call this manually.
  */
 export function page(properties?: Record<string, unknown>): void {

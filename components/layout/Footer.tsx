@@ -1,3 +1,8 @@
+"use client";
+
+import { track } from "@/lib/analytics/analytics";
+import { events } from "@/lib/analytics/events";
+
 export default function Footer() {
   return (
     <footer className="mt-12 border-t border-zinc-200 bg-white">
@@ -25,6 +30,9 @@ export default function Footer() {
                 <a
                   key={platform}
                   href="#"
+                  onClick={() =>
+                    track(events.footerLinkClick({ label: platform, destination: "#", type: "social" }))
+                  }
                   className="rounded-sm border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-600 transition-colors hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
                 >
                   {platform}
@@ -64,12 +72,18 @@ export default function Footer() {
             <div className="flex flex-col gap-2 text-sm text-zinc-600">
               <a
                 href="mailto:ads@footballke.com"
+                onClick={() =>
+                  track(events.footerLinkClick({ label: "ads@footballke.com", destination: "mailto:ads@footballke.com", type: "contact" }))
+                }
                 className="font-semibold hover:text-emerald-700 focus:outline-none"
               >
                 ads@footballke.com
               </a>
               <a
                 href="mailto:editor@footballke.com"
+                onClick={() =>
+                  track(events.footerLinkClick({ label: "editor@footballke.com", destination: "mailto:editor@footballke.com", type: "contact" }))
+                }
                 className="font-semibold hover:text-emerald-700 focus:outline-none"
               >
                 editor@footballke.com
