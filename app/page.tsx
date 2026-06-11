@@ -2,14 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AdSlot from "@/components/layout/AdSlot";
+import LiveTicker from "@/components/layout/LiveTicker";
+import PitchVisual from "@/components/layout/PitchVisual";
 import { getNews } from "@/lib/news.cache";
 import { getUpcomingFixtures } from "@/lib/fixtures.cache";
 import { formatKickoffTime } from "@/lib/fixture.utils";
 import { getCompetitionStandings } from "@/lib/standings.cache";
 import { getTransfers } from "@/lib/transfers.cache";
+import { ZONE_CLASSES } from "@/lib/standings.utils";
 import { FormBadges } from "@/components/football/fixtures/FormBadges";
 import { TransferBadge } from "@/components/football/transfers/TransferBadge";
-import type { TableZone } from "@/types/standings";
 
 export const metadata: Metadata = {
   title: "KPL Weekend Preview & Standings",
@@ -21,22 +24,6 @@ export const metadata: Metadata = {
       "Pressure fixtures, derby tension, and form checks from the Kenyan Premier League.",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
-};
-
-// ── Zone color maps (Tailwind v4 — complete static strings) ──────────────────
-
-const ZONE_ROW: Record<TableZone, string> = {
-  champions:             "border-l-[3px] border-l-amber-400 bg-amber-50/70",
-  continental:           "border-l-[3px] border-l-emerald-500 bg-emerald-50/50",
-  "continental-playoff": "border-l-[3px] border-l-teal-500 bg-teal-50/50",
-  relegation:            "border-l-[3px] border-l-red-500 bg-red-50/50",
-};
-
-const ZONE_POS: Record<TableZone, string> = {
-  champions:             "text-amber-500",
-  continental:           "text-emerald-600",
-  "continental-playoff": "text-teal-600",
-  relegation:            "text-red-500",
 };
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -54,88 +41,6 @@ function kickoffDay(iso: string): string {
 /** Strips AM/PM so "3:00 PM" → "3:00" and "15:00" is already correct. */
 function kickoffBadgeTime(iso: string): string {
   return formatKickoffTime(iso).replace(/\s*(AM|PM)$/i, "");
-}
-
-// ── Sub-components ────────────────────────────────────────────────────────────
-
-function AdSlot({
-  label,
-  size,
-  className = "",
-}: {
-  label: string;
-  size: string;
-  className?: string;
-}) {
-  return (
-    <aside
-      className={`flex min-h-24 items-center justify-center rounded border border-dashed border-zinc-300 bg-zinc-50 p-4 text-center ${className}`}
-      aria-label={`${label} advert slot`}
-    >
-      <div>
-        <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400">
-          {label}
-        </p>
-        <p className="mt-1 text-[10px] text-zinc-300">{size}</p>
-      </div>
-    </aside>
-  );
-}
-
-function LiveTicker() {
-  const items = [
-    "Gor Mahia 2–0 Ulinzi Stars · FT",
-    "Tusker FC 1–1 AFC Leopards · FT",
-    "Police FC vs Bandari · KO 3 PM Sun",
-  ];
-  return (
-    <div className="overflow-hidden border-b border-zinc-200 bg-emerald-900 text-white">
-      <div className="mx-auto flex max-w-7xl items-center gap-0 px-4 sm:px-6 lg:px-8">
-        <span className="mr-3 shrink-0 border-r border-emerald-700 py-2 pr-3 text-[10px] font-black uppercase tracking-[0.22em] text-lime-300">
-          Live
-        </span>
-        <div className="flex gap-6 overflow-x-auto whitespace-nowrap py-2 text-xs font-semibold text-emerald-100 scrollbar-none">
-          {items.map((item, i) => (
-            <span key={i} className="shrink-0">
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function PitchVisual() {
-  return (
-    <div
-      className="relative min-h-[240px] overflow-hidden bg-emerald-800 text-white sm:min-h-[280px]"
-      aria-hidden="true"
-    >
-      {/* Pitch markings */}
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,.04)_50%,transparent_50%)] bg-[length:88px_100%]" />
-      <div className="absolute inset-5 border border-white/30 sm:inset-7" />
-      <div className="absolute left-1/2 top-5 h-[calc(100%-2.5rem)] w-px -translate-x-1/2 bg-white/30 sm:top-7 sm:h-[calc(100%-3.5rem)]" />
-      <div className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/30 sm:h-24 sm:w-24" />
-      <div className="absolute left-5 top-1/2 h-24 w-14 -translate-y-1/2 border-y border-r border-white/30 sm:left-7 sm:h-28 sm:w-16" />
-      <div className="absolute right-5 top-1/2 h-24 w-14 -translate-y-1/2 border-y border-l border-white/30 sm:right-7 sm:h-28 sm:w-16" />
-      {/* Player dots */}
-      <div className="absolute left-[20%] top-[30%] h-3.5 w-3.5 rounded-full bg-white shadow-[0_0_0_5px_rgba(255,255,255,.12)]" />
-      <div className="absolute right-[24%] top-[58%] h-3.5 w-3.5 rounded-full bg-lime-300 shadow-[0_0_0_5px_rgba(190,242,100,.16)]" />
-      <div className="absolute left-[45%] top-[42%] h-3 w-3 rounded-full bg-white/60" />
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-emerald-900/20 to-transparent" />
-      {/* Text */}
-      <div className="absolute bottom-6 left-6 right-6 sm:bottom-7 sm:left-8 sm:right-8">
-        <p className="text-[10px] font-black uppercase tracking-[0.25em] text-lime-300 sm:text-xs">
-          FootballKE Match Centre
-        </p>
-        <p className="mt-2 text-2xl font-black leading-tight sm:text-3xl xl:text-4xl">
-          Kenyan football, fixtures, standings, and stories in one place.
-        </p>
-      </div>
-    </div>
-  );
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
@@ -164,7 +69,13 @@ export default async function Home() {
       <div className="min-h-screen overflow-x-hidden bg-[#f2f4ef] text-zinc-950">
 
         {/* ── Live ticker ── */}
-        <LiveTicker />
+        <LiveTicker
+          items={[
+            "Gor Mahia 2–0 Ulinzi Stars · FT",
+            "Tusker FC 1–1 AFC Leopards · FT",
+            "Police FC vs Bandari · KO 3 PM Sun",
+          ]}
+        />
 
         {/* ── Header ── */}
         <Navbar />
@@ -319,12 +230,12 @@ export default async function Home() {
                 <h2 id="news-heading" className="text-xl font-black sm:text-2xl">
                   Top Stories
                 </h2>
-                <a
+                <Link
                   href="/news"
                   className="text-xs font-bold text-emerald-700 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
                 >
                   All stories →
-                </a>
+                </Link>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
@@ -343,9 +254,9 @@ export default async function Home() {
                       {story.category.name}
                     </p>
                     <h3 className="mt-2.5 text-base font-black leading-snug transition-colors group-hover:text-emerald-900 sm:text-lg">
-                      <a href={`/news/${story.slug}`} className="focus:outline-none after:absolute after:inset-0">
+                      <Link href={`/news/${story.slug}`} className="focus:outline-none after:absolute after:inset-0">
                         {story.title}
-                      </a>
+                      </Link>
                     </h3>
                     <p className="mt-2.5 flex-1 text-sm leading-6 text-zinc-600">
                       {story.excerpt}
@@ -396,15 +307,7 @@ export default async function Home() {
                     {kplStandings.zones.map((z) => (
                       <span key={z.type} className="flex items-center gap-1.5">
                         <span
-                          className={`h-2 w-2 rounded-sm ${
-                            z.type === "champions"
-                              ? "bg-amber-400"
-                              : z.type === "continental"
-                              ? "bg-emerald-500"
-                              : z.type === "continental-playoff"
-                              ? "bg-teal-500"
-                              : "bg-red-500"
-                          }`}
+                          className={`h-2 w-2 rounded-sm ${ZONE_CLASSES[z.type].dot}`}
                           aria-hidden="true"
                         />
                         {z.label}
@@ -427,13 +330,15 @@ export default async function Home() {
                         key={row.club.id}
                         className={`grid grid-cols-[28px_1fr_36px_36px_auto] items-center gap-2 py-2.5 transition-colors hover:bg-zinc-50 sm:py-3 ${
                           row.zone !== null
-                            ? ZONE_ROW[row.zone]
+                            ? ZONE_CLASSES[row.zone].row
                             : "border-l-[3px] border-l-transparent"
                         }`}
                       >
                         <span
                           className={`text-sm font-black ${
-                            row.zone !== null ? ZONE_POS[row.zone] : "text-zinc-400"
+                            row.zone !== null
+                              ? ZONE_CLASSES[row.zone].posText
+                              : "text-zinc-400"
                           }`}
                         >
                           {row.position}
@@ -473,10 +378,10 @@ export default async function Home() {
                 </h2>
                 <div className="mt-4 divide-y divide-white/10">
                   {quickReads.map((story, i) => (
-                    <a
+                    <Link
                       key={story.slug}
-                      className="group flex items-start gap-3 py-3.5 text-sm font-semibold leading-snug text-zinc-100 transition-colors hover:text-lime-300 focus:text-lime-300 focus:outline-none sm:items-center"
                       href={`/news/${story.slug}`}
+                      className="group flex items-start gap-3 py-3.5 text-sm font-semibold leading-snug text-zinc-100 transition-colors hover:text-lime-300 focus:text-lime-300 focus:outline-none sm:items-center"
                     >
                       <span className="mt-0.5 shrink-0 text-xs font-black text-zinc-600 transition-colors group-hover:text-lime-600 sm:mt-0">
                         {String(i + 1).padStart(2, "0")}
@@ -495,7 +400,7 @@ export default async function Home() {
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                       </svg>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </section>

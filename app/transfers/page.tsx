@@ -7,7 +7,8 @@ import {
 import { TransferCard } from "@/components/football/transfers/TransferCard";
 import { TransferFilters } from "@/components/football/transfers/TransferFilters";
 import { EmptyTransfers } from "@/components/football/transfers/EmptyTransfers";
-import type { TransferStatus, TransferWindow } from "@/types/transfer";
+import type { TransferStatus } from "@/types/transfer";
+import { parseTransferStatus, parseTransferWindow } from "@/lib/transfers.utils";
 import { Suspense } from "react";
 import { TransferSkeleton } from "@/components/football/transfers/TransferSkeleton";
 
@@ -21,26 +22,6 @@ type SearchParams = {
 };
 
 type PageProps = { searchParams: Promise<SearchParams> };
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
-
-const VALID_STATUS = new Set<string>([
-  "all", "confirmed", "loan", "rumour", "exit",
-]);
-
-function parseStatus(raw: string | undefined): TransferStatus | "all" {
-  if (raw && VALID_STATUS.has(raw)) return raw as TransferStatus | "all";
-  return "all";
-}
-
-const VALID_WINDOWS = new Set<string>([
-  "summer-2026", "winter-2026", "summer-2025",
-]);
-
-function parseWindow(raw: string | undefined): TransferWindow | "all" {
-  if (raw && VALID_WINDOWS.has(raw)) return raw as TransferWindow;
-  return "all";
-}
 
 const SECTION_ORDER: (TransferStatus)[] = [
   "confirmed", "loan", "rumour", "exit",
@@ -93,8 +74,8 @@ export async function generateMetadata({
 export default async function TransfersPage({ searchParams }: PageProps) {
   const { status, window, club, page: pageParam } = await searchParams;
 
-  const activeStatus = parseStatus(status);
-  const activeWindow = parseWindow(window);
+  const activeStatus = parseTransferStatus(status);
+  const activeWindow = parseTransferWindow(window);
   const activeClub   = club ?? "";
   const page         = Math.max(1, Number(pageParam) || 1);
 
