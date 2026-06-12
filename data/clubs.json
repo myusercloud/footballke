@@ -1,0 +1,480 @@
+{
+  "clubs": [
+    {
+      "id": "gor-mahia",
+      "slug": "gor-mahia",
+      "name": "Gor Mahia FC",
+      "shortName": "Gor Mahia",
+      "abbreviation": "GOR",
+      "founded": 1968,
+      "city": "Nairobi",
+      "country": "Kenya",
+      "logo": "/clubs/gor-mahia.svg",
+      "colors": { "primary": "#006B2D", "secondary": "#FFFFFF" },
+      "venue": {
+        "id": "venue-nyayo",
+        "name": "Nyayo National Stadium",
+        "city": "Nairobi",
+        "capacity": 30000
+      },
+      "description": "Gor Mahia FC, nicknamed K'Ogalo and the Green Army, is Kenya's most decorated football club with a record 20 league titles. Founded in 1968 in Nairobi, the club draws its identity from the Luo community and commands one of the largest supporter bases in East Africa. Gor Mahia reached the 1987 CAF Champions League final and have represented Kenya on the continent more times than any other club.",
+      "achievements": [
+        "KPL Champions 2024",
+        "KPL Champions 2023",
+        "KPL Champions 2021",
+        "KPL Champions 2019",
+        "KPL Champions 2017",
+        "KPL Champions 2016",
+        "20 Kenyan Premier League titles (record)",
+        "7 FKF Cup titles",
+        "CAF Champions League Runners-Up 1987",
+        "4 CECAFA Club Championship titles",
+        "2 East & Central Africa Club Championship titles"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/GorMahiaFC",
+        "facebook": "https://facebook.com/GorMahiaFC",
+        "instagram": "https://instagram.com/gormahiafc",
+        "website": "https://gormahia.co.ke"
+      },
+      "stats": {
+        "position": 1,
+        "played": 26,
+        "won": 17,
+        "drawn": 6,
+        "lost": 3,
+        "goalsFor": 51,
+        "goalsAgainst": 22,
+        "goalDifference": 29,
+        "points": 57,
+        "form": ["W", "W", "L", "W", "W"]
+      },
+      "searchableName": "Gor Mahia FC",
+      "searchableKeywords": ["Green Army", "K'Ogalo", "GOR", "Gor", "Mahia", "Green Machine", "K Ogalo"],
+      "searchableSlug": "gor-mahia"
+    },
+    {
+      "id": "tusker-fc",
+      "slug": "tusker-fc",
+      "name": "Tusker FC",
+      "shortName": "Tusker",
+      "abbreviation": "TUS",
+      "founded": 1969,
+      "city": "Nairobi",
+      "country": "Kenya",
+      "logo": "/clubs/tusker-fc.svg",
+      "colors": { "primary": "#C9A84C", "secondary": "#000000" },
+      "venue": {
+        "id": "venue-ruaraka",
+        "name": "Ruaraka Grounds",
+        "city": "Nairobi",
+        "capacity": 5000
+      },
+      "description": "Tusker FC, the brewing giant's football arm, are one of Kenya's most consistent top-flight sides. Founded in 1969 and backed by East African Breweries, the club plays in distinctive gold and black, earning the nickname the Brewers. Tusker are perennial title challengers and have produced several Harambee Stars internationals.",
+      "achievements": [
+        "KPL Champions 2022",
+        "KPL Champions 2020",
+        "KPL Champions 2011",
+        "KPL Champions 2010",
+        "8 Kenyan Premier League titles",
+        "5 FKF Cup titles",
+        "CAF Champions League group stage 2022"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/TuskerFC",
+        "facebook": "https://facebook.com/TuskerFootballClub",
+        "instagram": "https://instagram.com/tusker_fc",
+        "website": "https://tuskerfc.co.ke"
+      },
+      "stats": {
+        "position": 2,
+        "played": 26,
+        "won": 15,
+        "drawn": 7,
+        "lost": 4,
+        "goalsFor": 44,
+        "goalsAgainst": 21,
+        "goalDifference": 23,
+        "points": 52,
+        "form": ["W", "D", "W", "W", "D"]
+      },
+      "searchableName": "Tusker FC",
+      "searchableKeywords": ["Brewers", "TUS", "Tusker", "EABL", "Gold and Black"],
+      "searchableSlug": "tusker-fc"
+    },
+    {
+      "id": "police-fc",
+      "slug": "police-fc",
+      "name": "Kenya Police FC",
+      "shortName": "Police FC",
+      "abbreviation": "POL",
+      "founded": 1953,
+      "city": "Nairobi",
+      "country": "Kenya",
+      "logo": "/clubs/police-fc.svg",
+      "colors": { "primary": "#003087", "secondary": "#FFFFFF" },
+      "venue": {
+        "id": "venue-camp-toyoyo",
+        "name": "Camp Toyoyo",
+        "city": "Nairobi",
+        "capacity": 4000
+      },
+      "description": "Kenya Police FC, one of the oldest clubs in Kenyan football, were founded in 1953 as the sporting arm of the National Police Service. Playing in royal blue and white, the Cops have long been one of Nairobi's most organised clubs. Their third-place standing reflects a resurgent squad built on defensive solidity and disciplined team structure.",
+      "achievements": [
+        "KPL Champions 2014",
+        "FKF Cup Winners 2015",
+        "FKF Cup Winners 2018",
+        "3 Kenyan Premier League titles",
+        "Multiple FKF Shield titles"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/KenyaPoliceFC",
+        "facebook": "https://facebook.com/KenyaPoliceFC",
+        "instagram": "https://instagram.com/kenyapolicefc",
+        "website": null
+      },
+      "stats": {
+        "position": 3,
+        "played": 26,
+        "won": 14,
+        "drawn": 8,
+        "lost": 4,
+        "goalsFor": 38,
+        "goalsAgainst": 22,
+        "goalDifference": 16,
+        "points": 50,
+        "form": ["W", "W", "D", "W", "L"]
+      },
+      "searchableName": "Kenya Police FC",
+      "searchableKeywords": ["Cops", "POL", "Police", "Boys in Blue", "Kenya Police"],
+      "searchableSlug": "police-fc"
+    },
+    {
+      "id": "bandari-fc",
+      "slug": "bandari-fc",
+      "name": "Bandari FC",
+      "shortName": "Bandari",
+      "abbreviation": "BAN",
+      "founded": 1964,
+      "city": "Mombasa",
+      "country": "Kenya",
+      "logo": "/clubs/bandari-fc.svg",
+      "colors": { "primary": "#00529B", "secondary": "#FFFFFF" },
+      "venue": {
+        "id": "venue-mbaraki",
+        "name": "Mbaraki Sports Club",
+        "city": "Mombasa",
+        "capacity": 7000
+      },
+      "description": "Bandari FC, whose name means 'port' in Swahili, are the pride of Mombasa and Coast Province football. Founded in 1964 and backed by the Kenya Ports Authority, Bandari have grown from a KPA welfare club into one of Kenya's top flight mainstays. Their 2019 KPL title cemented their status as genuine national contenders.",
+      "achievements": [
+        "KPL Champions 2019",
+        "FKF Cup Winners 2016",
+        "FKF Cup Winners 2020",
+        "2 Kenyan Premier League titles",
+        "CAF Confederation Cup participant 2020"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/BandariFC",
+        "facebook": "https://facebook.com/BandariFC",
+        "instagram": "https://instagram.com/bandarifc",
+        "website": "https://bandarifc.co.ke"
+      },
+      "stats": {
+        "position": 4,
+        "played": 26,
+        "won": 14,
+        "drawn": 6,
+        "lost": 6,
+        "goalsFor": 39,
+        "goalsAgainst": 24,
+        "goalDifference": 15,
+        "points": 48,
+        "form": ["W", "L", "D", "W", "W"]
+      },
+      "searchableName": "Bandari FC",
+      "searchableKeywords": ["Dockers", "BAN", "Bandari", "Port", "Mombasa", "KPA"],
+      "searchableSlug": "bandari-fc"
+    },
+    {
+      "id": "afc-leopards",
+      "slug": "afc-leopards",
+      "name": "AFC Leopards",
+      "shortName": "Leopards",
+      "abbreviation": "AFC",
+      "founded": 1958,
+      "city": "Nairobi",
+      "country": "Kenya",
+      "logo": "/clubs/afc-leopards.svg",
+      "colors": { "primary": "#003087", "secondary": "#000000" },
+      "venue": {
+        "id": "venue-kasarani",
+        "name": "Moi International Sports Centre",
+        "city": "Nairobi",
+        "capacity": 60000
+      },
+      "description": "AFC Leopards — full name Abaluhya Football Club, rebranded in 1980 — are Gor Mahia's fiercest rivals and Kenya's second most decorated club. Founded in 1958 as a community club for the Abaluhya people of western Kenya, Ingwe have built a passionate national following. The Gor–AFC Nairobi Derby is widely regarded as one of Africa's most intense local rivalries.",
+      "achievements": [
+        "KPL Champions 2012",
+        "KPL Champions 1998",
+        "13 Kenyan Premier League titles",
+        "6 FKF Cup titles",
+        "CECAFA Club Championship 1980",
+        "East & Central Africa Club Championship 1983"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/AFCLeopards",
+        "facebook": "https://facebook.com/AFCLeopards",
+        "instagram": "https://instagram.com/afcleopards",
+        "website": "https://afcleopards.co.ke"
+      },
+      "stats": {
+        "position": 5,
+        "played": 26,
+        "won": 13,
+        "drawn": 8,
+        "lost": 5,
+        "goalsFor": 36,
+        "goalsAgainst": 23,
+        "goalDifference": 13,
+        "points": 47,
+        "form": ["D", "W", "W", "D", "W"]
+      },
+      "searchableName": "AFC Leopards",
+      "searchableKeywords": ["Ingwe", "AFC", "Leopards", "Abaluhya", "Blue and Black", "IngeFC"],
+      "searchableSlug": "afc-leopards"
+    },
+    {
+      "id": "kcb-fc",
+      "slug": "kcb-fc",
+      "name": "KCB FC",
+      "shortName": "KCB",
+      "abbreviation": "KCB",
+      "founded": 1970,
+      "city": "Nairobi",
+      "country": "Kenya",
+      "logo": "/clubs/kcb-fc.svg",
+      "colors": { "primary": "#006633", "secondary": "#FFFFFF" },
+      "venue": {
+        "id": "venue-utalii",
+        "name": "Utalii Grounds",
+        "city": "Nairobi",
+        "capacity": 3000
+      },
+      "description": "KCB FC, the football club of Kenya Commercial Bank, have risen from a staff welfare club to KPL champions in recent years. Playing in green and white, the Bankers are known for strong technical play and well-funded player recruitment. Their 2019–20 double — league and cup — announced them as a force in modern Kenyan football.",
+      "achievements": [
+        "KPL Champions 2019-20",
+        "FKF Cup Winners 2019",
+        "2 Kenyan Premier League titles",
+        "CAF Champions League participant 2021"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/KCBFC",
+        "facebook": "https://facebook.com/KCBFC",
+        "instagram": "https://instagram.com/kcb_fc",
+        "website": "https://kcbgroup.com/football"
+      },
+      "stats": {
+        "position": 6,
+        "played": 26,
+        "won": 13,
+        "drawn": 5,
+        "lost": 8,
+        "goalsFor": 33,
+        "goalsAgainst": 26,
+        "goalDifference": 7,
+        "points": 44,
+        "form": ["W", "D", "L", "W", "W"]
+      },
+      "searchableName": "KCB FC",
+      "searchableKeywords": ["Bankers", "KCB", "Kenya Commercial Bank", "Green and White"],
+      "searchableSlug": "kcb-fc"
+    },
+    {
+      "id": "kakamega-homeboyz",
+      "slug": "kakamega-homeboyz",
+      "name": "Kakamega Homeboyz FC",
+      "shortName": "Homeboyz",
+      "abbreviation": "HBZ",
+      "founded": 2004,
+      "city": "Kakamega",
+      "country": "Kenya",
+      "logo": "/clubs/kakamega-homeboyz.svg",
+      "colors": { "primary": "#228B22", "secondary": "#FFFF00" },
+      "venue": {
+        "id": "venue-kakamega",
+        "name": "Kakamega County Stadium",
+        "city": "Kakamega",
+        "capacity": 12000
+      },
+      "description": "Kakamega Homeboyz FC represent the heartland of western Kenya football. Founded in 2004, the Homeboyz have established themselves as a consistent top-half KPL side, drawing their identity from Kakamega County's rich footballing culture. The club prioritises local player development and is a major source of talent for the national team pipeline.",
+      "achievements": [
+        "KPL Runners-Up 2021",
+        "FKF Cup Finalists 2020",
+        "Western Province Champions multiple times",
+        "Consistent KPL top-half finishes since 2013"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/HomeboyzFC",
+        "facebook": "https://facebook.com/KakamegaHomeboyz",
+        "instagram": "https://instagram.com/kakamegahomeboyz",
+        "website": null
+      },
+      "stats": {
+        "position": 7,
+        "played": 26,
+        "won": 11,
+        "drawn": 8,
+        "lost": 7,
+        "goalsFor": 31,
+        "goalsAgainst": 27,
+        "goalDifference": 4,
+        "points": 41,
+        "form": ["D", "W", "L", "D", "W"]
+      },
+      "searchableName": "Kakamega Homeboyz FC",
+      "searchableKeywords": ["Homeboyz", "HBZ", "Kakamega", "Boyz", "Green and Yellow"],
+      "searchableSlug": "kakamega-homeboyz"
+    },
+    {
+      "id": "sofapaka-fc",
+      "slug": "sofapaka-fc",
+      "name": "Sofapaka FC",
+      "shortName": "Sofapaka",
+      "abbreviation": "SOF",
+      "founded": 2004,
+      "city": "Nairobi",
+      "country": "Kenya",
+      "logo": "/clubs/sofapaka-fc.svg",
+      "colors": { "primary": "#0055A4", "secondary": "#FFDF00" },
+      "venue": {
+        "id": "venue-ulinzi-complex",
+        "name": "Ulinzi Complex",
+        "city": "Nairobi",
+        "capacity": 4000
+      },
+      "description": "Sofapaka FC burst onto the Kenyan football scene in 2004 and stunned the country by winning the KPL title in just their fifth season in 2009. Playing in blue and yellow, Batoto ba Mungu — Children of God — are known for disciplined defending and sharp counter-attacking football. The club has remained a top-flight constant since promotion.",
+      "achievements": [
+        "KPL Champions 2009",
+        "FKF Cup Winners 2010",
+        "FKF Cup Winners 2013",
+        "1 Kenyan Premier League title",
+        "CAF Confederation Cup participant 2010"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/SofapakaFC",
+        "facebook": "https://facebook.com/SofapakaFC",
+        "instagram": "https://instagram.com/sofapakafc",
+        "website": null
+      },
+      "stats": {
+        "position": 8,
+        "played": 26,
+        "won": 11,
+        "drawn": 7,
+        "lost": 8,
+        "goalsFor": 29,
+        "goalsAgainst": 28,
+        "goalDifference": 1,
+        "points": 40,
+        "form": ["W", "L", "W", "D", "L"]
+      },
+      "searchableName": "Sofapaka FC",
+      "searchableKeywords": ["Batoto ba Mungu", "SOF", "Sofapaka", "Blue and Yellow", "Children of God"],
+      "searchableSlug": "sofapaka-fc"
+    },
+    {
+      "id": "kariobangi-sharks",
+      "slug": "kariobangi-sharks",
+      "name": "Kariobangi Sharks FC",
+      "shortName": "Sharks",
+      "abbreviation": "KSH",
+      "founded": 2003,
+      "city": "Nairobi",
+      "country": "Kenya",
+      "logo": "/clubs/kariobangi-sharks.svg",
+      "colors": { "primary": "#FF6600", "secondary": "#000000" },
+      "venue": {
+        "id": "venue-kariobangi",
+        "name": "Kariobangi North Stadium",
+        "city": "Nairobi",
+        "capacity": 5000
+      },
+      "description": "Kariobangi Sharks FC are an ambitious Nairobi club founded in 2003 in the Kariobangi North estate. Known as the Orange Army, Sharks play a fast, direct style and earned nationwide recognition with their 2020 FKF Cup triumph. The club has become a proving ground for young Nairobi talent seeking a path into professional football.",
+      "achievements": [
+        "FKF Cup Winners 2020",
+        "KPL Top-Half Finish 2021",
+        "FKF Super Cup 2020",
+        "CAF Confederation Cup participant 2021"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/KariobangiSharks",
+        "facebook": "https://facebook.com/KariobangiSharks",
+        "instagram": "https://instagram.com/kariobangi_sharks",
+        "website": null
+      },
+      "stats": {
+        "position": 10,
+        "played": 26,
+        "won": 10,
+        "drawn": 8,
+        "lost": 8,
+        "goalsFor": 30,
+        "goalsAgainst": 31,
+        "goalDifference": -1,
+        "points": 38,
+        "form": ["W", "L", "D", "W", "L"]
+      },
+      "searchableName": "Kariobangi Sharks FC",
+      "searchableKeywords": ["Orange Army", "Sharks", "KSH", "Kariobangi", "Orange"],
+      "searchableSlug": "kariobangi-sharks"
+    },
+    {
+      "id": "shabana-fc",
+      "slug": "shabana-fc",
+      "name": "Shabana FC",
+      "shortName": "Shabana",
+      "abbreviation": "SHA",
+      "founded": 1968,
+      "city": "Kisii",
+      "country": "Kenya",
+      "logo": "/clubs/shabana-fc.svg",
+      "colors": { "primary": "#CC0000", "secondary": "#FFFFFF" },
+      "venue": {
+        "id": "venue-gusii",
+        "name": "Gusii Stadium",
+        "city": "Kisii",
+        "capacity": 10000
+      },
+      "description": "Shabana FC are the pride of Kisii and the Gusii community, founded in 1968 alongside Gor Mahia during a golden era of Kenyan club formation. Playing in red and white at Gusii Stadium, Shabana have spent periods outside the top flight but always return as genuine competitors. Their passionate home support makes Gusii Stadium one of the most atmospheric venues in Kenyan football.",
+      "achievements": [
+        "KPL Champions 1991",
+        "KPL Champions 1988",
+        "2 Kenyan Premier League titles",
+        "FKF Cup Winners 1989",
+        "Western Province Championship multiple titles"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/ShabanaFC",
+        "facebook": "https://facebook.com/ShabanaFC",
+        "instagram": "https://instagram.com/shabanafc",
+        "website": null
+      },
+      "stats": {
+        "position": 12,
+        "played": 26,
+        "won": 9,
+        "drawn": 6,
+        "lost": 11,
+        "goalsFor": 25,
+        "goalsAgainst": 33,
+        "goalDifference": -8,
+        "points": 33,
+        "form": ["L", "D", "L", "W", "D"]
+      },
+      "searchableName": "Shabana FC",
+      "searchableKeywords": ["Red and White", "SHA", "Shabana", "Kisii", "Gusii", "Abagusii"],
+      "searchableSlug": "shabana-fc"
+    }
+  ]
+}

@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { label: "News",      href: "/news",                    prefix: "/news",      category: null        },
   { label: "Fixtures",  href: "/fixtures",                prefix: "/fixtures",  category: null        },
   { label: "Table",     href: "/standings",               prefix: "/standings", category: null        },
+  { label: "Clubs",     href: "/clubs",                   prefix: "/clubs",     category: null        },
   { label: "Transfers", href: "/transfers",               prefix: "/transfers", category: null        },
   { label: "Opinion",   href: "/news?category=opinion",   prefix: "/news",      category: "opinion"   },
 ] as const;

@@ -33,3 +33,7 @@ export const getCompletedFixtures = cache((limit?: number) =>
 export const getCompetitions = cache(() => fixturesService.getCompetitions());
 
 export const getTeams = cache(() => fixturesService.getTeams());
+
+export const getClubFixtures = cache((teamSlug: string, limit?: number) =>
+  fixturesService.getClubFixtures(teamSlug, limit)
+);

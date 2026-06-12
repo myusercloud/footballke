@@ -4,7 +4,7 @@
 
 // Navigation
 export type PageViewProperties     = { from_path?: string };
-export type NavClickProperties     = { label: "News" | "Fixtures" | "Table" | "Transfers" | "Opinion"; destination: string };
+export type NavClickProperties     = { label: "News" | "Fixtures" | "Table" | "Clubs" | "Transfers" | "Opinion"; destination: string };
 export type FooterLinkClickProperties = { label: string; destination: string; type: "social" | "nav" | "contact" };
 
 // Content

@@ -2,6 +2,8 @@ import type { NewsProvider } from "./news/NewsProvider";
 import type { FixturesProvider } from "./fixtures/FixturesProvider";
 import type { StandingsProvider } from "./standings/StandingsProvider";
 import type { TransfersProvider } from "./transfers/TransfersProvider";
+import type { ClubProvider } from "./clubs/ClubProvider";
+import type { PlayerProvider } from "./players/PlayerProvider";
 
 import { JsonNewsProvider } from "./news/JsonNewsProvider";
 import { CMSNewsProvider } from "./news/CMSNewsProvider";
@@ -18,6 +20,14 @@ import { APIStandingsProvider } from "./standings/APIStandingsProvider";
 import { JsonTransfersProvider } from "./transfers/JsonTransfersProvider";
 import { CMSTransfersProvider } from "./transfers/CMSTransfersProvider";
 import { APITransfersProvider } from "./transfers/APITransfersProvider";
+
+import { JsonClubProvider } from "./clubs/JsonClubProvider";
+import { CMSClubProvider } from "./clubs/CMSClubProvider";
+import { APIClubProvider } from "./clubs/APIClubProvider";
+
+import { JsonPlayerProvider } from "./players/JsonPlayerProvider";
+import { CMSPlayerProvider } from "./players/CMSPlayerProvider";
+import { APIPlayerProvider } from "./players/APIPlayerProvider";
 
 // ── Content source ────────────────────────────────────────────────────────────
 //
@@ -69,5 +79,21 @@ export function getTransfersProvider(): TransfersProvider {
     case "cms": return new CMSTransfersProvider();
     case "api": return new APITransfersProvider();
     default:    return new JsonTransfersProvider();
+  }
+}
+
+export function getClubProvider(): ClubProvider {
+  switch (getContentSource()) {
+    case "cms": return new CMSClubProvider();
+    case "api": return new APIClubProvider();
+    default:    return new JsonClubProvider();
+  }
+}
+
+export function getPlayerProvider(): PlayerProvider {
+  switch (getContentSource()) {
+    case "cms": return new CMSPlayerProvider();
+    case "api": return new APIPlayerProvider();
+    default:    return new JsonPlayerProvider();
   }
 }
