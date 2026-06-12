@@ -1,0 +1,215 @@
+{
+  "featuredPlayers": [
+    {
+      "id": "fp-mbappe",
+      "slug": "kylian-mbappe",
+      "name": "Kylian Mbappé",
+      "jerseyNumber": 10,
+      "position": "Forward",
+      "secondaryPosition": "Left Winger",
+      "nationality": {
+        "name": "French",
+        "code": "FR",
+        "flag": "/flags/fr.svg"
+      },
+      "dateOfBirth": "1998-12-20",
+      "height": 178,
+      "preferredFoot": "right",
+      "teamSlug": "france",
+      "image": "/players/world-cup/kylian-mbappe.jpg",
+      "stats": {
+        "appearances": 0,
+        "goals": 0,
+        "assists": 0,
+        "yellowCards": 0,
+        "redCards": 0,
+        "minutesPlayed": 0
+      },
+      "bio": "France's talismanic captain and the world's most lethal finisher, Mbappé leads Les Bleus into Group I.",
+      "searchableName": "Kylian Mbappé",
+      "searchableKeywords": [
+        "Mbappe",
+        "France",
+        "Striker",
+        "Captain"
+      ],
+      "searchableSlug": "kylian-mbappe"
+    },
+    {
+      "id": "fp-messi",
+      "slug": "lionel-messi",
+      "name": "Lionel Messi",
+      "jerseyNumber": 10,
+      "position": "Forward",
+      "secondaryPosition": "Right Winger",
+      "nationality": {
+        "name": "Argentine",
+        "code": "AR",
+        "flag": "/flags/ar.svg"
+      },
+      "dateOfBirth": "1987-06-24",
+      "height": 170,
+      "preferredFoot": "left",
+      "teamSlug": "argentina",
+      "image": "/players/world-cup/lionel-messi.jpg",
+      "stats": {
+        "appearances": 0,
+        "goals": 0,
+        "assists": 0,
+        "yellowCards": 0,
+        "redCards": 0,
+        "minutesPlayed": 0
+      },
+      "bio": "The greatest of all time, Messi leads defending champion Argentina into Group J at 38 years old.",
+      "searchableName": "Lionel Messi",
+      "searchableKeywords": [
+        "Messi",
+        "Argentina",
+        "GOAT",
+        "Captain"
+      ],
+      "searchableSlug": "lionel-messi"
+    },
+    {
+      "id": "fp-bellingham",
+      "slug": "jude-bellingham",
+      "name": "Jude Bellingham",
+      "jerseyNumber": 10,
+      "position": "Midfielder",
+      "secondaryPosition": "Attacking Midfielder",
+      "nationality": {
+        "name": "English",
+        "code": "GB",
+        "flag": "/flags/gb-eng.svg"
+      },
+      "dateOfBirth": "2003-06-29",
+      "height": 186,
+      "preferredFoot": "right",
+      "teamSlug": "england",
+      "image": "/players/world-cup/jude-bellingham.jpg",
+      "stats": {
+        "appearances": 0,
+        "goals": 0,
+        "assists": 0,
+        "yellowCards": 0,
+        "redCards": 0,
+        "minutesPlayed": 0
+      },
+      "bio": "England's dynamic midfield talisman, Bellingham is the complete box-to-box player and England's best hope of glory.",
+      "searchableName": "Jude Bellingham",
+      "searchableKeywords": [
+        "Bellingham",
+        "England",
+        "Real Madrid",
+        "Midfield"
+      ],
+      "searchableSlug": "jude-bellingham"
+    },
+    {
+      "id": "fp-haaland",
+      "slug": "erling-haaland",
+      "name": "Erling Haaland",
+      "jerseyNumber": 9,
+      "position": "Forward",
+      "secondaryPosition": null,
+      "nationality": {
+        "name": "Norwegian",
+        "code": "NO",
+        "flag": "/flags/no.svg"
+      },
+      "dateOfBirth": "2000-07-21",
+      "height": 194,
+      "preferredFoot": "left",
+      "teamSlug": "norway",
+      "image": "/players/world-cup/erling-haaland.jpg",
+      "stats": {
+        "appearances": 0,
+        "goals": 0,
+        "assists": 0,
+        "yellowCards": 0,
+        "redCards": 0,
+        "minutesPlayed": 0
+      },
+      "bio": "The most prolific striker of his generation, Haaland carries Norway's hopes in a competitive Group I.",
+      "searchableName": "Erling Haaland",
+      "searchableKeywords": [
+        "Haaland",
+        "Norway",
+        "Manchester City",
+        "Striker"
+      ],
+      "searchableSlug": "erling-haaland"
+    },
+    {
+      "id": "fp-vinicius",
+      "slug": "vinicius-jr",
+      "name": "Vinícius Jr",
+      "jerseyNumber": 7,
+      "position": "Forward",
+      "secondaryPosition": "Left Winger",
+      "nationality": {
+        "name": "Brazilian",
+        "code": "BR",
+        "flag": "/flags/br.svg"
+      },
+      "dateOfBirth": "2000-07-12",
+      "height": 176,
+      "preferredFoot": "right",
+      "teamSlug": "brazil",
+      "image": "/players/world-cup/vinicius-jr.jpg",
+      "stats": {
+        "appearances": 0,
+        "goals": 0,
+        "assists": 0,
+        "yellowCards": 0,
+        "redCards": 0,
+        "minutesPlayed": 0
+      },
+      "bio": "Brazil's electric winger brings pace, skill and goals — a frontrunner for the Golden Boot from Group D.",
+      "searchableName": "Vinícius Jr",
+      "searchableKeywords": [
+        "Vinicius",
+        "Brazil",
+        "Real Madrid",
+        "Winger"
+      ],
+      "searchableSlug": "vinicius-jr"
+    },
+    {
+      "id": "fp-yamal",
+      "slug": "lamine-yamal",
+      "name": "Lamine Yamal",
+      "jerseyNumber": 19,
+      "position": "Forward",
+      "secondaryPosition": "Right Winger",
+      "nationality": {
+        "name": "Spanish",
+        "code": "ES",
+        "flag": "/flags/es.svg"
+      },
+      "dateOfBirth": "2007-07-13",
+      "height": 180,
+      "preferredFoot": "left",
+      "teamSlug": "spain",
+      "image": "/players/world-cup/lamine-yamal.jpg",
+      "stats": {
+        "appearances": 0,
+        "goals": 0,
+        "assists": 0,
+        "yellowCards": 0,
+        "redCards": 0,
+        "minutesPlayed": 0
+      },
+      "bio": "Still a teenager, Yamal is already one of the most electrifying players in the world — Spain's Group G wildcard.",
+      "searchableName": "Lamine Yamal",
+      "searchableKeywords": [
+        "Yamal",
+        "Spain",
+        "Barcelona",
+        "Winger",
+        "Youngest"
+      ],
+      "searchableSlug": "lamine-yamal"
+    }
+  ]
+}

@@ -1,0 +1,744 @@
+{
+  "standings": [
+    {
+      "groupLetter": "A",
+      "rows": [
+        {
+          "teamSlug": "mexico",
+          "position": 1,
+          "played": 1,
+          "won": 1,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 2,
+          "goalsAgainst": 0,
+          "goalDifference": 2,
+          "points": 3,
+          "form": [
+            "W"
+          ],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "korea-republic",
+          "position": 2,
+          "played": 1,
+          "won": 1,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 2,
+          "goalsAgainst": 1,
+          "goalDifference": 1,
+          "points": 3,
+          "form": [
+            "W"
+          ],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "czechia",
+          "position": 3,
+          "played": 1,
+          "won": 0,
+          "drawn": 0,
+          "lost": 1,
+          "goalsFor": 1,
+          "goalsAgainst": 2,
+          "goalDifference": -1,
+          "points": 0,
+          "form": [
+            "L"
+          ],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "south-africa",
+          "position": 4,
+          "played": 1,
+          "won": 0,
+          "drawn": 0,
+          "lost": 1,
+          "goalsFor": 0,
+          "goalsAgainst": 2,
+          "goalDifference": -2,
+          "points": 0,
+          "form": [
+            "L"
+          ],
+          "status": "tbd"
+        }
+      ]
+    },
+    {
+      "groupLetter": "B",
+      "rows": [
+        {
+          "teamSlug": "canada",
+          "position": 1,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "bosnia-herzegovina",
+          "position": 2,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "qatar",
+          "position": 3,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "switzerland",
+          "position": 4,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        }
+      ]
+    },
+    {
+      "groupLetter": "C",
+      "rows": [
+        {
+          "teamSlug": "usa",
+          "position": 1,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "paraguay",
+          "position": 2,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "australia",
+          "position": 3,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "turkiye",
+          "position": 4,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        }
+      ]
+    },
+    {
+      "groupLetter": "D",
+      "rows": [
+        {
+          "teamSlug": "brazil",
+          "position": 1,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "morocco",
+          "position": 2,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "haiti",
+          "position": 3,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "scotland",
+          "position": 4,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        }
+      ]
+    },
+    {
+      "groupLetter": "E",
+      "rows": [
+        {
+          "teamSlug": "germany",
+          "position": 1,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "curacao",
+          "position": 2,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "cote-divoire",
+          "position": 3,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "ecuador",
+          "position": 4,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        }
+      ]
+    },
+    {
+      "groupLetter": "F",
+      "rows": [
+        {
+          "teamSlug": "netherlands",
+          "position": 1,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "japan",
+          "position": 2,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "sweden",
+          "position": 3,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "tunisia",
+          "position": 4,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        }
+      ]
+    },
+    {
+      "groupLetter": "G",
+      "rows": [
+        {
+          "teamSlug": "spain",
+          "position": 1,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "cabo-verde",
+          "position": 2,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "saudi-arabia",
+          "position": 3,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "uruguay",
+          "position": 4,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        }
+      ]
+    },
+    {
+      "groupLetter": "H",
+      "rows": [
+        {
+          "teamSlug": "belgium",
+          "position": 1,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "egypt",
+          "position": 2,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "iran",
+          "position": 3,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "new-zealand",
+          "position": 4,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        }
+      ]
+    },
+    {
+      "groupLetter": "I",
+      "rows": [
+        {
+          "teamSlug": "france",
+          "position": 1,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "senegal",
+          "position": 2,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "iraq",
+          "position": 3,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "norway",
+          "position": 4,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        }
+      ]
+    },
+    {
+      "groupLetter": "J",
+      "rows": [
+        {
+          "teamSlug": "argentina",
+          "position": 1,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "algeria",
+          "position": 2,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "austria",
+          "position": 3,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "jordan",
+          "position": 4,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        }
+      ]
+    },
+    {
+      "groupLetter": "K",
+      "rows": [
+        {
+          "teamSlug": "portugal",
+          "position": 1,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "congo-dr",
+          "position": 2,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "uzbekistan",
+          "position": 3,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "colombia",
+          "position": 4,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        }
+      ]
+    },
+    {
+      "groupLetter": "L",
+      "rows": [
+        {
+          "teamSlug": "england",
+          "position": 1,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "croatia",
+          "position": 2,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "ghana",
+          "position": 3,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        },
+        {
+          "teamSlug": "panama",
+          "position": 4,
+          "played": 0,
+          "won": 0,
+          "drawn": 0,
+          "lost": 0,
+          "goalsFor": 0,
+          "goalsAgainst": 0,
+          "goalDifference": 0,
+          "points": 0,
+          "form": [],
+          "status": "tbd"
+        }
+      ]
+    }
+  ]
+}

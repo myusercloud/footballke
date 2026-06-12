@@ -40,6 +40,15 @@ export type WebVitalsProperties = { metric: "LCP" | "CLS" | "TTFB" | "FCP" | "IN
 export type ImageLoadProperties = { src: string; duration_ms: number; success: boolean };
 export type ErrorProperties     = { message: string; component?: string };
 
+// Tournament
+export type WorldCupViewProperties    = { tournament_slug: string; section: string };
+export type GroupOpenProperties       = { group_letter: string };
+export type TournamentFixtureProperties = { fixture_id: string; stage: string; home_team: string; away_team: string };
+export type TournamentPlayerProperties  = { player_slug: string; team_slug: string };
+export type TeamOpenProperties        = { team_slug: string; group_letter: string };
+export type TournamentNewsProperties  = { article_slug: string; source: "world-cup-hub" };
+export type CountdownClickProperties  = { tournament_slug: string; days_remaining: number };
+
 // ── Discriminated union ───────────────────────────────────────────────────────
 // track() accepts AnalyticsEvent. TypeScript enforces that properties match
 // the event name at every call site — no stringly-typed event names.
@@ -79,7 +88,15 @@ export type AnalyticsEvent =
   // ── Performance ─────────────────────────────────────────────────────────────
   | { name: "web_vitals";  properties: WebVitalsProperties }
   | { name: "image_load";  properties: ImageLoadProperties }
-  | { name: "error";       properties: ErrorProperties };
+  | { name: "error";       properties: ErrorProperties }
+  // ── Tournament ──────────────────────────────────────────────────────────────
+  | { name: "world_cup_view";         properties: WorldCupViewProperties }
+  | { name: "group_open";             properties: GroupOpenProperties }
+  | { name: "tournament_fixture_open";properties: TournamentFixtureProperties }
+  | { name: "tournament_player_open"; properties: TournamentPlayerProperties }
+  | { name: "team_open";              properties: TeamOpenProperties }
+  | { name: "tournament_news_open";   properties: TournamentNewsProperties }
+  | { name: "countdown_click";        properties: CountdownClickProperties };
 
 /** All valid event name strings — useful for TypeScript generics and tests. */
 export type EventName = AnalyticsEvent["name"];
@@ -132,4 +149,13 @@ export const events = {
   webVitals: (properties: WebVitalsProperties): AnalyticsEvent => ({ name: "web_vitals", properties }),
   imageLoad:  (properties: ImageLoadProperties): AnalyticsEvent => ({ name: "image_load", properties }),
   error:      (properties: ErrorProperties):     AnalyticsEvent => ({ name: "error", properties }),
+
+  // Tournament
+  worldCupView:         (properties: WorldCupViewProperties):     AnalyticsEvent => ({ name: "world_cup_view", properties }),
+  groupOpen:            (properties: GroupOpenProperties):        AnalyticsEvent => ({ name: "group_open", properties }),
+  tournamentFixtureOpen:(properties: TournamentFixtureProperties):AnalyticsEvent => ({ name: "tournament_fixture_open", properties }),
+  tournamentPlayerOpen: (properties: TournamentPlayerProperties): AnalyticsEvent => ({ name: "tournament_player_open", properties }),
+  teamOpen:             (properties: TeamOpenProperties):         AnalyticsEvent => ({ name: "team_open", properties }),
+  tournamentNewsOpen:   (properties: TournamentNewsProperties):   AnalyticsEvent => ({ name: "tournament_news_open", properties }),
+  countdownClick:       (properties: CountdownClickProperties):   AnalyticsEvent => ({ name: "countdown_click", properties }),
 } as const;

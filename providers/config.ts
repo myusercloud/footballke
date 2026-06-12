@@ -29,6 +29,11 @@ import { JsonPlayerProvider } from "./players/JsonPlayerProvider";
 import { CMSPlayerProvider } from "./players/CMSPlayerProvider";
 import { APIPlayerProvider } from "./players/APIPlayerProvider";
 
+import type { TournamentProvider } from "./tournaments/TournamentProvider";
+import { JsonTournamentProvider } from "./tournaments/JsonTournamentProvider";
+import { CMSTournamentProvider } from "./tournaments/CMSTournamentProvider";
+import { APITournamentProvider } from "./tournaments/APITournamentProvider";
+
 // ── Content source ────────────────────────────────────────────────────────────
 //
 // Set CONTENT_SOURCE in .env.local (or the Vercel environment) to switch all
@@ -95,5 +100,30 @@ export function getPlayerProvider(): PlayerProvider {
     case "cms": return new CMSPlayerProvider();
     case "api": return new APIPlayerProvider();
     default:    return new JsonPlayerProvider();
+  }
+}
+
+// ── Tournament source ─────────────────────────────────────────────────────────
+//
+// Separate from CONTENT_SOURCE so KPL and tournament backends can be switched
+// independently. TOURNAMENT_SOURCE defaults to "json".
+//
+//   TOURNAMENT_SOURCE=json — reads data/world-cup/*.json (default)
+//   TOURNAMENT_SOURCE=cms  — headless CMS (implement CMSTournamentProvider)
+//   TOURNAMENT_SOURCE=api  — sports data API (implement APITournamentProvider)
+
+type TournamentSource = "json" | "cms" | "api";
+
+function getTournamentSource(): TournamentSource {
+  const raw = process.env.TOURNAMENT_SOURCE;
+  if (raw === "cms" || raw === "api") return raw;
+  return "json";
+}
+
+export function getTournamentProvider(): TournamentProvider {
+  switch (getTournamentSource()) {
+    case "cms": return new CMSTournamentProvider();
+    case "api": return new APITournamentProvider();
+    default:    return new JsonTournamentProvider();
   }
 }

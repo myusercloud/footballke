@@ -1,0 +1,784 @@
+{
+  "groups": [
+    {
+      "letter": "A",
+      "teams": [
+        {
+          "slug": "mexico",
+          "name": "Mexico",
+          "shortName": "Mexico",
+          "abbreviation": "MEX",
+          "flag": "/flags/mx.svg",
+          "colors": {
+            "primary": "#006847",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "CONCACAF",
+          "fifaRanking": 15,
+          "id": "team-mexico",
+          "groupLetter": "A"
+        },
+        {
+          "slug": "korea-republic",
+          "name": "Korea Republic",
+          "shortName": "Korea Rep.",
+          "abbreviation": "KOR",
+          "flag": "/flags/kr.svg",
+          "colors": {
+            "primary": "#C60C30",
+            "secondary": "#003478"
+          },
+          "confederation": "AFC",
+          "fifaRanking": 22,
+          "id": "team-korea-republic",
+          "groupLetter": "A"
+        },
+        {
+          "slug": "czechia",
+          "name": "Czechia",
+          "shortName": "Czechia",
+          "abbreviation": "CZE",
+          "flag": "/flags/cz.svg",
+          "colors": {
+            "primary": "#D7141A",
+            "secondary": "#11457E"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 37,
+          "id": "team-czechia",
+          "groupLetter": "A"
+        },
+        {
+          "slug": "south-africa",
+          "name": "South Africa",
+          "shortName": "South Africa",
+          "abbreviation": "RSA",
+          "flag": "/flags/za.svg",
+          "colors": {
+            "primary": "#007A4D",
+            "secondary": "#FFB612"
+          },
+          "confederation": "CAF",
+          "fifaRanking": 67,
+          "id": "team-south-africa",
+          "groupLetter": "A"
+        }
+      ]
+    },
+    {
+      "letter": "B",
+      "teams": [
+        {
+          "slug": "canada",
+          "name": "Canada",
+          "shortName": "Canada",
+          "abbreviation": "CAN",
+          "flag": "/flags/ca.svg",
+          "colors": {
+            "primary": "#FF0000",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "CONCACAF",
+          "fifaRanking": 38,
+          "id": "team-canada",
+          "groupLetter": "B"
+        },
+        {
+          "slug": "bosnia-herzegovina",
+          "name": "Bosnia & Herzegovina",
+          "shortName": "Bosnia-Herz",
+          "abbreviation": "BIH",
+          "flag": "/flags/ba.svg",
+          "colors": {
+            "primary": "#002395",
+            "secondary": "#FFCF00"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 64,
+          "id": "team-bosnia-herzegovina",
+          "groupLetter": "B"
+        },
+        {
+          "slug": "qatar",
+          "name": "Qatar",
+          "shortName": "Qatar",
+          "abbreviation": "QAT",
+          "flag": "/flags/qa.svg",
+          "colors": {
+            "primary": "#8D1B3D",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "AFC",
+          "fifaRanking": 58,
+          "id": "team-qatar",
+          "groupLetter": "B"
+        },
+        {
+          "slug": "switzerland",
+          "name": "Switzerland",
+          "shortName": "Switzerland",
+          "abbreviation": "SUI",
+          "flag": "/flags/ch.svg",
+          "colors": {
+            "primary": "#FF0000",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 19,
+          "id": "team-switzerland",
+          "groupLetter": "B"
+        }
+      ]
+    },
+    {
+      "letter": "C",
+      "teams": [
+        {
+          "slug": "usa",
+          "name": "United States",
+          "shortName": "USA",
+          "abbreviation": "USA",
+          "flag": "/flags/us.svg",
+          "colors": {
+            "primary": "#002868",
+            "secondary": "#BF0A30"
+          },
+          "confederation": "CONCACAF",
+          "fifaRanking": 13,
+          "id": "team-usa",
+          "groupLetter": "C"
+        },
+        {
+          "slug": "paraguay",
+          "name": "Paraguay",
+          "shortName": "Paraguay",
+          "abbreviation": "PAR",
+          "flag": "/flags/py.svg",
+          "colors": {
+            "primary": "#D52B1E",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "CONMEBOL",
+          "fifaRanking": 55,
+          "id": "team-paraguay",
+          "groupLetter": "C"
+        },
+        {
+          "slug": "australia",
+          "name": "Australia",
+          "shortName": "Australia",
+          "abbreviation": "AUS",
+          "flag": "/flags/au.svg",
+          "colors": {
+            "primary": "#00843D",
+            "secondary": "#FFD520"
+          },
+          "confederation": "AFC",
+          "fifaRanking": 24,
+          "id": "team-australia",
+          "groupLetter": "C"
+        },
+        {
+          "slug": "turkiye",
+          "name": "Türkiye",
+          "shortName": "Türkiye",
+          "abbreviation": "TUR",
+          "flag": "/flags/tr.svg",
+          "colors": {
+            "primary": "#E30A17",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 26,
+          "id": "team-turkiye",
+          "groupLetter": "C"
+        }
+      ]
+    },
+    {
+      "letter": "D",
+      "teams": [
+        {
+          "slug": "brazil",
+          "name": "Brazil",
+          "shortName": "Brazil",
+          "abbreviation": "BRA",
+          "flag": "/flags/br.svg",
+          "colors": {
+            "primary": "#009C3B",
+            "secondary": "#FFDF00"
+          },
+          "confederation": "CONMEBOL",
+          "fifaRanking": 5,
+          "id": "team-brazil",
+          "groupLetter": "D"
+        },
+        {
+          "slug": "morocco",
+          "name": "Morocco",
+          "shortName": "Morocco",
+          "abbreviation": "MAR",
+          "flag": "/flags/ma.svg",
+          "colors": {
+            "primary": "#C1272D",
+            "secondary": "#006233"
+          },
+          "confederation": "CAF",
+          "fifaRanking": 14,
+          "id": "team-morocco",
+          "groupLetter": "D"
+        },
+        {
+          "slug": "haiti",
+          "name": "Haiti",
+          "shortName": "Haiti",
+          "abbreviation": "HAI",
+          "flag": "/flags/ht.svg",
+          "colors": {
+            "primary": "#00209F",
+            "secondary": "#D21034"
+          },
+          "confederation": "CONCACAF",
+          "fifaRanking": 83,
+          "id": "team-haiti",
+          "groupLetter": "D"
+        },
+        {
+          "slug": "scotland",
+          "name": "Scotland",
+          "shortName": "Scotland",
+          "abbreviation": "SCO",
+          "flag": "/flags/gb-sct.svg",
+          "colors": {
+            "primary": "#003DA5",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 39,
+          "id": "team-scotland",
+          "groupLetter": "D"
+        }
+      ]
+    },
+    {
+      "letter": "E",
+      "teams": [
+        {
+          "slug": "germany",
+          "name": "Germany",
+          "shortName": "Germany",
+          "abbreviation": "GER",
+          "flag": "/flags/de.svg",
+          "colors": {
+            "primary": "#000000",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 16,
+          "id": "team-germany",
+          "groupLetter": "E"
+        },
+        {
+          "slug": "curacao",
+          "name": "Curaçao",
+          "shortName": "Curaçao",
+          "abbreviation": "CUW",
+          "flag": "/flags/cw.svg",
+          "colors": {
+            "primary": "#002B7F",
+            "secondary": "#F9E00C"
+          },
+          "confederation": "CONCACAF",
+          "fifaRanking": 85,
+          "id": "team-curacao",
+          "groupLetter": "E"
+        },
+        {
+          "slug": "cote-divoire",
+          "name": "Côte d'Ivoire",
+          "shortName": "Ivory Coast",
+          "abbreviation": "CIV",
+          "flag": "/flags/ci.svg",
+          "colors": {
+            "primary": "#F77F00",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "CAF",
+          "fifaRanking": 30,
+          "id": "team-cote-divoire",
+          "groupLetter": "E"
+        },
+        {
+          "slug": "ecuador",
+          "name": "Ecuador",
+          "shortName": "Ecuador",
+          "abbreviation": "ECU",
+          "flag": "/flags/ec.svg",
+          "colors": {
+            "primary": "#FFD100",
+            "secondary": "#003087"
+          },
+          "confederation": "CONMEBOL",
+          "fifaRanking": 44,
+          "id": "team-ecuador",
+          "groupLetter": "E"
+        }
+      ]
+    },
+    {
+      "letter": "F",
+      "teams": [
+        {
+          "slug": "netherlands",
+          "name": "Netherlands",
+          "shortName": "Netherlands",
+          "abbreviation": "NED",
+          "flag": "/flags/nl.svg",
+          "colors": {
+            "primary": "#FF6600",
+            "secondary": "#003087"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 7,
+          "id": "team-netherlands",
+          "groupLetter": "F"
+        },
+        {
+          "slug": "japan",
+          "name": "Japan",
+          "shortName": "Japan",
+          "abbreviation": "JPN",
+          "flag": "/flags/jp.svg",
+          "colors": {
+            "primary": "#BC002D",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "AFC",
+          "fifaRanking": 22,
+          "id": "team-japan",
+          "groupLetter": "F"
+        },
+        {
+          "slug": "sweden",
+          "name": "Sweden",
+          "shortName": "Sweden",
+          "abbreviation": "SWE",
+          "flag": "/flags/se.svg",
+          "colors": {
+            "primary": "#006AA7",
+            "secondary": "#FECC02"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 25,
+          "id": "team-sweden",
+          "groupLetter": "F"
+        },
+        {
+          "slug": "tunisia",
+          "name": "Tunisia",
+          "shortName": "Tunisia",
+          "abbreviation": "TUN",
+          "flag": "/flags/tn.svg",
+          "colors": {
+            "primary": "#E70013",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "CAF",
+          "fifaRanking": 28,
+          "id": "team-tunisia",
+          "groupLetter": "F"
+        }
+      ]
+    },
+    {
+      "letter": "G",
+      "teams": [
+        {
+          "slug": "spain",
+          "name": "Spain",
+          "shortName": "Spain",
+          "abbreviation": "ESP",
+          "flag": "/flags/es.svg",
+          "colors": {
+            "primary": "#AA151B",
+            "secondary": "#F1BF00"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 6,
+          "id": "team-spain",
+          "groupLetter": "G"
+        },
+        {
+          "slug": "cabo-verde",
+          "name": "Cabo Verde",
+          "shortName": "Cabo Verde",
+          "abbreviation": "CPV",
+          "flag": "/flags/cv.svg",
+          "colors": {
+            "primary": "#003893",
+            "secondary": "#CF2027"
+          },
+          "confederation": "CAF",
+          "fifaRanking": 76,
+          "id": "team-cabo-verde",
+          "groupLetter": "G"
+        },
+        {
+          "slug": "saudi-arabia",
+          "name": "Saudi Arabia",
+          "shortName": "Saudi Arabia",
+          "abbreviation": "KSA",
+          "flag": "/flags/sa.svg",
+          "colors": {
+            "primary": "#006C35",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "AFC",
+          "fifaRanking": 56,
+          "id": "team-saudi-arabia",
+          "groupLetter": "G"
+        },
+        {
+          "slug": "uruguay",
+          "name": "Uruguay",
+          "shortName": "Uruguay",
+          "abbreviation": "URU",
+          "flag": "/flags/uy.svg",
+          "colors": {
+            "primary": "#75AADB",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "CONMEBOL",
+          "fifaRanking": 17,
+          "id": "team-uruguay",
+          "groupLetter": "G"
+        }
+      ]
+    },
+    {
+      "letter": "H",
+      "teams": [
+        {
+          "slug": "belgium",
+          "name": "Belgium",
+          "shortName": "Belgium",
+          "abbreviation": "BEL",
+          "flag": "/flags/be.svg",
+          "colors": {
+            "primary": "#ED2939",
+            "secondary": "#FDDA24"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 4,
+          "id": "team-belgium",
+          "groupLetter": "H"
+        },
+        {
+          "slug": "egypt",
+          "name": "Egypt",
+          "shortName": "Egypt",
+          "abbreviation": "EGY",
+          "flag": "/flags/eg.svg",
+          "colors": {
+            "primary": "#CE1126",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "CAF",
+          "fifaRanking": 34,
+          "id": "team-egypt",
+          "groupLetter": "H"
+        },
+        {
+          "slug": "iran",
+          "name": "IR Iran",
+          "shortName": "Iran",
+          "abbreviation": "IRN",
+          "flag": "/flags/ir.svg",
+          "colors": {
+            "primary": "#239F40",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "AFC",
+          "fifaRanking": 20,
+          "id": "team-iran",
+          "groupLetter": "H"
+        },
+        {
+          "slug": "new-zealand",
+          "name": "New Zealand",
+          "shortName": "New Zealand",
+          "abbreviation": "NZL",
+          "flag": "/flags/nz.svg",
+          "colors": {
+            "primary": "#000000",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "OFC",
+          "fifaRanking": 98,
+          "id": "team-new-zealand",
+          "groupLetter": "H"
+        }
+      ]
+    },
+    {
+      "letter": "I",
+      "teams": [
+        {
+          "slug": "france",
+          "name": "France",
+          "shortName": "France",
+          "abbreviation": "FRA",
+          "flag": "/flags/fr.svg",
+          "colors": {
+            "primary": "#002395",
+            "secondary": "#ED2939"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 2,
+          "id": "team-france",
+          "groupLetter": "I"
+        },
+        {
+          "slug": "senegal",
+          "name": "Senegal",
+          "shortName": "Senegal",
+          "abbreviation": "SEN",
+          "flag": "/flags/sn.svg",
+          "colors": {
+            "primary": "#009A44",
+            "secondary": "#FCDD09"
+          },
+          "confederation": "CAF",
+          "fifaRanking": 20,
+          "id": "team-senegal",
+          "groupLetter": "I"
+        },
+        {
+          "slug": "iraq",
+          "name": "Iraq",
+          "shortName": "Iraq",
+          "abbreviation": "IRQ",
+          "flag": "/flags/iq.svg",
+          "colors": {
+            "primary": "#CE1126",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "AFC",
+          "fifaRanking": 63,
+          "id": "team-iraq",
+          "groupLetter": "I"
+        },
+        {
+          "slug": "norway",
+          "name": "Norway",
+          "shortName": "Norway",
+          "abbreviation": "NOR",
+          "flag": "/flags/no.svg",
+          "colors": {
+            "primary": "#EF2B2D",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 21,
+          "id": "team-norway",
+          "groupLetter": "I"
+        }
+      ]
+    },
+    {
+      "letter": "J",
+      "teams": [
+        {
+          "slug": "argentina",
+          "name": "Argentina",
+          "shortName": "Argentina",
+          "abbreviation": "ARG",
+          "flag": "/flags/ar.svg",
+          "colors": {
+            "primary": "#74ACDF",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "CONMEBOL",
+          "fifaRanking": 1,
+          "id": "team-argentina",
+          "groupLetter": "J"
+        },
+        {
+          "slug": "algeria",
+          "name": "Algeria",
+          "shortName": "Algeria",
+          "abbreviation": "ALG",
+          "flag": "/flags/dz.svg",
+          "colors": {
+            "primary": "#006233",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "CAF",
+          "fifaRanking": 51,
+          "id": "team-algeria",
+          "groupLetter": "J"
+        },
+        {
+          "slug": "austria",
+          "name": "Austria",
+          "shortName": "Austria",
+          "abbreviation": "AUT",
+          "flag": "/flags/at.svg",
+          "colors": {
+            "primary": "#ED2939",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 23,
+          "id": "team-austria",
+          "groupLetter": "J"
+        },
+        {
+          "slug": "jordan",
+          "name": "Jordan",
+          "shortName": "Jordan",
+          "abbreviation": "JOR",
+          "flag": "/flags/jo.svg",
+          "colors": {
+            "primary": "#007A3D",
+            "secondary": "#000000"
+          },
+          "confederation": "AFC",
+          "fifaRanking": 70,
+          "id": "team-jordan",
+          "groupLetter": "J"
+        }
+      ]
+    },
+    {
+      "letter": "K",
+      "teams": [
+        {
+          "slug": "portugal",
+          "name": "Portugal",
+          "shortName": "Portugal",
+          "abbreviation": "POR",
+          "flag": "/flags/pt.svg",
+          "colors": {
+            "primary": "#006600",
+            "secondary": "#FF0000"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 8,
+          "id": "team-portugal",
+          "groupLetter": "K"
+        },
+        {
+          "slug": "congo-dr",
+          "name": "Congo DR",
+          "shortName": "Congo DR",
+          "abbreviation": "COD",
+          "flag": "/flags/cd.svg",
+          "colors": {
+            "primary": "#007FFF",
+            "secondary": "#F7D618"
+          },
+          "confederation": "CAF",
+          "fifaRanking": 45,
+          "id": "team-congo-dr",
+          "groupLetter": "K"
+        },
+        {
+          "slug": "uzbekistan",
+          "name": "Uzbekistan",
+          "shortName": "Uzbekistan",
+          "abbreviation": "UZB",
+          "flag": "/flags/uz.svg",
+          "colors": {
+            "primary": "#1EB53A",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "AFC",
+          "fifaRanking": 60,
+          "id": "team-uzbekistan",
+          "groupLetter": "K"
+        },
+        {
+          "slug": "colombia",
+          "name": "Colombia",
+          "shortName": "Colombia",
+          "abbreviation": "COL",
+          "flag": "/flags/co.svg",
+          "colors": {
+            "primary": "#FCD116",
+            "secondary": "#003087"
+          },
+          "confederation": "CONMEBOL",
+          "fifaRanking": 9,
+          "id": "team-colombia",
+          "groupLetter": "K"
+        }
+      ]
+    },
+    {
+      "letter": "L",
+      "teams": [
+        {
+          "slug": "england",
+          "name": "England",
+          "shortName": "England",
+          "abbreviation": "ENG",
+          "flag": "/flags/gb-eng.svg",
+          "colors": {
+            "primary": "#FFFFFF",
+            "secondary": "#003F72"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 5,
+          "id": "team-england",
+          "groupLetter": "L"
+        },
+        {
+          "slug": "croatia",
+          "name": "Croatia",
+          "shortName": "Croatia",
+          "abbreviation": "CRO",
+          "flag": "/flags/hr.svg",
+          "colors": {
+            "primary": "#FF0000",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "UEFA",
+          "fifaRanking": 10,
+          "id": "team-croatia",
+          "groupLetter": "L"
+        },
+        {
+          "slug": "ghana",
+          "name": "Ghana",
+          "shortName": "Ghana",
+          "abbreviation": "GHA",
+          "flag": "/flags/gh.svg",
+          "colors": {
+            "primary": "#006B3F",
+            "secondary": "#FCD116"
+          },
+          "confederation": "CAF",
+          "fifaRanking": 61,
+          "id": "team-ghana",
+          "groupLetter": "L"
+        },
+        {
+          "slug": "panama",
+          "name": "Panama",
+          "shortName": "Panama",
+          "abbreviation": "PAN",
+          "flag": "/flags/pa.svg",
+          "colors": {
+            "primary": "#DA1726",
+            "secondary": "#FFFFFF"
+          },
+          "confederation": "CONCACAF",
+          "fifaRanking": 43,
+          "id": "team-panama",
+          "groupLetter": "L"
+        }
+      ]
+    }
+  ]
+}

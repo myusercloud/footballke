@@ -12,7 +12,10 @@ import { getUpcomingFixtures } from "@/lib/fixtures.cache";
 import { formatKickoffTime } from "@/lib/fixture.utils";
 import { getCompetitionStandings } from "@/lib/standings.cache";
 import { getTransfers } from "@/lib/transfers.cache";
+import { getTournamentFixtures, getTournamentNews } from "@/lib/tournament.cache";
 import { ZONE_CLASSES } from "@/lib/standings.utils";
+import { WorldCupHighlight } from "@/components/football/world-cup/WorldCupHighlight";
+import { eventConfig } from "@/config/events";
 import { FormBadges } from "@/components/football/fixtures/FormBadges";
 import { TransferBadge } from "@/components/football/transfers/TransferBadge";
 
@@ -58,6 +61,17 @@ export default async function Home() {
 
   const topStories = articles.slice(0, 3);
   const quickReads = articles.slice(3);
+
+  let wcFixture = null;
+  let wcArticle = null;
+  if (eventConfig.worldCup.enabled) {
+    const [{ fixtures: wcFixtures }, wcNews] = await Promise.all([
+      getTournamentFixtures({ status: ["live", "scheduled"], pageSize: 1 }),
+      getTournamentNews(1),
+    ]);
+    wcFixture = wcFixtures[0] ?? null;
+    wcArticle = wcNews[0] ?? null;
+  }
 
   return (
     <>
@@ -293,6 +307,13 @@ export default async function Home() {
               className="hidden min-h-full lg:flex"
             />
           </section>
+
+          {/* ── World Cup Highlight ── */}
+          {eventConfig.worldCup.enabled && (
+            <div className="mt-7">
+              <WorldCupHighlight featuredFixture={wcFixture} latestArticle={wcArticle} />
+            </div>
+          )}
 
           {/* ── Table + Quick Reads ── */}
           <section className="mt-7 grid gap-5 lg:grid-cols-[1fr_1fr]">
