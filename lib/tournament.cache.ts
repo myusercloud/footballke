@@ -41,3 +41,7 @@ export const getTournamentPlayer = cache((slug: string) =>
 export const getTournamentNews = cache((limit?: number) =>
   tournamentService.getLatestNews(limit)
 );
+
+export const getTeamSquad = cache((teamSlug: string) =>
+  tournamentService.getSquad(teamSlug)
+);

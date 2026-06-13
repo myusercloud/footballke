@@ -13,5 +13,6 @@ export class CMSTournamentProvider implements TournamentProvider {
   getTeamBySlug      = NOT_IMPL("getTeamBySlug");
   getPlayerBySlug    = NOT_IMPL("getPlayerBySlug");
   getKnockoutRounds  = NOT_IMPL("getKnockoutRounds");
+  getSquad           = NOT_IMPL("getSquad");
   getLatestNews      = NOT_IMPL("getLatestNews");
 }

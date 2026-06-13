@@ -6,6 +6,7 @@ import type {
   TopScorer,
   GroupStandingsTable,
   KnockoutRound,
+  SquadPlayer,
 } from "@/types/tournament";
 import type { Fixture } from "@/types/fixture";
 
@@ -19,4 +20,5 @@ export interface TournamentProvider {
   getTeamBySlug(slug: string): Promise<TournamentTeam | null>;
   getPlayerBySlug(slug: string): Promise<TournamentPlayer | null>;
   getKnockoutRounds(): Promise<KnockoutRound[]>;
+  getSquad(teamSlug: string): Promise<SquadPlayer[]>;
 }

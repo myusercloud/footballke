@@ -54,13 +54,15 @@ function buildJsonLd(player: TournamentPlayer) {
   };
 }
 
-// ── Stat row helper ───────────────────────────────────────────────────────────
+// ── Stat card ─────────────────────────────────────────────────────────────────
 
-function StatItem({ label, value }: { label: string; value: string | number }) {
+function StatCard({ label, value, highlight = false }: { label: string; value: string | number; highlight?: boolean }) {
   return (
-    <div className="flex flex-col items-center rounded-sm border border-zinc-100 bg-zinc-50 p-3 text-center">
-      <span className="text-2xl font-black tabular-nums text-zinc-900">{value}</span>
-      <span className="mt-0.5 text-[10px] font-bold uppercase tracking-widest text-zinc-400">{label}</span>
+    <div className={`flex flex-col items-center rounded-xl p-4 text-center ${highlight ? "bg-emerald-50 ring-1 ring-emerald-200" : "bg-zinc-50"}`}>
+      <span className={`text-3xl font-black tabular-nums ${highlight ? "text-emerald-700" : "text-zinc-900"}`}>
+        {value}
+      </span>
+      <span className="mt-1 text-[10px] font-bold uppercase tracking-widest text-zinc-400">{label}</span>
     </div>
   );
 }
@@ -91,93 +93,128 @@ export default async function TournamentPlayerPage({
           <TournamentNav />
         </Suspense>
 
-        {/* Header */}
+        {/* Hero */}
         <header
-          className="rounded-sm p-6 text-white sm:p-8"
+          className="relative overflow-hidden rounded-2xl text-white"
           style={{
-            background: `linear-gradient(135deg, ${team.colors.primary} 0%, ${team.colors.secondary}44 100%)`,
+            background: `linear-gradient(135deg, ${team.colors.primary} 0%, ${team.colors.secondary} 100%)`,
           }}
         >
-          <div className="flex items-start gap-4">
-            {/* Jersey number */}
-            <div
-              className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-white/30 text-2xl font-black sm:h-20 sm:w-20 sm:text-3xl"
-              style={{ backgroundColor: team.colors.secondary + "33" }}
-              aria-hidden="true"
+          {/* Huge jersey number ghost */}
+          <div
+            className="pointer-events-none absolute inset-0 flex items-center justify-end overflow-hidden"
+            aria-hidden="true"
+          >
+            <span
+              className="select-none pr-4 font-black leading-none text-white opacity-[0.08]"
+              style={{ fontSize: "clamp(8rem, 22vw, 18rem)" }}
             >
               {player.jerseyNumber}
+            </span>
+          </div>
+
+          {/* Glow */}
+          <div
+            className="pointer-events-none absolute -left-10 -top-10 h-48 w-48 rounded-full bg-white/10 blur-3xl"
+            aria-hidden="true"
+          />
+
+          <div className="relative px-6 py-10 sm:px-10">
+            {/* Position badges */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="rounded-lg bg-white/20 px-2.5 py-1 text-xs font-black uppercase tracking-widest backdrop-blur-sm">
+                {player.position}
+              </span>
+              {player.secondaryPosition && (
+                <span className="rounded-lg bg-white/10 px-2.5 py-1 text-xs font-semibold uppercase tracking-widest">
+                  {player.secondaryPosition}
+                </span>
+              )}
             </div>
 
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest opacity-75">
-                {player.position}
-                {player.secondaryPosition ? ` · ${player.secondaryPosition}` : ""}
-              </p>
-              <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">{player.name}</h1>
-              <Link
-                href={`/world-cup/teams/${team.slug}`}
-                className="mt-1 inline-block text-sm font-semibold opacity-90 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-              >
-                {team.name} →
-              </Link>
+            <h1 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
+              {player.name}
+            </h1>
+
+            <Link
+              href={`/world-cup/teams/${team.slug}`}
+              className="mt-2 inline-flex items-center gap-1.5 text-sm font-bold opacity-80 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              <span
+                className="inline-block h-2.5 w-2.5 rounded-full ring-1 ring-white/30"
+                style={{ backgroundColor: team.colors.secondary }}
+                aria-hidden="true"
+              />
+              {team.name} →
+            </Link>
+
+            {/* Quick stats */}
+            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4">
+              <div>
+                <p className="text-3xl font-black tabular-nums">{stats.goals}</p>
+                <p className="text-[11px] uppercase tracking-widest opacity-60">Goals</p>
+              </div>
+              <div>
+                <p className="text-3xl font-black tabular-nums">{stats.assists}</p>
+                <p className="text-[11px] uppercase tracking-widest opacity-60">Assists</p>
+              </div>
+              <div>
+                <p className="text-3xl font-black tabular-nums">{stats.appearances}</p>
+                <p className="text-[11px] uppercase tracking-widest opacity-60">Apps</p>
+              </div>
+              <div>
+                <p className="text-3xl font-black tabular-nums">{stats.minutesPlayed}</p>
+                <p className="text-[11px] uppercase tracking-widest opacity-60">Minutes</p>
+              </div>
             </div>
           </div>
         </header>
 
         <div className="grid gap-6 lg:grid-cols-3">
-          {/* Profile info */}
-          <section className="rounded-sm border border-zinc-200 bg-white p-5" aria-label="Profile">
-            <h2 className="mb-4 text-sm font-black tracking-tight">Profile</h2>
-            <dl className="space-y-3 text-sm">
-              <div className="flex justify-between">
-                <dt className="text-zinc-500">Age</dt>
-                <dd className="font-semibold">{player.age} yrs</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt className="text-zinc-500">Date of Birth</dt>
-                <dd className="font-semibold">
-                  {new Date(player.dateOfBirth).toLocaleDateString("en-KE", {
+          {/* Profile */}
+          <section className="rounded-xl border border-zinc-200 bg-white p-6" aria-label="Profile">
+            <h2 className="mb-5 text-sm font-black tracking-tight">Profile</h2>
+            <dl className="space-y-4 text-sm">
+              {[
+                { label: "Full Name", value: player.name },
+                { label: "Age", value: `${player.age} years old` },
+                {
+                  label: "Date of Birth",
+                  value: new Date(player.dateOfBirth).toLocaleDateString("en-KE", {
                     day: "numeric", month: "long", year: "numeric",
-                  })}
-                </dd>
-              </div>
-              <div className="flex justify-between">
-                <dt className="text-zinc-500">Nationality</dt>
-                <dd className="font-semibold">{player.nationality.name}</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt className="text-zinc-500">Height</dt>
-                <dd className="font-semibold">{player.height} cm</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt className="text-zinc-500">Preferred Foot</dt>
-                <dd className="font-semibold capitalize">{player.preferredFoot}</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt className="text-zinc-500">Position</dt>
-                <dd className="font-semibold">{player.position}</dd>
-              </div>
+                  }),
+                },
+                { label: "Nationality", value: player.nationality.name },
+                { label: "Height", value: `${player.height} cm` },
+                { label: "Preferred Foot", value: player.preferredFoot.charAt(0).toUpperCase() + player.preferredFoot.slice(1) },
+              ].map(({ label, value }) => (
+                <div key={label} className="flex items-start justify-between gap-3">
+                  <dt className="shrink-0 text-xs font-bold uppercase tracking-wider text-zinc-400">{label}</dt>
+                  <dd className="text-right font-semibold text-zinc-900">{value}</dd>
+                </div>
+              ))}
             </dl>
           </section>
 
-          {/* Stats */}
-          <section className="lg:col-span-2 space-y-4" aria-label="Tournament stats">
+          {/* Stats grid */}
+          <section className="space-y-5 lg:col-span-2" aria-label="Tournament stats">
             <h2 className="text-sm font-black tracking-tight">2026 World Cup Stats</h2>
-            <div className="grid grid-cols-3 gap-3 sm:grid-cols-3">
-              <StatItem label="Goals" value={stats.goals} />
-              <StatItem label="Assists" value={stats.assists} />
-              <StatItem label="Apps" value={stats.appearances} />
-              <StatItem label="Minutes" value={stats.minutesPlayed} />
-              <StatItem label="Yellow" value={stats.yellowCards} />
-              <StatItem label="Red" value={stats.redCards} />
+
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-3">
+              <StatCard label="Goals" value={stats.goals} highlight={stats.goals > 0} />
+              <StatCard label="Assists" value={stats.assists} highlight={stats.assists > 0} />
+              <StatCard label="Appearances" value={stats.appearances} />
+              <StatCard label="Minutes" value={stats.minutesPlayed} />
+              <StatCard label="Yellow Cards" value={stats.yellowCards} />
+              <StatCard label="Red Cards" value={stats.redCards} />
               {stats.cleanSheets !== undefined && (
-                <StatItem label="Clean Sheets" value={stats.cleanSheets} />
+                <StatCard label="Clean Sheets" value={stats.cleanSheets} highlight={stats.cleanSheets > 0} />
               )}
             </div>
 
             {player.bio && (
-              <div className="rounded-sm border border-zinc-200 bg-white p-5">
-                <h2 className="mb-2 text-sm font-black tracking-tight">About</h2>
+              <div className="rounded-xl border border-zinc-200 bg-white p-5">
+                <h2 className="mb-3 text-sm font-black tracking-tight">About</h2>
                 <p className="text-sm leading-relaxed text-zinc-600">{player.bio}</p>
               </div>
             )}
@@ -185,16 +222,16 @@ export default async function TournamentPlayerPage({
         </div>
 
         {/* Back links */}
-        <div className="flex gap-3 border-t border-zinc-200 pt-4">
+        <div className="flex gap-4 border-t border-zinc-200 pt-5">
           <Link
             href={`/world-cup/teams/${team.slug}`}
-            className="text-sm font-semibold text-emerald-700 hover:text-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
+            className="text-sm font-bold text-emerald-700 hover:text-emerald-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
           >
             ← {team.name}
           </Link>
           <Link
             href="/world-cup"
-            className="text-sm font-semibold text-zinc-500 hover:text-zinc-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
+            className="text-sm font-semibold text-zinc-400 hover:text-zinc-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
           >
             World Cup Hub
           </Link>

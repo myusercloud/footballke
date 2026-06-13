@@ -6,7 +6,7 @@ import { TournamentNav } from "@/components/football/world-cup/TournamentNav";
 
 export const metadata: Metadata = {
   title: "Groups",
-  description: "2026 FIFA World Cup group stage standings — all 8 groups with live points, goal differences, and qualification status.",
+  description: "2026 FIFA World Cup group stage standings — all 12 groups with live points, goal differences, and qualification status.",
   alternates: { canonical: "/world-cup/groups" },
 };
 

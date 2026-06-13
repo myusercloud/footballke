@@ -11,6 +11,7 @@ import type {
   KnockoutMatch,
   TournamentStage,
   GroupLetter,
+  SquadPlayer,
 } from "@/types/tournament";
 import type { Fixture, MatchStatus, Score } from "@/types/fixture";
 
@@ -20,6 +21,7 @@ import fixturesRaw     from "@/data/world-cup/fixtures.json";
 import standingsRaw    from "@/data/world-cup/standings.json";
 import topScorersRaw   from "@/data/world-cup/top-scorers.json";
 import featuredRaw     from "@/data/world-cup/featured-players.json";
+import squadsRaw       from "@/data/world-cup/squads.json";
 
 // ── Team index ────────────────────────────────────────────────────────────────
 // Built once at construction; used to resolve teamSlug references in fixtures
@@ -198,6 +200,7 @@ export class JsonTournamentProvider implements TournamentProvider {
   private readonly topScorers: TopScorer[];
   private readonly featuredPlayers: TournamentPlayer[];
   private readonly teamIndex: Map<string, TournamentTeam>;
+  private readonly squadIndex: Map<string, SquadPlayer[]>;
 
   constructor() {
     const groups = groupsRaw.groups.map(mapGroup);
@@ -209,6 +212,13 @@ export class JsonTournamentProvider implements TournamentProvider {
     this.groupStandings = standingsRaw.standings.map((s) => mapStandings(s, groups));
     this.topScorers = (topScorersRaw.topScorers as RawScorer[]).map((s) => mapTopScorer(s, teamIndex));
     this.featuredPlayers = featuredRaw.featuredPlayers.map((p) => mapPlayer(p as typeof featuredRaw.featuredPlayers[number], teamIndex));
+
+    this.squadIndex = new Map(
+      Object.entries(squadsRaw.squads).map(([slug, data]) => [
+        slug,
+        (data.players as SquadPlayer[]),
+      ])
+    );
 
     const t = tournamentRaw.tournament;
     this.tournament = {
@@ -245,6 +255,9 @@ export class JsonTournamentProvider implements TournamentProvider {
   async getTeamBySlug(slug: string): Promise<TournamentTeam | null> { return this.teamIndex.get(slug) ?? null; }
   async getPlayerBySlug(slug: string): Promise<TournamentPlayer | null> {
     return this.featuredPlayers.find((p) => p.slug === slug) ?? null;
+  }
+  async getSquad(teamSlug: string): Promise<SquadPlayer[]> {
+    return this.squadIndex.get(teamSlug) ?? [];
   }
   async getKnockoutRounds(): Promise<KnockoutRound[]> {
     const knockoutFixtures = this.fixtures.filter((f) => f.matchday === undefined || f.matchday === null);

@@ -30,10 +30,10 @@ export function TournamentNav() {
               key={label}
               href={href}
               aria-current={isActive ? "page" : undefined}
-              className={`whitespace-nowrap rounded-t-sm px-4 py-2.5 text-sm font-bold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-1 ${
+              className={`whitespace-nowrap px-4 py-2.5 text-sm font-bold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-1 ${
                 isActive
-                  ? "border-b-2 border-emerald-600 text-emerald-800"
-                  : "text-zinc-500 hover:text-zinc-800"
+                  ? "border-b-2 border-emerald-600 text-emerald-700"
+                  : "text-zinc-500 hover:text-zinc-900"
               }`}
             >
               {label}

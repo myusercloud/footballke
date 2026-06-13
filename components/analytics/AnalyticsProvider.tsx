@@ -65,7 +65,10 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     const host =
       process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com";
 
-    initAnalytics(key ? new PostHogProvider(key, host) : null);
+    // Only connect to PostHog in production — avoids network errors and
+    // console spam when running locally without a reachable PostHog server.
+    const isProduction = process.env.NODE_ENV === "production";
+    initAnalytics(key && isProduction ? new PostHogProvider(key, host) : null);
 
     // session_start — once per browser session
     try {

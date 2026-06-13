@@ -6,6 +6,7 @@ import type {
   TopScorer,
   GroupStandingsTable,
   KnockoutRound,
+  SquadPlayer,
   ITournamentService,
   GetTournamentFixturesParams,
   TournamentFixtureResponse,
@@ -114,6 +115,10 @@ class TournamentService implements ITournamentService {
 
   async getPlayerBySlug(slug: string): Promise<TournamentPlayer | null> {
     return this.provider.getPlayerBySlug(slug);
+  }
+
+  async getSquad(teamSlug: string): Promise<SquadPlayer[]> {
+    return this.provider.getSquad(teamSlug);
   }
 
   async getLatestNews(limit = 5): Promise<Article[]> {

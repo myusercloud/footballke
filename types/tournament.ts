@@ -7,6 +7,22 @@ import type { Position, Nationality } from "./player";
 // need to import from multiple type files.
 export type { Fixture, Article };
 
+// ── Squad ─────────────────────────────────────────────────────────────────────
+
+export type SquadPlayerPositionCode = "GK" | "DF" | "MF" | "FW";
+
+export type SquadPlayer = {
+  nameOnShirt: string;
+  displayName: string;
+  position: string;
+  positionCode: SquadPlayerPositionCode;
+  dateOfBirth: string;
+  club: string;
+  height: number;
+  caps: number;
+  goals: number;
+};
+
 // ── Stage ─────────────────────────────────────────────────────────────────────
 
 export type TournamentStage =
@@ -206,5 +222,6 @@ export interface ITournamentService {
   getFeaturedPlayers(limit?: number): Promise<TournamentPlayer[]>;
   getTeamBySlug(slug: string): Promise<TournamentTeam | null>;
   getPlayerBySlug(slug: string): Promise<TournamentPlayer | null>;
+  getSquad(teamSlug: string): Promise<SquadPlayer[]>;
   getLatestNews(limit?: number): Promise<Article[]>;
 }
