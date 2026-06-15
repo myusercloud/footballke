@@ -4,7 +4,6 @@ import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { events } from "@/lib/analytics/events";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import AdSlot from "@/components/layout/AdSlot";
 import LiveTicker from "@/components/layout/LiveTicker";
 import PitchVisual from "@/components/layout/PitchVisual";
 import { getNews } from "@/lib/news.cache";
@@ -101,8 +100,6 @@ export default async function Home() {
           id="main-content"
           className="mx-auto max-w-7xl px-4 py-5 sm:px-6 sm:py-7 lg:px-8"
         >
-          <AdSlot label="Top banner" size="970 × 90" className="mb-5" />
-
           {/* ── Hero section ── */}
           <section
             aria-label="Lead story and upcoming fixtures"
@@ -160,11 +157,8 @@ export default async function Home() {
               </div>
             </article>
 
-            {/* Fixtures widget + sidebar ad */}
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
-              <AdSlot label="Sidebar ad" size="300 × 250" className="min-h-52 sm:min-h-full lg:min-h-52" />
-
-              <section
+            {/* Fixtures widget */}
+            <section
                 id="fixtures"
                 className="rounded-sm border border-zinc-200 bg-white p-5 shadow-sm"
                 aria-labelledby="fixtures-heading"
@@ -241,16 +235,14 @@ export default async function Home() {
                   All fixtures →
                 </TrackedLink>
               </section>
-            </div>
           </section>
 
           {/* ── Top Stories ── */}
           <section
             id="news"
-            className="mt-7 grid gap-5 lg:grid-cols-[1fr_300px]"
+            className="mt-7"
             aria-labelledby="news-heading"
           >
-            <div>
               <div className="mb-5 flex items-center justify-between border-b border-zinc-200 pb-3">
                 <h2 id="news-heading" className="text-xl font-black sm:text-2xl">
                   Top Stories
@@ -298,14 +290,6 @@ export default async function Home() {
                   </article>
                 ))}
               </div>
-            </div>
-
-            {/* Tall sidebar ad — hidden on small screens, visible from lg */}
-            <AdSlot
-              label="Medium rectangle"
-              size="300 × 600"
-              className="hidden min-h-full lg:flex"
-            />
           </section>
 
           {/* ── World Cup Highlight ── */}
@@ -535,11 +519,6 @@ export default async function Home() {
             </section>
           )}
 
-          <AdSlot
-            label="In-feed sponsor strip"
-            size="728 × 90"
-            className="mt-7"
-          />
         </main>
 
         {/* ── Footer ── */}
