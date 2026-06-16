@@ -1,19 +1,17 @@
-import type { StandingsProvider } from "./StandingsProvider";
-
-// Placeholder for a sports data API integration (e.g. API-Football, SportMonks).
-// Swap JsonStandingsProvider for this class in providers/config.ts once the
-// API credentials and response mappings are in place.
+import type { Club, StandingsCompetition } from "@/types/standings";
+import type { ProviderStandingsEntry, StandingsProvider } from "./StandingsProvider";
+import { apiFetch } from "@/providers/api-client";
 
 export class APIStandingsProvider implements StandingsProvider {
-  async getAllEntries(): Promise<never> {
-    throw new Error("APIStandingsProvider.getAllEntries: not implemented");
+  async getAllEntries(): Promise<ProviderStandingsEntry[]> {
+    return apiFetch<ProviderStandingsEntry[]>('/standings');
   }
 
-  async getAllClubs(): Promise<never> {
-    throw new Error("APIStandingsProvider.getAllClubs: not implemented");
+  async getAllClubs(): Promise<Club[]> {
+    return apiFetch<Club[]>('/standings/clubs');
   }
 
-  async getAllCompetitions(): Promise<never> {
-    throw new Error("APIStandingsProvider.getAllCompetitions: not implemented");
+  async getAllCompetitions(): Promise<StandingsCompetition[]> {
+    return apiFetch<StandingsCompetition[]>('/standings/competitions');
   }
 }

@@ -6,7 +6,25 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+
+    "backend": "cd ../footballke-api && npm run dev",
+    "frontend": "next dev",
+    "cms": "cd ../footballke-cms && npm run dev",
+    "db": "cd ../footballke-api && npm run db:studio",
+    "db:migrate": "cd ../footballke-api && npm run db:migrate",
+    "db:seed": "cd ../footballke-api && npm run seed",
+    "db:reset": "cd ../footballke-api && npm run db:reset",
+
+    "docker:up": "docker compose up -d",
+    "docker:up:dev": "docker compose -f docker-compose.dev.yml up",
+    "docker:down": "docker compose down",
+    "docker:build": "docker compose build",
+    "docker:logs": "docker compose logs -f",
+    "docker:reset": "docker compose down -v && docker compose up -d",
+
+    "backup": "docker exec footballke-db pg_dump -U postgres -Fc footballke > backup_$(date +%Y%m%d_%H%M%S).dump",
+    "health": "curl -s http://localhost:4000/api/health | jq"
   },
   "dependencies": {
     "next": "16.2.9",

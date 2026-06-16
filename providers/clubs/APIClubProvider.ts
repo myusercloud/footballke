@@ -1,16 +1,27 @@
+import type { Club } from "@/types/club";
 import type { ClubProvider } from "./ClubProvider";
+import { apiFetch } from "@/providers/api-client";
 
-// Placeholder for a sports data API integration (e.g. API-Football, SportMonks).
-// Implement this class once an API contract is signed and the external schema
-// mapped to the Club type. The mapping lives entirely in this provider —
-// the service layer is unaffected by the migration.
+type ClubListResponse = { data: Club[]; total: number; page: number; pageSize: number; totalPages: number };
 
 export class APIClubProvider implements ClubProvider {
-  async getAllClubs(): Promise<never> {
-    throw new Error("APIClubProvider.getAllClubs: not implemented");
+  async getAllClubs(): Promise<Club[]> {
+    const first = await apiFetch<ClubListResponse>('/clubs?page=1&pageSize=100');
+    if (first.totalPages <= 1) return first.data;
+    const rest = await Promise.all(
+      Array.from({ length: first.totalPages - 1 }, (_, i) =>
+        apiFetch<ClubListResponse>(`/clubs?page=${i + 2}&pageSize=100`)
+      )
+    );
+    return [first.data, ...rest.map((r) => r.data)].flat();
   }
 
-  async getClubBySlug(_slug: string): Promise<never> {
-    throw new Error("APIClubProvider.getClubBySlug: not implemented");
+  async getClubBySlug(slug: string): Promise<Club | null> {
+    try {
+      return await apiFetch<Club>(`/clubs/${encodeURIComponent(slug)}`);
+    } catch (e: unknown) {
+      if (e instanceof Error && e.message.includes('404')) return null;
+      throw e;
+    }
   }
 }
