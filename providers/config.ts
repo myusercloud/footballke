@@ -51,12 +51,20 @@ function getContentSource(): ContentSource {
   return "json";
 }
 
+// NEWS_SOURCE overrides CONTENT_SOURCE for news only, enabling Option C:
+// articles served by Strapi while fixtures/standings/clubs use json or api.
+function getNewsSource(): ContentSource {
+  const raw = process.env.NEWS_SOURCE;
+  if (raw === "cms" || raw === "api") return raw;
+  return getContentSource();
+}
+
 // ── Provider factories ────────────────────────────────────────────────────────
 // Each factory is called once at module load time (service singletons are
 // module-level). The switch is evaluated per-process, not per-request.
 
 export function getNewsProvider(): NewsProvider {
-  switch (getContentSource()) {
+  switch (getNewsSource()) {
     case "cms": return new CMSNewsProvider();
     case "api": return new APINewsProvider();
     default:    return new JsonNewsProvider();

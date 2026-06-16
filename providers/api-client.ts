@@ -5,6 +5,8 @@
 const BASE_URL =
   (process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000').replace(/\/$/, '') + '/api';
 
+const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
+
 export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const url = `${BASE_URL}${path}`;
 
@@ -12,6 +14,7 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> 
     ...init,
     headers: {
       'Content-Type': 'application/json',
+      ...(STRAPI_TOKEN ? { Authorization: `Bearer ${STRAPI_TOKEN}` } : {}),
       ...(init?.headers ?? {}),
     },
     // Next.js cache tags can be added here if ISR is used in future

@@ -6,6 +6,14 @@ const nextConfig: NextConfig = {
   // that are actually needed at runtime. public/ and .next/static/ are
   // copied separately in the Dockerfile runner stage.
   output: "standalone",
+  images: {
+    remotePatterns: [
+      // Strapi CMS local dev — media uploads served from the CMS container
+      { protocol: "http", hostname: "localhost", port: "3001", pathname: "/uploads/**" },
+      // Strapi CMS production — update hostname when deploying
+      { protocol: "https", hostname: "*.strapi.io", pathname: "/uploads/**" },
+    ],
+  },
 };
 
 export default nextConfig;
