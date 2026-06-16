@@ -1,9 +1,28 @@
 import Image from "next/image";
-import type { ContentBlock } from "@/types/news";
+import Link from "next/link";
+import type { ContentBlock, InlineNode } from "@/types/news";
 
 type Props = {
   blocks: ContentBlock[];
 };
+
+function renderInline(node: InlineNode, i: number) {
+  if (node.type === "mention") {
+    return (
+      <Link
+        key={i}
+        href={node.href}
+        className="rounded px-1 py-0.5 font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 transition-colors no-underline"
+      >
+        @{node.entityName}
+      </Link>
+    );
+  }
+  if (node.bold && node.italic) return <strong key={i}><em>{node.text}</em></strong>;
+  if (node.bold)   return <strong key={i}>{node.text}</strong>;
+  if (node.italic) return <em key={i}>{node.text}</em>;
+  return <span key={i}>{node.text}</span>;
+}
 
 function renderBlock(block: ContentBlock, index: number) {
   const key = `${block.type}-${index}`;
@@ -13,6 +32,13 @@ function renderBlock(block: ContentBlock, index: number) {
       return (
         <p key={key} className="text-base leading-8 text-zinc-700">
           {block.text}
+        </p>
+      );
+
+    case "rich-paragraph":
+      return (
+        <p key={key} className="text-base leading-8 text-zinc-700">
+          {block.children.map((node, i) => renderInline(node, i))}
         </p>
       );
 

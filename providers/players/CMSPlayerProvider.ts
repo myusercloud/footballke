@@ -6,13 +6,19 @@ import { strapiGet, type StrapiList } from "@/providers/strapi-client"
 
 type SMedia = { url: string; alternativeText: string | null }
 
+type SClubRelation = {
+  documentId: string
+  name: string
+  slug: string
+}
+
 type SPlayer = {
   id: number; documentId: string
   name: string; slug: string; jerseyNumber: number
   position: string; secondaryPosition: string | null
   nationalityName: string; nationalityCode: string; nationalityFlag: string
   dateOfBirth: string; height: number; preferredFoot: string
-  clubId: string; clubSlug: string; clubName: string
+  club: SClubRelation | null
   contractUntil: string | null; contractType: string
   image: SMedia | null; bio: string
   statsAppearances: number; statsGoals: number; statsAssists: number
@@ -36,7 +42,7 @@ function computeAge(dateOfBirth: string): number {
   return m < 0 || (m === 0 && today.getDate() < dob.getDate()) ? age - 1 : age
 }
 
-const PLAYER_POPULATE = 'populate[image]=true'
+const PLAYER_POPULATE = 'populate[image]=true&populate[club]=true'
 
 // ── Mapper ────────────────────────────────────────────────────────────────────
 
@@ -57,9 +63,9 @@ function mapPlayer(raw: SPlayer): Player {
     age: computeAge(raw.dateOfBirth),
     height: raw.height,
     preferredFoot: raw.preferredFoot as 'right' | 'left' | 'both',
-    clubId: raw.clubId,
-    clubSlug: raw.clubSlug,
-    clubName: raw.clubName,
+    clubId: raw.club?.documentId ?? '',
+    clubSlug: raw.club?.slug ?? '',
+    clubName: raw.club?.name ?? '',
     contract: {
       until: raw.contractUntil ?? null,
       type: raw.contractType as 'permanent' | 'loan',
@@ -76,7 +82,7 @@ function mapPlayer(raw: SPlayer): Player {
     },
     bio: raw.bio,
     searchableName: raw.name.toLowerCase(),
-    searchableKeywords: [raw.clubName, raw.nationalityName, raw.position].filter(Boolean),
+    searchableKeywords: [raw.club?.name ?? '', raw.nationalityName, raw.position].filter(Boolean),
     searchableSlug: raw.slug,
   }
 }
@@ -110,14 +116,14 @@ export class CMSPlayerProvider implements PlayerProvider {
 
   async getPlayersByClub(clubSlug: string): Promise<Player[]> {
     const first = await strapiGet<StrapiList<SPlayer>>(
-      `/players?${PLAYER_POPULATE}&filters[clubSlug][$eq]=${encodeURIComponent(clubSlug)}&sort[0]=jerseyNumber:asc&pagination[pageSize]=100&pagination[page]=1`
+      `/players?${PLAYER_POPULATE}&filters[club][slug][$eq]=${encodeURIComponent(clubSlug)}&sort[0]=jerseyNumber:asc&pagination[pageSize]=100&pagination[page]=1`
     )
     const pages =
       first.meta.pagination.pageCount > 1
         ? await Promise.all(
             Array.from({ length: first.meta.pagination.pageCount - 1 }, (_, i) =>
               strapiGet<StrapiList<SPlayer>>(
-                `/players?${PLAYER_POPULATE}&filters[clubSlug][$eq]=${encodeURIComponent(clubSlug)}&sort[0]=jerseyNumber:asc&pagination[pageSize]=100&pagination[page]=${i + 2}`
+                `/players?${PLAYER_POPULATE}&filters[club][slug][$eq]=${encodeURIComponent(clubSlug)}&sort[0]=jerseyNumber:asc&pagination[pageSize]=100&pagination[page]=${i + 2}`
               )
             )
           )

@@ -7,9 +7,12 @@ export function calculateReadingTime(content: ContentBlock[]): number {
     switch (block.type) {
       case "paragraph":
       case "heading":
-        return total + block.text.trim().split(/\s+/).length;
       case "quote":
         return total + block.text.trim().split(/\s+/).length;
+      case "rich-paragraph":
+        return total + block.children
+          .map(n => n.type === "text" ? n.text : n.entityName)
+          .join(" ").trim().split(/\s+/).length;
       case "list":
         return total + block.items.join(" ").trim().split(/\s+/).length;
       case "image":

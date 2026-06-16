@@ -36,9 +36,34 @@ export type Category = {
 // Discriminated union keeps the renderer type-safe and CMS-portable.
 // Raw HTML strings are explicitly avoided — rendering is a component concern.
 
+// Inline nodes used inside rich paragraphs that contain @mentions
+export type InlineText = {
+  type: "text";
+  text: string;
+  bold?: boolean;
+  italic?: boolean;
+};
+
+export type InlineMention = {
+  type: "mention";
+  entityType: "player" | "club";
+  entitySlug: string;
+  entityName: string;
+  href: string;
+};
+
+export type InlineNode = InlineText | InlineMention;
+
+// Plain paragraph — used by JSON provider and articles with no mentions
 export type ContentBlockParagraph = {
   type: "paragraph";
   text: string;
+};
+
+// Rich paragraph — used when the paragraph contains at least one @mention
+export type ContentBlockRichParagraph = {
+  type: "rich-paragraph";
+  children: InlineNode[];
 };
 
 export type ContentBlockHeading = {
@@ -68,6 +93,7 @@ export type ContentBlockList = {
 
 export type ContentBlock =
   | ContentBlockParagraph
+  | ContentBlockRichParagraph
   | ContentBlockHeading
   | ContentBlockImage
   | ContentBlockQuote

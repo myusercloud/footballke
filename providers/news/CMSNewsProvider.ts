@@ -1,11 +1,23 @@
-import type { Article, Author, Category, ContentBlock, CategoryColor } from "@/types/news"
+import type { Article, Author, Category, ContentBlock, InlineNode, CategoryColor } from "@/types/news"
 import type { NewsProvider } from "./NewsProvider"
 import { calculateReadingTime } from "@/lib/news.utils"
 import { strapiGet, type StrapiList } from "@/providers/strapi-client"
 
 // ── Strapi v5 raw shapes ───────────────────────────────────────────────────────
 
-type SNode = { type: string; text?: string; bold?: boolean; italic?: boolean; children?: SNode[] }
+// Strapi BlocksEditor / TipTap shared node type
+type SNode = {
+  type: string
+  text?: string; bold?: boolean; italic?: boolean
+  // TipTap mention attrs
+  attrs?: {
+    id?: string; entityType?: string; entitySlug?: string
+    entityName?: string; href?: string
+  }
+  children?: SNode[]
+  // Strapi Blocks image embedded in block
+  image?: { url: string; alternativeText: string | null; caption: string | null }
+}
 
 type SMedia = {
   id: number; documentId: string
@@ -13,10 +25,15 @@ type SMedia = {
   width: number | null; height: number | null
 }
 
+// TipTap JSON top-level document shape
+type TipTapDoc = { type: 'doc'; content: SRichBlock[] }
+
 type SRichBlock = {
   type: string; level?: number; format?: 'ordered' | 'unordered'
-  children: SNode[]
+  content?: SNode[]   // TipTap uses `content`
+  children?: SNode[]  // Strapi Blocks uses `children`
   image?: { url: string; alternativeText: string | null; caption: string | null }
+  attrs?: Record<string, unknown>
 }
 
 type SAuthor = {
@@ -57,10 +74,38 @@ function mediaUrl(url: string): string {
 
 // ── Mappers ───────────────────────────────────────────────────────────────────
 
+/** Normalise: TipTap uses `content`, Strapi Blocks uses `children`. */
+function childNodes(b: SRichBlock | SNode): SNode[] {
+  return (b as SRichBlock).content ?? (b as SRichBlock).children ?? []
+}
+
+/** Flatten a node tree to plain text (used for headings, quotes, list items). */
 function extractText(nodes: SNode[]): string {
   return nodes
-    .map(n => n.type === 'text' ? (n.text ?? '') : n.children ? extractText(n.children) : '')
+    .map(n => n.type === 'text' ? (n.text ?? '') : extractText(childNodes(n as SRichBlock)))
     .join('')
+}
+
+/**
+ * Convert inline nodes (text + mention) to InlineNode[].
+ * Returns null when the nodes contain no mentions (use plain paragraph instead).
+ */
+function mapInlineNodes(nodes: SNode[]): InlineNode[] | null {
+  let hasMention = false
+  const result: InlineNode[] = nodes.map(n => {
+    if (n.type === 'mention') {
+      hasMention = true
+      return {
+        type:       'mention',
+        entityType: (n.attrs?.entityType ?? 'player') as 'player' | 'club',
+        entitySlug: n.attrs?.entitySlug ?? n.attrs?.id ?? '',
+        entityName: n.attrs?.entityName ?? n.attrs?.id ?? '',
+        href:       n.attrs?.href ?? `/${n.attrs?.entityType ?? 'players'}/${n.attrs?.entitySlug ?? ''}`,
+      }
+    }
+    return { type: 'text', text: n.text ?? '', bold: n.bold, italic: n.italic }
+  })
+  return hasMention ? result : null
 }
 
 function mapContentFromString(text: string): ContentBlock[] {
@@ -71,40 +116,80 @@ function mapContentFromString(text: string): ContentBlock[] {
     .map(p => ({ type: 'paragraph' as const, text: p }))
 }
 
-function mapContent(blocks: SRichBlock[] | string | null): ContentBlock[] {
-  if (!blocks) return []
-  if (typeof blocks === 'string') return mapContentFromString(blocks)
-  if (!Array.isArray(blocks)) return []
-  return blocks.flatMap((b): ContentBlock[] => {
+/**
+ * Parse the article `content` field.
+ * Accepts: TipTap JSON string, Strapi Blocks array, plain Markdown string, or null.
+ */
+function mapContent(raw: SRichBlock[] | string | null): ContentBlock[] {
+  if (!raw) return []
+
+  // TipTap JSON stored as a string — parse and recurse
+  if (typeof raw === 'string') {
+    try {
+      const parsed = JSON.parse(raw)
+      if (parsed?.type === 'doc' && Array.isArray(parsed.content)) {
+        return mapContent(parsed.content as SRichBlock[])
+      }
+    } catch { /* fall through to plain-text handling */ }
+    return mapContentFromString(raw)
+  }
+
+  if (!Array.isArray(raw)) return []
+
+  return raw.flatMap((b): ContentBlock[] => {
+    const nodes = childNodes(b)
+
     switch (b.type) {
       case 'paragraph': {
-        const text = extractText(b.children)
+        if (!nodes.length) return []
+        const inline = mapInlineNodes(nodes)
+        if (inline) return [{ type: 'rich-paragraph', children: inline }]
+        const text = extractText(nodes)
         return text.trim() ? [{ type: 'paragraph', text }] : []
       }
+
       case 'heading': {
-        const text = extractText(b.children)
-        const level = Math.min(Math.max(b.level ?? 2, 2), 4) as 2 | 3 | 4
+        const text = extractText(nodes)
+        const level = Math.min(Math.max(b.level ?? (b.attrs?.level as number) ?? 2, 2), 4) as 2 | 3 | 4
         return text.trim() ? [{ type: 'heading', level, text }] : []
       }
+
       case 'image': {
         if (!b.image?.url) return []
         return [{
           type: 'image',
-          src: mediaUrl(b.image.url),
-          alt: b.image.alternativeText ?? '',
+          src:  mediaUrl(b.image.url),
+          alt:  b.image.alternativeText ?? '',
           ...(b.image.caption ? { caption: b.image.caption } : {}),
         }]
       }
-      case 'quote': {
-        const text = extractText(b.children)
+
+      case 'blockquote': {
+        const text = extractText(nodes)
         return text.trim() ? [{ type: 'quote', text }] : []
       }
+
+      case 'quote': {
+        const text = extractText(nodes)
+        return text.trim() ? [{ type: 'quote', text }] : []
+      }
+
+      case 'bulletList':
+      case 'orderedList': {
+        const items = nodes
+          .map(item => extractText(childNodes(item as SRichBlock)))
+          .filter(Boolean)
+        const ordered = b.type === 'orderedList' || b.format === 'ordered'
+        return items.length ? [{ type: 'list', ordered, items }] : []
+      }
+
       case 'list': {
-        const items = b.children
-          .map(item => extractText(item.children ?? []))
+        const items = nodes
+          .map(item => extractText(childNodes(item as SRichBlock)))
           .filter(Boolean)
         return items.length ? [{ type: 'list', ordered: b.format === 'ordered', items }] : []
       }
+
       default:
         return []
     }
