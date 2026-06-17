@@ -11,7 +11,7 @@ export async function strapiGet<T>(path: string): Promise<T> {
       'Content-Type': 'application/json',
       ...(TOKEN ? { Authorization: `Bearer ${TOKEN}` } : {}),
     },
-    next: { revalidate: 60 },
+    cache: 'no-store',
   })
   if (!res.ok) throw new Error(`Strapi ${res.status} ${res.statusText} — ${url}`)
   return res.json() as Promise<T>

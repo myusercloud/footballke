@@ -13,7 +13,7 @@ type STransfer = {
   toClubName: string | null; toClubShortName: string | null
   toClubSlug: string | null; toClubCountry: string | null
   fee: string | null
-  status: string
+  transferStatus: string
   confidence: string | null
   window: string
   transferDate: string
@@ -61,7 +61,7 @@ function mapTransfer(raw: STransfer): Transfer {
     fromClub: mapClub(raw.fromClubName, raw.fromClubShortName, raw.fromClubSlug, raw.fromClubCountry),
     toClub:   mapClub(raw.toClubName,   raw.toClubShortName,   raw.toClubSlug,   raw.toClubCountry),
     fee: raw.fee ?? 'Undisclosed',
-    status: raw.status as TransferStatus,
+    status: raw.transferStatus as TransferStatus,
     ...(raw.confidence ? { confidence: raw.confidence as TransferConfidence } : {}),
     window: raw.window as TransferWindow,
     date: raw.transferDate,

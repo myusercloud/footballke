@@ -6,7 +6,7 @@ import { strapiGet, type StrapiList } from "@/providers/strapi-client"
 
 type SFixture = {
   id: number; documentId: string
-  status: string
+  matchStatus: string
   kickoff: string
   matchday: number | null
   featured: boolean
@@ -31,7 +31,7 @@ function mapFixture(raw: SFixture): Fixture {
 
   return {
     id: raw.documentId,
-    status: raw.status as MatchStatus,
+    status: raw.matchStatus as MatchStatus,
     kickoff: raw.kickoff,
     ...(raw.matchday != null ? { matchday: raw.matchday } : {}),
     featured: raw.featured,
