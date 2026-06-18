@@ -20,10 +20,13 @@ function applyTextMarks(
 
 function renderInline(node: InlineNode, i: number): React.ReactNode {
   if (node.type === "mention") {
+    const href = node.entityType === "club"
+      ? `/clubs/${node.entitySlug}`
+      : `/players/${node.entitySlug}`;
     return (
       <Link
         key={i}
-        href={node.href}
+        href={href}
         className="font-bold text-zinc-900 border-b-2 border-emerald-700 hover:border-emerald-400 transition"
       >
         {node.entityName}
