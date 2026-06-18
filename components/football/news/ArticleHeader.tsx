@@ -67,14 +67,16 @@ export function ArticleHeader({ article }: Props) {
       {/* ── Wide zone: cover image ──────────────────────────────────────── */}
       <div className="mx-auto mt-7 max-w-4xl">
         <div className="relative aspect-[16/7] overflow-hidden rounded-sm bg-gradient-to-br from-emerald-800 to-emerald-950">
-          <Image
-            src={article.coverImage.src}
-            alt={article.coverImage.alt}
-            fill
-            priority
-            sizes="(max-width: 1280px) 100vw, 896px"
-            className="object-cover"
-          />
+          {article.coverImage.src && (
+            <Image
+              src={article.coverImage.src}
+              alt={article.coverImage.alt}
+              fill
+              priority
+              sizes="(max-width: 1280px) 100vw, 896px"
+              className="object-cover"
+            />
+          )}
         </div>
       </div>
     </header>

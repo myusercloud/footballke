@@ -42,6 +42,8 @@ export type InlineText = {
   text: string;
   bold?: boolean;
   italic?: boolean;
+  underline?: boolean;
+  strike?: boolean;
 };
 
 export type InlineMention = {
@@ -52,7 +54,15 @@ export type InlineMention = {
   href: string;
 };
 
-export type InlineNode = InlineText | InlineMention;
+export type InlineLink = {
+  type: "link";
+  href: string;
+  text: string;
+  bold?: boolean;
+  italic?: boolean;
+};
+
+export type InlineNode = InlineText | InlineMention | InlineLink;
 
 // Plain paragraph — used by JSON provider and articles with no mentions
 export type ContentBlockParagraph = {
@@ -91,13 +101,18 @@ export type ContentBlockList = {
   items: string[];
 };
 
+export type ContentBlockHorizontalRule = {
+  type: "horizontal-rule";
+};
+
 export type ContentBlock =
   | ContentBlockParagraph
   | ContentBlockRichParagraph
   | ContentBlockHeading
   | ContentBlockImage
   | ContentBlockQuote
-  | ContentBlockList;
+  | ContentBlockList
+  | ContentBlockHorizontalRule;
 
 // ── Core entity ───────────────────────────────────────────────────────────────
 

@@ -3,7 +3,7 @@ import type { ContentBlock } from "@/types/news";
 const WORDS_PER_MINUTE = 200;
 
 export function calculateReadingTime(content: ContentBlock[]): number {
-  const wordCount = content.reduce((total, block) => {
+  const wordCount = content.reduce<number>((total, block) => {
     switch (block.type) {
       case "paragraph":
       case "heading":
@@ -11,11 +11,12 @@ export function calculateReadingTime(content: ContentBlock[]): number {
         return total + block.text.trim().split(/\s+/).length;
       case "rich-paragraph":
         return total + block.children
-          .map(n => n.type === "text" ? n.text : n.entityName)
+          .map(n => n.type === "text" || n.type === "link" ? n.text : n.entityName)
           .join(" ").trim().split(/\s+/).length;
       case "list":
         return total + block.items.join(" ").trim().split(/\s+/).length;
       case "image":
+      case "horizontal-rule":
         return total;
     }
   }, 0);

@@ -13,14 +13,16 @@ export function HeroArticle({ article }: Props) {
     <article className="group relative min-h-[360px] overflow-hidden rounded-sm border border-zinc-200 shadow-sm sm:min-h-[440px]">
       {/* Background — emerald gradient is the fallback when image is absent */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-800 to-emerald-950">
-        <Image
-          src={article.coverImage.src}
-          alt={article.coverImage.alt}
-          fill
-          priority
-          sizes="(max-width: 1280px) 100vw, 1216px"
-          className="object-cover opacity-60 transition-transform duration-500 group-hover:scale-[1.01]"
-        />
+        {article.coverImage.src && (
+          <Image
+            src={article.coverImage.src}
+            alt={article.coverImage.alt}
+            fill
+            priority
+            sizes="(max-width: 1280px) 100vw, 1216px"
+            className="object-cover opacity-60 transition-transform duration-500 group-hover:scale-[1.01]"
+          />
+        )}
       </div>
 
       {/* Gradient overlay — ensures text is always readable */}

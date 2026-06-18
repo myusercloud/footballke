@@ -6,22 +6,50 @@ type Props = {
   blocks: ContentBlock[];
 };
 
-function renderInline(node: InlineNode, i: number) {
+function applyTextMarks(
+  text: string,
+  bold?: boolean,
+  italic?: boolean,
+): React.ReactNode {
+  let el: React.ReactNode = text;
+  if (bold && italic) el = <strong><em>{text}</em></strong>;
+  else if (bold)   el = <strong>{text}</strong>;
+  else if (italic) el = <em>{text}</em>;
+  return el;
+}
+
+function renderInline(node: InlineNode, i: number): React.ReactNode {
   if (node.type === "mention") {
     return (
       <Link
         key={i}
         href={node.href}
-        className="rounded px-1 py-0.5 font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 transition-colors no-underline"
+        className="font-bold text-zinc-900 border-b-2 border-emerald-700 hover:border-emerald-400 transition"
       >
-        @{node.entityName}
+        {node.entityName}
       </Link>
     );
   }
-  if (node.bold && node.italic) return <strong key={i}><em>{node.text}</em></strong>;
-  if (node.bold)   return <strong key={i}>{node.text}</strong>;
-  if (node.italic) return <em key={i}>{node.text}</em>;
-  return <span key={i}>{node.text}</span>;
+
+  if (node.type === "link") {
+    const isExternal = node.href.startsWith("http");
+    return (
+      <Link
+        key={i}
+        href={node.href}
+        className="text-emerald-700 underline underline-offset-2 hover:text-emerald-900 transition-colors"
+        {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      >
+        {applyTextMarks(node.text, node.bold, node.italic)}
+      </Link>
+    );
+  }
+
+  // Plain text with optional formatting
+  let el: React.ReactNode = applyTextMarks(node.text, node.bold, node.italic);
+  if (node.underline) el = <u key={`u-${i}`}>{el}</u>;
+  if (node.strike)    el = <s key={`s-${i}`}>{el}</s>;
+  return <span key={i}>{el}</span>;
 }
 
 function renderBlock(block: ContentBlock, index: number) {
@@ -124,6 +152,9 @@ function renderBlock(block: ContentBlock, index: number) {
         </ListTag>
       );
     }
+
+    case "horizontal-rule":
+      return <hr key={key} className="my-8 border-zinc-200" />;
   }
 }
 

@@ -1,4 +1,4 @@
-import type { Article, Author, Category, ContentBlock, InlineNode, CategoryColor } from "@/types/news"
+import type { Article, Author, Category, ContentBlock, InlineNode, InlineLink, CategoryColor } from "@/types/news"
 import type { NewsProvider } from "./NewsProvider"
 import { calculateReadingTime } from "@/lib/news.utils"
 import { strapiGet, type StrapiList } from "@/providers/strapi-client"
@@ -6,9 +6,14 @@ import { strapiGet, type StrapiList } from "@/providers/strapi-client"
 // ── Strapi v5 raw shapes ───────────────────────────────────────────────────────
 
 // Strapi BlocksEditor / TipTap shared node type
+type SMark = { type: string; attrs?: { href?: string; [k: string]: unknown } }
 type SNode = {
   type: string
-  text?: string; bold?: boolean; italic?: boolean
+  text?: string
+  // Strapi Blocks format — marks as direct boolean props
+  bold?: boolean; italic?: boolean
+  // TipTap format — marks as an array
+  marks?: SMark[]
   // TipTap mention attrs
   attrs?: {
     id?: string; entityType?: string; entitySlug?: string
@@ -87,25 +92,43 @@ function extractText(nodes: SNode[]): string {
 }
 
 /**
- * Convert inline nodes (text + mention) to InlineNode[].
- * Returns null when the nodes contain no mentions (use plain paragraph instead).
+ * Convert inline nodes (text + mention + link) to InlineNode[].
+ * Returns null when all nodes are plain text with no rich content (use plain paragraph instead).
+ * Handles both Strapi Blocks (bold/italic as direct props) and TipTap (marks array) formats.
  */
 function mapInlineNodes(nodes: SNode[]): InlineNode[] | null {
-  let hasMention = false
+  let hasRich = false
   const result: InlineNode[] = nodes.map(n => {
     if (n.type === 'mention') {
-      hasMention = true
+      hasRich = true
       return {
         type:       'mention',
         entityType: (n.attrs?.entityType ?? 'player') as 'player' | 'club',
         entitySlug: n.attrs?.entitySlug ?? n.attrs?.id ?? '',
         entityName: n.attrs?.entityName ?? n.attrs?.id ?? '',
-        href:       n.attrs?.href ?? `/${n.attrs?.entityType ?? 'players'}/${n.attrs?.entitySlug ?? ''}`,
+        href:       n.attrs?.href ?? `/${n.attrs?.entityType === 'club' ? 'clubs' : 'players'}/${n.attrs?.entitySlug ?? ''}`,
       }
     }
-    return { type: 'text', text: n.text ?? '', bold: n.bold, italic: n.italic }
+    // Resolve marks from TipTap array OR Strapi Blocks direct props
+    const marks = n.marks ?? []
+    const bold      = n.bold      || marks.some(m => m.type === 'bold')
+    const italic    = n.italic    || marks.some(m => m.type === 'italic')
+    const underline = marks.some(m => m.type === 'underline')
+    const strike    = marks.some(m => m.type === 'strike')
+    const linkMark  = marks.find(m => m.type === 'link')
+    if (linkMark?.attrs?.href) {
+      hasRich = true
+      return {
+        type: 'link',
+        href: String(linkMark.attrs.href),
+        text: n.text ?? '',
+        bold,
+        italic,
+      } satisfies InlineLink
+    }
+    return { type: 'text', text: n.text ?? '', bold, italic, underline, strike }
   })
-  return hasMention ? result : null
+  return hasRich ? result : null
 }
 
 function mapContentFromString(text: string): ContentBlock[] {
@@ -190,6 +213,9 @@ function mapContent(raw: SRichBlock[] | string | null): ContentBlock[] {
         return items.length ? [{ type: 'list', ordered: b.format === 'ordered', items }] : []
       }
 
+      case 'horizontalRule':
+        return [{ type: 'horizontal-rule' }]
+
       default:
         return []
     }
@@ -255,37 +281,56 @@ function mapArticle(raw: SArticle): Article {
 
 export class CMSNewsProvider implements NewsProvider {
   async getAllArticles(): Promise<Article[]> {
-    const first = await strapiGet<StrapiList<SArticle>>(
-      `/articles?${ARTICLE_POPULATE}&sort[0]=publishedAt:desc&pagination[pageSize]=100&pagination[page]=1`
-    )
-    const pages =
-      first.meta.pagination.pageCount > 1
-        ? await Promise.all(
-            Array.from({ length: first.meta.pagination.pageCount - 1 }, (_, i) =>
-              strapiGet<StrapiList<SArticle>>(
-                `/articles?${ARTICLE_POPULATE}&sort[0]=publishedAt:desc&pagination[pageSize]=100&pagination[page]=${i + 2}`
+    try {
+      const first = await strapiGet<StrapiList<SArticle>>(
+        `/articles?${ARTICLE_POPULATE}&sort[0]=publishedAt:desc&pagination[pageSize]=100&pagination[page]=1`
+      )
+      const pages =
+        first.meta.pagination.pageCount > 1
+          ? await Promise.all(
+              Array.from({ length: first.meta.pagination.pageCount - 1 }, (_, i) =>
+                strapiGet<StrapiList<SArticle>>(
+                  `/articles?${ARTICLE_POPULATE}&sort[0]=publishedAt:desc&pagination[pageSize]=100&pagination[page]=${i + 2}`
+                )
               )
             )
-          )
-        : []
-
-    return [first.data, ...pages.map(p => p.data)].flat().map(mapArticle)
+          : []
+      return [first.data, ...pages.map(p => p.data)].flat().map(mapArticle)
+    } catch (err) {
+      console.error('[CMSNewsProvider] Strapi unreachable:', err)
+      return []
+    }
   }
 
   async getArticleBySlug(slug: string): Promise<Article | null> {
-    const res = await strapiGet<StrapiList<SArticle>>(
-      `/articles?${ARTICLE_POPULATE}&filters[slug][$eq]=${encodeURIComponent(slug)}&pagination[pageSize]=1`
-    )
-    return res.data[0] ? mapArticle(res.data[0]) : null
+    try {
+      const res = await strapiGet<StrapiList<SArticle>>(
+        `/articles?${ARTICLE_POPULATE}&filters[slug][$eq]=${encodeURIComponent(slug)}&pagination[pageSize]=1`
+      )
+      return res.data[0] ? mapArticle(res.data[0]) : null
+    } catch (err) {
+      console.error('[CMSNewsProvider] Strapi unreachable:', err)
+      return null
+    }
   }
 
   async getAllCategories(): Promise<Category[]> {
-    const res = await strapiGet<StrapiList<SCategory>>('/categories?pagination[pageSize]=100')
-    return res.data.map(mapCategory)
+    try {
+      const res = await strapiGet<StrapiList<SCategory>>('/categories?pagination[pageSize]=100')
+      return res.data.map(mapCategory)
+    } catch (err) {
+      console.error('[CMSNewsProvider] Strapi unreachable:', err)
+      return []
+    }
   }
 
   async getAllAuthors(): Promise<Author[]> {
-    const res = await strapiGet<StrapiList<SAuthor>>('/authors?populate[avatar]=true&pagination[pageSize]=100')
-    return res.data.map(mapAuthor)
+    try {
+      const res = await strapiGet<StrapiList<SAuthor>>('/authors?populate[avatar]=true&pagination[pageSize]=100')
+      return res.data.map(mapAuthor)
+    } catch (err) {
+      console.error('[CMSNewsProvider] Strapi unreachable:', err)
+      return []
+    }
   }
 }

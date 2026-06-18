@@ -13,13 +13,15 @@ export function NewsCard({ article }: Props) {
     <article className="group relative flex flex-col overflow-hidden rounded-sm border border-zinc-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md focus-within:ring-2 focus-within:ring-emerald-600 focus-within:ring-offset-1">
       {/* Cover image — gradient is the fallback when image is absent */}
       <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-emerald-800 to-emerald-950">
-        <Image
-          src={article.coverImage.src}
-          alt={article.coverImage.alt}
-          fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-        />
+        {article.coverImage.src && (
+          <Image
+            src={article.coverImage.src}
+            alt={article.coverImage.alt}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+          />
+        )}
       </div>
 
       {/* Content */}
