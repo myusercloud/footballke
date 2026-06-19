@@ -1,7 +1,8 @@
 // Server-side HTTP client for the Strapi v5 REST API.
 // Never used in client components — STRAPI_URL and STRAPI_API_TOKEN are server-only vars.
 
-const BASE = (process.env.STRAPI_URL ?? 'http://localhost:3001').replace(/\/$/, '') + '/api'
+const STRAPI_ORIGIN = (process.env.STRAPI_URL ?? 'http://localhost:3001').replace(/\/$/, '')
+const BASE = STRAPI_ORIGIN + '/api'
 const TOKEN = process.env.STRAPI_API_TOKEN
 
 export async function strapiGet<T>(path: string): Promise<T> {
@@ -21,4 +22,8 @@ export async function strapiGet<T>(path: string): Promise<T> {
 export type StrapiList<T> = {
   data: T[]
   meta: { pagination: { page: number; pageSize: number; pageCount: number; total: number } }
+}
+
+export function strapiMediaUrl(url: string): string {
+  return url.startsWith('http') ? url : `${STRAPI_ORIGIN}${url}`
 }

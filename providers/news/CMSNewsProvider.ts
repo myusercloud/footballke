@@ -1,7 +1,7 @@
 import type { Article, Author, Category, ContentBlock, InlineNode, InlineLink, CategoryColor } from "@/types/news"
 import type { NewsProvider } from "./NewsProvider"
 import { calculateReadingTime } from "@/lib/news.utils"
-import { strapiGet, type StrapiList } from "@/providers/strapi-client"
+import { strapiGet, strapiMediaUrl, type StrapiList } from "@/providers/strapi-client"
 
 // ── Strapi v5 raw shapes ───────────────────────────────────────────────────────
 
@@ -71,11 +71,7 @@ const ARTICLE_POPULATE = [
   'populate[author][populate][avatar]=true',
 ].join('&')
 
-const STRAPI_ORIGIN = (process.env.STRAPI_URL ?? 'http://localhost:3001').replace(/\/$/, '')
 
-function mediaUrl(url: string): string {
-  return url.startsWith('http') ? url : `${STRAPI_ORIGIN}${url}`
-}
 
 // ── Mappers ───────────────────────────────────────────────────────────────────
 
@@ -181,7 +177,7 @@ function mapContent(raw: SRichBlock[] | string | null): ContentBlock[] {
         if (!b.image?.url) return []
         return [{
           type: 'image',
-          src:  mediaUrl(b.image.url),
+          src:  strapiMediaUrl(b.image.url),
           alt:  b.image.alternativeText ?? '',
           ...(b.image.caption ? { caption: b.image.caption } : {}),
         }]
@@ -230,7 +226,7 @@ function mapAuthor(raw: SAuthor): Author {
     ...(raw.bio ? { bio: raw.bio } : {}),
     ...(raw.avatar ? {
       avatar: {
-        src: mediaUrl(raw.avatar.url),
+        src: strapiMediaUrl(raw.avatar.url),
         alt: raw.avatar.alternativeText ?? raw.name,
         width: raw.avatar.width ?? 64,
         height: raw.avatar.height ?? 64,
@@ -260,7 +256,7 @@ function mapArticle(raw: SArticle): Article {
     content,
     coverImage: raw.coverImage
       ? {
-          src: mediaUrl(raw.coverImage.url),
+          src: strapiMediaUrl(raw.coverImage.url),
           alt: raw.coverImage.alternativeText ?? raw.title,
           width: raw.coverImage.width ?? 1200,
           height: raw.coverImage.height ?? 630,

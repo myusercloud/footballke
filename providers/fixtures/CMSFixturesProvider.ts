@@ -1,32 +1,77 @@
 import type { Fixture, Team, Competition, Venue, MatchStatus } from "@/types/fixture"
 import type { FixturesProvider } from "./FixturesProvider"
-import { strapiGet, type StrapiList } from "@/providers/strapi-client"
+import { strapiGet, strapiMediaUrl, type StrapiList } from "@/providers/strapi-client"
 
 // ── Strapi v5 raw shapes ───────────────────────────────────────────────────────
+
+type SMedia = { url: string; alternativeText: string | null }
+
+type SClub = {
+  id: number; documentId: string
+  name: string; slug: string; shortName: string; abbreviation: string
+  primaryColor: string; secondaryColor: string
+  logo: SMedia | null
+  venueName: string | null; venueCity: string | null
+}
+
+type STournament = {
+  id: number; documentId: string
+  name: string; slug: string; shortName: string; edition: string
+  emblem: SMedia | null
+}
 
 type SFixture = {
   id: number; documentId: string
   matchStatus: string
   kickoff: string
   matchday: number | null
+  season: string | null
   featured: boolean
-  homeTeamId: string; homeTeamName: string; homeTeamShortName: string
-  homeTeamAbbreviation: string; homeTeamSlug: string
-  homeTeamLogo: string; homeTeamPrimaryColor: string
-  awayTeamId: string; awayTeamName: string; awayTeamShortName: string
-  awayTeamAbbreviation: string; awayTeamSlug: string
-  awayTeamLogo: string; awayTeamPrimaryColor: string
-  competitionId: string; competitionName: string
-  competitionSlug: string; competitionSeason: string
+  homeTeam: SClub | null
+  awayTeam: SClub | null
+  competition: STournament | null
   venueName: string | null; venueCity: string | null
   scoreHome: number | null; scoreAway: number | null
   liveMinute: number | null
   preview: string | null
 }
 
-// ── Mapper ────────────────────────────────────────────────────────────────────
+// ── Query ─────────────────────────────────────────────────────────────────────
 
-function mapFixture(raw: SFixture): Fixture {
+const FIXTURE_POPULATE = [
+  'populate[homeTeam][populate]=*',
+  'populate[awayTeam][populate]=*',
+  'populate[competition][populate]=*',
+].join('&')
+
+// ── Mappers ───────────────────────────────────────────────────────────────────
+
+function mapClub(club: SClub): Team {
+  return {
+    id: club.documentId,
+    name: club.name,
+    shortName: club.shortName,
+    abbreviation: club.abbreviation,
+    slug: club.slug,
+    logo: club.logo ? strapiMediaUrl(club.logo.url) : '',
+    colors: { primary: club.primaryColor, secondary: club.secondaryColor },
+  }
+}
+
+function mapTournament(t: STournament): Competition {
+  return {
+    id: t.documentId,
+    name: t.name,
+    slug: t.slug,
+    season: t.edition,
+    logo: t.emblem ? strapiMediaUrl(t.emblem.url) : '',
+    country: 'Kenya',
+  }
+}
+
+function mapFixture(raw: SFixture): Fixture | null {
+  if (!raw.homeTeam || !raw.awayTeam || !raw.competition) return null
+
   const hasScore = raw.scoreHome !== null && raw.scoreAway !== null
 
   return {
@@ -35,34 +80,11 @@ function mapFixture(raw: SFixture): Fixture {
     kickoff: raw.kickoff,
     ...(raw.matchday != null ? { matchday: raw.matchday } : {}),
     featured: raw.featured,
-    homeTeam: {
-      id: raw.homeTeamId,
-      name: raw.homeTeamName,
-      shortName: raw.homeTeamShortName,
-      abbreviation: raw.homeTeamAbbreviation,
-      slug: raw.homeTeamSlug,
-      logo: raw.homeTeamLogo,
-      colors: { primary: raw.homeTeamPrimaryColor, secondary: '' },
-    },
-    awayTeam: {
-      id: raw.awayTeamId,
-      name: raw.awayTeamName,
-      shortName: raw.awayTeamShortName,
-      abbreviation: raw.awayTeamAbbreviation,
-      slug: raw.awayTeamSlug,
-      logo: raw.awayTeamLogo,
-      colors: { primary: raw.awayTeamPrimaryColor, secondary: '' },
-    },
-    competition: {
-      id: raw.competitionId,
-      name: raw.competitionName,
-      slug: raw.competitionSlug,
-      season: raw.competitionSeason,
-      logo: '',
-      country: 'Kenya',
-    },
+    homeTeam: mapClub(raw.homeTeam),
+    awayTeam: mapClub(raw.awayTeam),
+    competition: mapTournament(raw.competition),
     venue: {
-      id: raw.venueName ?? `${raw.competitionId}-venue`,
+      id: raw.venueName ?? raw.documentId,
       name: raw.venueName ?? '',
       city: raw.venueCity ?? '',
     },
@@ -79,84 +101,72 @@ function mapFixture(raw: SFixture): Fixture {
 
 export class CMSFixturesProvider implements FixturesProvider {
   private async fetchAll(): Promise<SFixture[]> {
-    const first = await strapiGet<StrapiList<SFixture>>(
-      `/fixtures?sort[0]=kickoff:desc&pagination[pageSize]=100&pagination[page]=1`
-    )
-    const pages =
-      first.meta.pagination.pageCount > 1
-        ? await Promise.all(
-            Array.from({ length: first.meta.pagination.pageCount - 1 }, (_, i) =>
-              strapiGet<StrapiList<SFixture>>(
-                `/fixtures?sort[0]=kickoff:desc&pagination[pageSize]=100&pagination[page]=${i + 2}`
+    try {
+      const first = await strapiGet<StrapiList<SFixture>>(
+        `/fixtures?${FIXTURE_POPULATE}&sort[0]=kickoff:desc&pagination[pageSize]=100&pagination[page]=1`
+      )
+      const pages =
+        first.meta.pagination.pageCount > 1
+          ? await Promise.all(
+              Array.from({ length: first.meta.pagination.pageCount - 1 }, (_, i) =>
+                strapiGet<StrapiList<SFixture>>(
+                  `/fixtures?${FIXTURE_POPULATE}&sort[0]=kickoff:desc&pagination[pageSize]=100&pagination[page]=${i + 2}`
+                )
               )
             )
-          )
-        : []
-    return [first.data, ...pages.map(p => p.data)].flat()
+          : []
+      return [first.data, ...pages.map(p => p.data)].flat()
+    } catch (err) {
+      console.error('[CMSFixturesProvider] Strapi unreachable:', err)
+      return []
+    }
   }
 
   async getAllFixtures(): Promise<Fixture[]> {
-    return (await this.fetchAll()).map(mapFixture)
+    const raw = await this.fetchAll()
+    return raw.flatMap(f => {
+      const mapped = mapFixture(f)
+      return mapped ? [mapped] : []
+    })
   }
 
   async getFixtureById(id: string): Promise<Fixture | null> {
-    const res = await strapiGet<StrapiList<SFixture>>(
-      `/fixtures?filters[documentId][$eq]=${encodeURIComponent(id)}&pagination[pageSize]=1`
-    )
-    return res.data[0] ? mapFixture(res.data[0]) : null
+    try {
+      const res = await strapiGet<StrapiList<SFixture>>(
+        `/fixtures?${FIXTURE_POPULATE}&filters[documentId][$eq]=${encodeURIComponent(id)}&pagination[pageSize]=1`
+      )
+      const raw = res.data[0]
+      return raw ? mapFixture(raw) : null
+    } catch (err) {
+      console.error('[CMSFixturesProvider] Strapi unreachable:', err)
+      return null
+    }
   }
 
   async getAllCompetitions(): Promise<Competition[]> {
-    const fixtures = await this.fetchAll()
+    const fixtures = await this.getAllFixtures()
     const seen = new Map<string, Competition>()
     for (const f of fixtures) {
-      if (!seen.has(f.competitionId)) {
-        seen.set(f.competitionId, {
-          id: f.competitionId,
-          name: f.competitionName,
-          slug: f.competitionSlug,
-          season: f.competitionSeason,
-          logo: '',
-          country: 'Kenya',
-        })
-      }
+      if (!seen.has(f.competition.id)) seen.set(f.competition.id, f.competition)
     }
     return Array.from(seen.values())
   }
 
   async getAllTeams(): Promise<Team[]> {
-    const fixtures = await this.fetchAll()
+    const fixtures = await this.getAllFixtures()
     const seen = new Map<string, Team>()
     for (const f of fixtures) {
-      if (!seen.has(f.homeTeamId)) {
-        seen.set(f.homeTeamId, {
-          id: f.homeTeamId, name: f.homeTeamName, shortName: f.homeTeamShortName,
-          abbreviation: f.homeTeamAbbreviation, slug: f.homeTeamSlug,
-          logo: f.homeTeamLogo, colors: { primary: f.homeTeamPrimaryColor, secondary: '' },
-        })
-      }
-      if (!seen.has(f.awayTeamId)) {
-        seen.set(f.awayTeamId, {
-          id: f.awayTeamId, name: f.awayTeamName, shortName: f.awayTeamShortName,
-          abbreviation: f.awayTeamAbbreviation, slug: f.awayTeamSlug,
-          logo: f.awayTeamLogo, colors: { primary: f.awayTeamPrimaryColor, secondary: '' },
-        })
-      }
+      if (!seen.has(f.homeTeam.id)) seen.set(f.homeTeam.id, f.homeTeam)
+      if (!seen.has(f.awayTeam.id)) seen.set(f.awayTeam.id, f.awayTeam)
     }
     return Array.from(seen.values())
   }
 
   async getAllVenues(): Promise<Venue[]> {
-    const fixtures = await this.fetchAll()
+    const fixtures = await this.getAllFixtures()
     const seen = new Map<string, Venue>()
     for (const f of fixtures) {
-      if (f.venueName && !seen.has(f.venueName)) {
-        seen.set(f.venueName, {
-          id: f.venueName,
-          name: f.venueName,
-          city: f.venueCity ?? '',
-        })
-      }
+      if (f.venue.name && !seen.has(f.venue.id)) seen.set(f.venue.id, f.venue)
     }
     return Array.from(seen.values())
   }
