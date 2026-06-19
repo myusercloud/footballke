@@ -33,11 +33,7 @@ type STransfer = {
 
 // ── Query ─────────────────────────────────────────────────────────────────────
 
-const TRANSFER_POPULATE = [
-  'populate[player]=*',
-  'populate[fromClub]=*',
-  'populate[toClub]=*',
-].join('&')
+const TRANSFER_POPULATE = 'populate=*'
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
