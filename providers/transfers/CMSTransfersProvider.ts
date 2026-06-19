@@ -4,14 +4,24 @@ import { strapiGet, type StrapiList } from "@/providers/strapi-client"
 
 // ── Strapi v5 raw shapes ───────────────────────────────────────────────────────
 
+type SPlayer = {
+  id: number; documentId: string
+  name: string; slug: string
+  position: string
+  nationalityName: string
+  dateOfBirth: string
+}
+
+type SClub = {
+  id: number; documentId: string
+  name: string; shortName: string; slug: string; country: string
+}
+
 type STransfer = {
   id: number; documentId: string
-  playerName: string; playerPosition: string; playerNationality: string
-  playerAge: number | null
-  fromClubName: string | null; fromClubShortName: string | null
-  fromClubSlug: string | null; fromClubCountry: string | null
-  toClubName: string | null; toClubShortName: string | null
-  toClubSlug: string | null; toClubCountry: string | null
+  player: SPlayer | null
+  fromClub: SClub | null
+  toClub: SClub | null
   fee: string | null
   transferStatus: string
   confidence: string | null
@@ -20,6 +30,14 @@ type STransfer = {
   sourceLabel: string | null
   linkedArticleSlug: string | null
 }
+
+// ── Query ─────────────────────────────────────────────────────────────────────
+
+const TRANSFER_POPULATE = [
+  'populate[player]=*',
+  'populate[fromClub]=*',
+  'populate[toClub]=*',
+].join('&')
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -31,35 +49,41 @@ const FREE_AGENT: TransferClub = {
   country: '',
 }
 
-function mapClub(
-  name: string | null,
-  shortName: string | null,
-  slug: string | null,
-  country: string | null,
-): TransferClub {
-  if (!slug) return FREE_AGENT
+function computeAge(dob: string): number {
+  const birth = new Date(dob)
+  const now = new Date()
+  let age = now.getFullYear() - birth.getFullYear()
+  const m = now.getMonth() - birth.getMonth()
+  if (m < 0 || (m === 0 && now.getDate() < birth.getDate())) age--
+  return age
+}
+
+function mapClub(club: SClub | null): TransferClub {
+  if (!club) return FREE_AGENT
   return {
-    id: slug,
-    name: name ?? slug,
-    shortName: shortName ?? name ?? slug,
-    slug,
-    country: country ?? '',
+    id: club.documentId,
+    name: club.name,
+    shortName: club.shortName,
+    slug: club.slug,
+    country: club.country,
   }
 }
 
 // ── Mapper ────────────────────────────────────────────────────────────────────
 
-function mapTransfer(raw: STransfer): Transfer {
+function mapTransfer(raw: STransfer): Transfer | null {
+  if (!raw.player) return null
+
   return {
     id: raw.documentId,
     player: {
-      name: raw.playerName,
-      position: raw.playerPosition,
-      nationality: raw.playerNationality,
-      age: raw.playerAge ?? 0,
+      name: raw.player.name,
+      position: raw.player.position,
+      nationality: raw.player.nationalityName,
+      age: computeAge(raw.player.dateOfBirth),
     },
-    fromClub: mapClub(raw.fromClubName, raw.fromClubShortName, raw.fromClubSlug, raw.fromClubCountry),
-    toClub:   mapClub(raw.toClubName,   raw.toClubShortName,   raw.toClubSlug,   raw.toClubCountry),
+    fromClub: mapClub(raw.fromClub),
+    toClub: mapClub(raw.toClub),
     fee: raw.fee ?? 'Undisclosed',
     status: raw.transferStatus as TransferStatus,
     ...(raw.confidence ? { confidence: raw.confidence as TransferConfidence } : {}),
@@ -73,21 +97,34 @@ function mapTransfer(raw: STransfer): Transfer {
 // ── Provider ──────────────────────────────────────────────────────────────────
 
 export class CMSTransfersProvider implements TransfersProvider {
-  async getAllTransfers(): Promise<Transfer[]> {
-    const first = await strapiGet<StrapiList<STransfer>>(
-      `/transfers?sort[0]=transferDate:desc&pagination[pageSize]=100&pagination[page]=1`
-    )
-    const pages =
-      first.meta.pagination.pageCount > 1
-        ? await Promise.all(
-            Array.from({ length: first.meta.pagination.pageCount - 1 }, (_, i) =>
-              strapiGet<StrapiList<STransfer>>(
-                `/transfers?sort[0]=transferDate:desc&pagination[pageSize]=100&pagination[page]=${i + 2}`
+  private async fetchAll(): Promise<STransfer[]> {
+    try {
+      const first = await strapiGet<StrapiList<STransfer>>(
+        `/transfers?${TRANSFER_POPULATE}&sort[0]=transferDate:desc&pagination[pageSize]=100&pagination[page]=1`
+      )
+      const pages =
+        first.meta.pagination.pageCount > 1
+          ? await Promise.all(
+              Array.from({ length: first.meta.pagination.pageCount - 1 }, (_, i) =>
+                strapiGet<StrapiList<STransfer>>(
+                  `/transfers?${TRANSFER_POPULATE}&sort[0]=transferDate:desc&pagination[pageSize]=100&pagination[page]=${i + 2}`
+                )
               )
             )
-          )
-        : []
-    return [first.data, ...pages.map(p => p.data)].flat().map(mapTransfer)
+          : []
+      return [first.data, ...pages.map(p => p.data)].flat()
+    } catch (err) {
+      console.error('[CMSTransfersProvider] Strapi unreachable:', err)
+      return []
+    }
+  }
+
+  async getAllTransfers(): Promise<Transfer[]> {
+    const raw = await this.fetchAll()
+    return raw.flatMap(t => {
+      const mapped = mapTransfer(t)
+      return mapped ? [mapped] : []
+    })
   }
 
   async getAllClubs(): Promise<TransferClub[]> {
