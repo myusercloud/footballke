@@ -16,6 +16,8 @@ import type {
   StandingsProvider,
 } from "@/providers/standings/StandingsProvider";
 import { getStandingsProvider } from "@/providers/config";
+import { computeRowsFromFixtures, extractClubsFromFixtures } from "@/lib/standings-from-fixtures";
+import fixturesService from "@/services/fixtures.service";
 
 // ── Sort helpers ──────────────────────────────────────────────────────────────
 
@@ -202,6 +204,38 @@ class StandingsService implements IStandingsService {
     };
   }
 
+  /**
+   * Fetches all fulltime fixtures for a competition and, if any exist,
+   * overlays the stored standing rows with values computed from those fixtures.
+   * Falls back to stored rows when no finished fixtures are available yet.
+   */
+  private async resolveRows(
+    entry: ProviderStandingsEntry,
+    storedClubs: Club[],
+    competitions: StandingsCompetition[]
+  ): Promise<{ entry: ProviderStandingsEntry; clubs: Club[] }> {
+    const comp = competitions.find((c) => c.id === entry.competitionId);
+    if (!comp) return { entry, clubs: storedClubs };
+
+    try {
+      const { fixtures: finished } = await fixturesService.getFixtures({
+        competitionSlug: comp.slug,
+        status: 'fulltime',
+        pageSize: 1000,
+      });
+
+      if (finished.length > 0) {
+        const computedRows = computeRowsFromFixtures(finished);
+        const clubsFromFixtures = extractClubsFromFixtures(finished);
+        return { entry: { ...entry, rows: computedRows }, clubs: clubsFromFixtures };
+      }
+    } catch {
+      // fixtures service unavailable — fall through to stored rows
+    }
+
+    return { entry, clubs: storedClubs };
+  }
+
   // ── IStandingsService ───────────────────────────────────────────────────────
 
   async getStandings(
@@ -209,7 +243,7 @@ class StandingsService implements IStandingsService {
   ): Promise<StandingsResponse | null> {
     const { competitionSlug, season, sortBy = "position" } = params;
 
-    const [entries, clubs, competitions] = await Promise.all([
+    const [entries, storedClubs, competitions] = await Promise.all([
       this.provider.getAllEntries(),
       this.provider.getAllClubs(),
       this.provider.getAllCompetitions(),
@@ -218,7 +252,8 @@ class StandingsService implements IStandingsService {
     const entry = this.findEntry(entries, competitions, competitionSlug, season);
     if (!entry) return null;
 
-    const table = this.buildTable(entry, clubs, competitions, sortBy);
+    const { entry: resolvedEntry, clubs } = await this.resolveRows(entry, storedClubs, competitions);
+    const table = this.buildTable(resolvedEntry, clubs, competitions, sortBy);
 
     return {
       table,
@@ -232,7 +267,7 @@ class StandingsService implements IStandingsService {
     competitionSlug?: string,
     season?: string
   ): Promise<StandingRow | null> {
-    const [entries, clubs, competitions] = await Promise.all([
+    const [entries, storedClubs, competitions] = await Promise.all([
       this.provider.getAllEntries(),
       this.provider.getAllClubs(),
       this.provider.getAllCompetitions(),
@@ -241,10 +276,8 @@ class StandingsService implements IStandingsService {
     const entry = this.findEntry(entries, competitions, competitionSlug, season);
     if (!entry) return null;
 
-    const club = clubs.find((c) => c.slug === clubSlug);
-    if (!club) return null;
-
-    const table = this.buildTable(entry, clubs, competitions);
+    const { entry: resolvedEntry, clubs } = await this.resolveRows(entry, storedClubs, competitions);
+    const table = this.buildTable(resolvedEntry, clubs, competitions);
     return table.rows.find((r) => r.club.slug === clubSlug) ?? null;
   }
 
@@ -252,7 +285,7 @@ class StandingsService implements IStandingsService {
     competitionSlug: string,
     season?: string
   ): Promise<StandingsTable | null> {
-    const [entries, clubs, competitions] = await Promise.all([
+    const [entries, storedClubs, competitions] = await Promise.all([
       this.provider.getAllEntries(),
       this.provider.getAllClubs(),
       this.provider.getAllCompetitions(),
@@ -260,7 +293,9 @@ class StandingsService implements IStandingsService {
 
     const entry = this.findEntry(entries, competitions, competitionSlug, season);
     if (!entry) return null;
-    return this.buildTable(entry, clubs, competitions);
+
+    const { entry: resolvedEntry, clubs } = await this.resolveRows(entry, storedClubs, competitions);
+    return this.buildTable(resolvedEntry, clubs, competitions);
   }
 
   async getSeasons(competitionSlug?: string): Promise<Season[]> {

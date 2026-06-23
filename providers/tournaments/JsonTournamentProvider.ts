@@ -138,6 +138,7 @@ function mapFixture(
     awayForm: [],
     relatedNewsSlugs: [],
     featured: raw.featured,
+    goalEvents: [],
   };
 }
 

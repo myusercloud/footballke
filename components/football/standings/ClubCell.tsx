@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import type { Club } from "@/types/standings";
 
@@ -5,6 +6,7 @@ type Props = {
   club: Club;
   /** Show shortName instead of full name. Used in compact mobile layouts. */
   compact?: boolean;
+  href?: string;
 };
 
 // Derives a short badge label from the club's shortName:
@@ -22,7 +24,7 @@ function clubInitials(shortName: string): string {
     .toUpperCase();
 }
 
-export function ClubCell({ club, compact = false }: Props) {
+export function ClubCell({ club, compact = false, href }: Props) {
   return (
     <div className="flex min-w-0 items-center gap-2.5">
       {club.logo ? (
@@ -48,9 +50,18 @@ export function ClubCell({ club, compact = false }: Props) {
         </div>
       )}
 
-      <span className="truncate text-sm font-bold">
-        {compact ? club.shortName : club.name}
-      </span>
+      {href ? (
+        <Link
+          href={href}
+          className="truncate text-sm font-bold hover:text-emerald-700 focus:outline-none focus-visible:underline"
+        >
+          {compact ? club.shortName : club.name}
+        </Link>
+      ) : (
+        <span className="truncate text-sm font-bold">
+          {compact ? club.shortName : club.name}
+        </span>
+      )}
     </div>
   );
 }

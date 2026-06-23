@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Fixture } from "@/types/fixture";
 import { TeamBadge } from "./TeamBadge";
 import { MatchStatusBadge } from "./MatchStatus";
@@ -18,10 +19,15 @@ export function ScoreBoard({ fixture }: Props) {
     <div className="flex items-center gap-4 sm:gap-6">
       {/* Home */}
       <div className="flex flex-1 flex-col items-center gap-2 text-center">
-        <TeamBadge team={homeTeam} size="lg" />
-        <p className="text-sm font-black leading-tight tracking-tight sm:text-base">
+        <Link href={`/clubs/${homeTeam.slug}`} aria-label={homeTeam.name}>
+          <TeamBadge team={homeTeam} size="lg" />
+        </Link>
+        <Link
+          href={`/clubs/${homeTeam.slug}`}
+          className="text-sm font-black leading-tight tracking-tight hover:text-emerald-700 focus:outline-none focus-visible:underline sm:text-base"
+        >
           {homeTeam.shortName}
-        </p>
+        </Link>
       </div>
 
       {/* Centre — score or kickoff time */}
@@ -57,10 +63,15 @@ export function ScoreBoard({ fixture }: Props) {
 
       {/* Away */}
       <div className="flex flex-1 flex-col items-center gap-2 text-center">
-        <TeamBadge team={awayTeam} size="lg" />
-        <p className="text-sm font-black leading-tight tracking-tight sm:text-base">
+        <Link href={`/clubs/${awayTeam.slug}`} aria-label={awayTeam.name}>
+          <TeamBadge team={awayTeam} size="lg" />
+        </Link>
+        <Link
+          href={`/clubs/${awayTeam.slug}`}
+          className="text-sm font-black leading-tight tracking-tight hover:text-emerald-700 focus:outline-none focus-visible:underline sm:text-base"
+        >
           {awayTeam.shortName}
-        </p>
+        </Link>
       </div>
     </div>
   );

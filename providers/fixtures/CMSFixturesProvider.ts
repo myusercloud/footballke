@@ -1,4 +1,4 @@
-import type { Fixture, Team, Competition, Venue, MatchStatus } from "@/types/fixture"
+import type { Fixture, GoalEvent, Team, Competition, Venue, MatchStatus } from "@/types/fixture"
 import type { FixturesProvider } from "./FixturesProvider"
 import { strapiGet, strapiMediaUrl, type StrapiList } from "@/providers/strapi-client"
 
@@ -20,6 +20,16 @@ type STournament = {
   emblem: SMedia | null
 }
 
+type SGoalEvent = {
+  id: number; documentId: string
+  team: 'home' | 'away'
+  minute: number
+  addedTime: number | null
+  isOwnGoal: boolean
+  isPenalty: boolean
+  player: { documentId: string; name: string; slug: string } | null
+}
+
 type SFixture = {
   id: number; documentId: string
   matchStatus: string
@@ -34,6 +44,7 @@ type SFixture = {
   scoreHome: number | null; scoreAway: number | null
   liveMinute: number | null
   preview: string | null
+  goalEvents: SGoalEvent[] | null
 }
 
 // ── Query ─────────────────────────────────────────────────────────────────────
@@ -42,6 +53,7 @@ const FIXTURE_POPULATE = [
   'populate[homeTeam][populate]=*',
   'populate[awayTeam][populate]=*',
   'populate[competition][populate]=*',
+  'populate[goalEvents][populate][player]=true',
 ].join('&')
 
 // ── Mappers ───────────────────────────────────────────────────────────────────
@@ -94,6 +106,19 @@ function mapFixture(raw: SFixture): Fixture | null {
     homeForm: [],
     awayForm: [],
     relatedNewsSlugs: [],
+    goalEvents: (raw.goalEvents ?? []).flatMap((g): GoalEvent[] => {
+      if (!g.player) return []
+      return [{
+        id: g.documentId,
+        playerName: g.player.name,
+        playerSlug: g.player.slug,
+        team: g.team,
+        minute: g.minute,
+        ...(g.addedTime != null ? { addedTime: g.addedTime } : {}),
+        isOwnGoal: g.isOwnGoal ?? false,
+        isPenalty: g.isPenalty ?? false,
+      }]
+    }),
   }
 }
 

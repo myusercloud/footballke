@@ -49,7 +49,7 @@ export function StandingsRow({
 
       {/* Club name */}
       <td className="py-2.5 pr-4 min-w-0">
-        <ClubCell club={row.club} />
+        <ClubCell club={row.club} href={`/clubs/${row.club.slug}`} />
       </td>
 
       {/* Played */}

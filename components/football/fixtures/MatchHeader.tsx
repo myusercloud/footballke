@@ -1,7 +1,9 @@
+import Link from "next/link";
 import type { Fixture } from "@/types/fixture";
 import { ScoreBoard } from "./ScoreBoard";
 import { FormBadges } from "./FormBadges";
 import { formatKickoffFull, formatKickoffTime } from "@/lib/fixture.utils";
+import { slugifyVenue } from "@/lib/venue.utils";
 
 type Props = {
   fixture: Fixture;
@@ -33,7 +35,14 @@ export function MatchHeader({ fixture }: Props) {
               {matchday != null ? ` · Matchday ${matchday}` : ""}
             </p>
             <p className="mt-0.5 text-xs text-zinc-500">
-              {venue.name}
+              {venue.name ? (
+                <Link
+                  href={`/venues/${slugifyVenue(venue.name)}`}
+                  className="hover:text-emerald-700 hover:underline focus:outline-none focus-visible:underline"
+                >
+                  {venue.name}
+                </Link>
+              ) : null}
               {venue.city ? `, ${venue.city}` : ""}
               {venue.capacity != null
                 ? ` · ${venue.capacity.toLocaleString()} capacity`
@@ -59,9 +68,12 @@ export function MatchHeader({ fixture }: Props) {
         {isLiveOrPlayed && (
           <div className="mt-5 flex items-start justify-between gap-4 border-t border-zinc-100 pt-5 sm:px-6">
             <div className="flex flex-1 flex-col items-center gap-1">
-              <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-zinc-400">
+              <Link
+                href={`/clubs/${homeTeam.slug}`}
+                className="text-[9px] font-bold uppercase tracking-[0.18em] text-zinc-400 hover:text-emerald-700 focus:outline-none focus-visible:underline"
+              >
                 {homeTeam.shortName} form
-              </span>
+              </Link>
               <FormBadges
                 form={homeForm}
                 label={`${homeTeam.shortName} recent form`}
@@ -69,9 +81,12 @@ export function MatchHeader({ fixture }: Props) {
             </div>
             <div className="shrink-0" aria-hidden="true" />
             <div className="flex flex-1 flex-col items-center gap-1">
-              <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-zinc-400">
+              <Link
+                href={`/clubs/${awayTeam.slug}`}
+                className="text-[9px] font-bold uppercase tracking-[0.18em] text-zinc-400 hover:text-emerald-700 focus:outline-none focus-visible:underline"
+              >
                 {awayTeam.shortName} form
-              </span>
+              </Link>
               <FormBadges
                 form={awayForm}
                 label={`${awayTeam.shortName} recent form`}
