@@ -91,43 +91,58 @@ function mapPlayer(raw: SPlayer): Player {
 
 export class CMSPlayerProvider implements PlayerProvider {
   async getAllPlayers(): Promise<Player[]> {
-    const first = await strapiGet<StrapiList<SPlayer>>(
-      `/players?${PLAYER_POPULATE}&sort[0]=name:asc&pagination[pageSize]=100&pagination[page]=1`
-    )
-    const pages =
-      first.meta.pagination.pageCount > 1
-        ? await Promise.all(
-            Array.from({ length: first.meta.pagination.pageCount - 1 }, (_, i) =>
-              strapiGet<StrapiList<SPlayer>>(
-                `/players?${PLAYER_POPULATE}&sort[0]=name:asc&pagination[pageSize]=100&pagination[page]=${i + 2}`
+    try {
+      const first = await strapiGet<StrapiList<SPlayer>>(
+        `/players?${PLAYER_POPULATE}&sort[0]=name:asc&pagination[pageSize]=100&pagination[page]=1`
+      )
+      const pages =
+        first.meta.pagination.pageCount > 1
+          ? await Promise.all(
+              Array.from({ length: first.meta.pagination.pageCount - 1 }, (_, i) =>
+                strapiGet<StrapiList<SPlayer>>(
+                  `/players?${PLAYER_POPULATE}&sort[0]=name:asc&pagination[pageSize]=100&pagination[page]=${i + 2}`
+                )
               )
             )
-          )
-        : []
-    return [first.data, ...pages.map(p => p.data)].flat().map(mapPlayer)
+          : []
+      return [first.data, ...pages.map(p => p.data)].flat().map(mapPlayer)
+    } catch (err) {
+      console.error('[CMSPlayerProvider] Strapi unreachable:', err)
+      return []
+    }
   }
 
   async getPlayerBySlug(slug: string): Promise<Player | null> {
-    const res = await strapiGet<StrapiList<SPlayer>>(
-      `/players?${PLAYER_POPULATE}&filters[slug][$eq]=${encodeURIComponent(slug)}&pagination[pageSize]=1`
-    )
-    return res.data[0] ? mapPlayer(res.data[0]) : null
+    try {
+      const res = await strapiGet<StrapiList<SPlayer>>(
+        `/players?${PLAYER_POPULATE}&filters[slug][$eq]=${encodeURIComponent(slug)}&pagination[pageSize]=1`
+      )
+      return res.data[0] ? mapPlayer(res.data[0]) : null
+    } catch (err) {
+      console.error('[CMSPlayerProvider] Strapi unreachable:', err)
+      return null
+    }
   }
 
   async getPlayersByClub(clubSlug: string): Promise<Player[]> {
-    const first = await strapiGet<StrapiList<SPlayer>>(
-      `/players?${PLAYER_POPULATE}&filters[club][slug][$eq]=${encodeURIComponent(clubSlug)}&sort[0]=jerseyNumber:asc&pagination[pageSize]=100&pagination[page]=1`
-    )
-    const pages =
-      first.meta.pagination.pageCount > 1
-        ? await Promise.all(
-            Array.from({ length: first.meta.pagination.pageCount - 1 }, (_, i) =>
-              strapiGet<StrapiList<SPlayer>>(
-                `/players?${PLAYER_POPULATE}&filters[club][slug][$eq]=${encodeURIComponent(clubSlug)}&sort[0]=jerseyNumber:asc&pagination[pageSize]=100&pagination[page]=${i + 2}`
+    try {
+      const first = await strapiGet<StrapiList<SPlayer>>(
+        `/players?${PLAYER_POPULATE}&filters[club][slug][$eq]=${encodeURIComponent(clubSlug)}&sort[0]=jerseyNumber:asc&pagination[pageSize]=100&pagination[page]=1`
+      )
+      const pages =
+        first.meta.pagination.pageCount > 1
+          ? await Promise.all(
+              Array.from({ length: first.meta.pagination.pageCount - 1 }, (_, i) =>
+                strapiGet<StrapiList<SPlayer>>(
+                  `/players?${PLAYER_POPULATE}&filters[club][slug][$eq]=${encodeURIComponent(clubSlug)}&sort[0]=jerseyNumber:asc&pagination[pageSize]=100&pagination[page]=${i + 2}`
+                )
               )
             )
-          )
-        : []
-    return [first.data, ...pages.map(p => p.data)].flat().map(mapPlayer)
+          : []
+      return [first.data, ...pages.map(p => p.data)].flat().map(mapPlayer)
+    } catch (err) {
+      console.error('[CMSPlayerProvider] Strapi unreachable:', err)
+      return []
+    }
   }
 }

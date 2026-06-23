@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getClub, getClubs, getRelatedClubs } from "@/lib/clubs.cache";
 import { getPlayersByClub } from "@/lib/players.cache";
 import { getClubFixtures } from "@/lib/fixtures.cache";
+import { getNews } from "@/lib/news.cache";
 import { ClubHeader } from "@/components/football/clubs/ClubHeader";
 import { ClubStats } from "@/components/football/clubs/ClubStats";
 import { ClubAchievements } from "@/components/football/clubs/ClubAchievements";
@@ -77,11 +78,12 @@ function buildJsonLd(club: Awaited<ReturnType<typeof getClub>>) {
 export default async function ClubProfilePage({ params }: PageProps) {
   const { slug } = await params;
 
-  const [club, players, fixtures, relatedClubs] = await Promise.all([
+  const [club, players, fixtures, relatedClubs, { articles: recentNews }] = await Promise.all([
     getClub(slug),
     getPlayersByClub(slug),
     getClubFixtures(slug, 5),
     getRelatedClubs(slug, 4),
+    getNews({ pageSize: 4 }),
   ]);
 
   if (!club) notFound();
@@ -171,8 +173,7 @@ export default async function ClubProfilePage({ params }: PageProps) {
               <ClubAchievements achievements={club.achievements} />
             )}
 
-            {/* News placeholder — news module does not expose club filter yet */}
-            <ClubNewsPreview articles={[]} />
+            <ClubNewsPreview articles={recentNews} />
           </aside>
         </div>
 
