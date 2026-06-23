@@ -10,8 +10,9 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       // Strapi CMS local dev — media uploads served from the CMS container
       { protocol: "http", hostname: "localhost", port: "3001", pathname: "/uploads/**" },
-      // Strapi Cloud production
+      // Strapi Cloud production (API host + media CDN host)
       { protocol: "https", hostname: "*.strapiapp.com", pathname: "/uploads/**" },
+      { protocol: "https", hostname: "*.media.strapiapp.com", pathname: "/**" },
       // Cloudinary CDN
       { protocol: "https", hostname: "res.cloudinary.com", pathname: "/**" },
     ],
