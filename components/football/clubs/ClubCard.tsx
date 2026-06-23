@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Club } from "@/types/club";
 
 type Props = { club: Club };
@@ -22,15 +23,20 @@ export function ClubCard({ club }: Props) {
       />
 
       <div className="flex flex-1 flex-col p-4 sm:p-5">
-        {/* Logo placeholder + name */}
         <div className="flex items-center gap-3">
-          <div
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xs font-black text-white"
-            style={{ backgroundColor: club.colors.primary }}
-            aria-hidden="true"
-          >
-            {club.abbreviation}
-          </div>
+          {club.logo ? (
+            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full" aria-hidden="true">
+              <Image src={club.logo} alt={club.name} fill sizes="48px" className="object-contain p-1" />
+            </div>
+          ) : (
+            <div
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xs font-black text-white"
+              style={{ backgroundColor: club.colors.primary }}
+              aria-hidden="true"
+            >
+              {club.abbreviation}
+            </div>
+          )}
 
           <div className="min-w-0">
             <h3 className="truncate text-sm font-black leading-tight tracking-tight">

@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { label: "Fixtures",  href: "/fixtures",                prefix: "/fixtures",  category: null        },
   { label: "Table",     href: "/standings",               prefix: "/standings", category: null        },
   { label: "Clubs",     href: "/clubs",                   prefix: "/clubs",     category: null        },
+  { label: "Players",   href: "/players",                 prefix: "/players",   category: null        },
   { label: "Transfers", href: "/transfers",               prefix: "/transfers", category: null        },
   { label: "Opinion",   href: "/news?category=opinion",   prefix: "/news",      category: "opinion"   },
 ] as const;

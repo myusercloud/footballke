@@ -9,7 +9,7 @@ function NavFallback() {
       aria-label="Primary navigation"
       className="flex flex-wrap gap-1 text-sm font-semibold text-zinc-700"
     >
-      {["News", "Fixtures", "Table", "Clubs", "Transfers", "Opinion"].map((label) => (
+      {["News", "Fixtures", "Table", "Clubs", "Players", "Transfers", "Opinion"].map((label) => (
         <span
           key={label}
           className="rounded px-3 py-1.5 text-zinc-400 sm:px-4 sm:py-2"
