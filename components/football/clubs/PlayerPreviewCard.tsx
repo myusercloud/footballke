@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Player } from "@/types/player";
 
 type Props = { player: Player };
@@ -6,10 +7,16 @@ type Props = { player: Player };
 export function PlayerPreviewCard({ player }: Props) {
   return (
     <li className="group relative flex items-center gap-3 rounded-sm px-3 py-2 transition-colors hover:bg-zinc-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-emerald-600">
-      {/* Jersey number */}
-      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-xs font-black text-zinc-600">
-        {player.jerseyNumber}
-      </span>
+      {/* Player photo or jersey number fallback */}
+      {player.image ? (
+        <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full" aria-hidden="true">
+          <Image src={player.image} alt={player.name} fill sizes="32px" className="object-cover" />
+        </div>
+      ) : (
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-xs font-black text-zinc-600" aria-hidden="true">
+          {player.jerseyNumber}
+        </span>
+      )}
 
       {/* Name + position */}
       <div className="min-w-0 flex-1">

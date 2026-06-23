@@ -21,13 +21,13 @@ type STournament = {
 }
 
 type SGoalEvent = {
-  id: number; documentId: string
-  team: 'home' | 'away'
+  id: number
+  player?: { name: string; slug: string } | null
+  club?: { slug: string } | null
   minute: number
-  addedTime: number | null
-  isOwnGoal: boolean
-  isPenalty: boolean
-  player: { documentId: string; name: string; slug: string } | null
+  addedTime?: number | null
+  isOwnGoal?: boolean | null
+  isPenalty?: boolean | null
 }
 
 type SFixture = {
@@ -54,6 +54,7 @@ const FIXTURE_POPULATE = [
   'populate[awayTeam][populate]=*',
   'populate[competition][populate]=*',
   'populate[goalEvents][populate][player]=true',
+  'populate[goalEvents][populate][club]=true',
 ].join('&')
 
 // ── Mappers ───────────────────────────────────────────────────────────────────
@@ -107,12 +108,13 @@ function mapFixture(raw: SFixture): Fixture | null {
     awayForm: [],
     relatedNewsSlugs: [],
     goalEvents: (raw.goalEvents ?? []).flatMap((g): GoalEvent[] => {
-      if (!g.player) return []
+      if (!g.player || !g.club) return []
+      const team = g.club.slug === raw.homeTeam?.slug ? 'home' : 'away'
       return [{
-        id: g.documentId,
+        id: String(g.id),
         playerName: g.player.name,
         playerSlug: g.player.slug,
-        team: g.team,
+        team,
         minute: g.minute,
         ...(g.addedTime != null ? { addedTime: g.addedTime } : {}),
         isOwnGoal: g.isOwnGoal ?? false,
