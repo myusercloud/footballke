@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Player } from "@/types/player";
 
 type Props = { player: Player; clubColor?: string };
@@ -11,14 +12,25 @@ export function PlayerProfileHeader({ player, clubColor = "#006B2D" }: Props) {
     >
       <div className="px-6 py-8 sm:px-8 sm:py-10">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
-          {/* Photo placeholder */}
-          <div
-            className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full border-4 border-white/20 text-3xl font-black text-white/50"
-            style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
-            aria-hidden="true"
-          >
-            {player.jerseyNumber}
-          </div>
+          {player.image ? (
+            <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full border-4 border-white/20">
+              <Image
+                src={player.image}
+                alt={player.name}
+                fill
+                sizes="96px"
+                className="object-cover"
+              />
+            </div>
+          ) : (
+            <div
+              className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full border-4 border-white/20 text-3xl font-black text-white/50"
+              style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+              aria-hidden="true"
+            >
+              {player.jerseyNumber}
+            </div>
+          )}
 
           {/* Identity */}
           <div className="flex-1 text-white">

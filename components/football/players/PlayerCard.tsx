@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Player } from "@/types/player";
 
 type Props = { player: Player; clubColor?: string };
@@ -29,13 +30,25 @@ export function PlayerCard({ player, clubColor = "#006B2D" }: Props) {
       <div className="p-4">
         {/* Top row */}
         <div className="flex items-start justify-between gap-2">
-          <div
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-black text-white"
-            style={{ backgroundColor: clubColor }}
-            aria-hidden="true"
-          >
-            {player.jerseyNumber}
-          </div>
+          {player.image ? (
+            <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full" aria-hidden="true">
+              <Image
+                src={player.image}
+                alt={player.name}
+                fill
+                sizes="40px"
+                className="object-cover"
+              />
+            </div>
+          ) : (
+            <div
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-black text-white"
+              style={{ backgroundColor: clubColor }}
+              aria-hidden="true"
+            >
+              {player.jerseyNumber}
+            </div>
+          )}
           <span className="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-zinc-400">
             {POSITION_SHORT[player.position] ?? player.position}
           </span>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Article } from "@/types/news";
 import { formatDate } from "@/lib/news.utils";
 
@@ -28,12 +29,24 @@ export function ArticleMeta({ article }: Props) {
       {/* Author card */}
       <div className="rounded-sm border border-zinc-200 bg-white p-5 shadow-sm">
         <div className="flex items-start gap-4">
-          <div
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-emerald-800 text-sm font-black text-white"
-            aria-hidden="true"
-          >
-            {article.author.name.charAt(0)}
-          </div>
+          {article.author.avatar ? (
+            <Image
+              src={article.author.avatar.src}
+              alt={article.author.avatar.alt}
+              width={44}
+              height={44}
+              className="h-11 w-11 shrink-0 rounded-full object-cover"
+              placeholder={article.author.avatar.blurDataUrl ? "blur" : "empty"}
+              blurDataURL={article.author.avatar.blurDataUrl}
+            />
+          ) : (
+            <div
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-emerald-800 text-sm font-black text-white"
+              aria-hidden="true"
+            >
+              {article.author.name.charAt(0)}
+            </div>
+          )}
           <div className="min-w-0">
             <p className="font-black text-zinc-950">{article.author.name}</p>
             <p className="mt-0.5 text-[10px] font-black uppercase tracking-[0.18em] text-zinc-400">

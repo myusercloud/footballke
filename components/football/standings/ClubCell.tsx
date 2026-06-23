@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Club } from "@/types/standings";
 
 type Props = {
@@ -24,17 +25,28 @@ function clubInitials(shortName: string): string {
 export function ClubCell({ club, compact = false }: Props) {
   return (
     <div className="flex min-w-0 items-center gap-2.5">
-      {/* Club colour badge — swap for next/image once logo assets are available */}
-      <div
-        className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[9px] font-black leading-none"
-        style={{
-          backgroundColor: club.colors.primary,
-          color: club.colors.secondary,
-        }}
-        aria-hidden="true"
-      >
-        {clubInitials(club.shortName)}
-      </div>
+      {club.logo ? (
+        <div className="relative h-7 w-7 shrink-0 overflow-hidden rounded-full" aria-hidden="true">
+          <Image
+            src={club.logo}
+            alt={club.shortName}
+            fill
+            sizes="28px"
+            className="object-contain p-0.5"
+          />
+        </div>
+      ) : (
+        <div
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[9px] font-black leading-none"
+          style={{
+            backgroundColor: club.colors.primary,
+            color: club.colors.secondary,
+          }}
+          aria-hidden="true"
+        >
+          {clubInitials(club.shortName)}
+        </div>
+      )}
 
       <span className="truncate text-sm font-bold">
         {compact ? club.shortName : club.name}

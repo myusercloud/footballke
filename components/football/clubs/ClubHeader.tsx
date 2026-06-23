@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Club } from "@/types/club";
 
 type Props = { club: Club };
@@ -25,14 +26,25 @@ export function ClubHeader({ club }: Props) {
 
       <div className="px-6 py-8 sm:px-8 sm:py-10">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
-          {/* Logo placeholder */}
-          <div
-            className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-4 border-white/20 text-2xl font-black text-white"
-            style={{ backgroundColor: `${club.colors.secondary}33` }}
-            aria-hidden="true"
-          >
-            {club.abbreviation}
-          </div>
+          {club.logo ? (
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-4 border-white/20">
+              <Image
+                src={club.logo}
+                alt={club.name}
+                fill
+                sizes="80px"
+                className="object-contain p-2"
+              />
+            </div>
+          ) : (
+            <div
+              className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-4 border-white/20 text-2xl font-black text-white"
+              style={{ backgroundColor: `${club.colors.secondary}33` }}
+              aria-hidden="true"
+            >
+              {club.abbreviation}
+            </div>
+          )}
 
           {/* Identity */}
           <div className="flex-1 text-white">
