@@ -50,16 +50,14 @@ function kickoffBadgeTime(iso: string): string {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function Home() {
-  const [{ articles }, upcomingFixtures, kplStandings, { transfers: latestTransfers }] =
+  const [{ articles: topStories }, { articles: quickReads }, upcomingFixtures, kplStandings, { transfers: latestTransfers }] =
     await Promise.all([
-      getNews({ pageSize: 7 }),
+      getNews({ pageSize: 3 }),
+      getNews({ featured: true, pageSize: 4 }),
       getUpcomingFixtures(4),
       getCompetitionStandings("kpl"),
       getTransfers({ status: "confirmed", pageSize: 3 }),
     ]);
-
-  const topStories = articles.slice(0, 3);
-  const quickReads = articles.slice(3);
 
   let wcFixture = null;
   let wcArticle = null;
