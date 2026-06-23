@@ -68,6 +68,21 @@ export type MatchStats = {
   away: TeamStats;
 };
 
+// ── Goal event ────────────────────────────────────────────────────────────────
+
+export type GoalEvent = {
+  id: string;
+  playerName: string;
+  playerSlug: string;
+  /** Which side the goal counts for (own goals count for the conceding team). */
+  team: 'home' | 'away';
+  minute: number;
+  /** Added time, e.g. 3 for "90+3". */
+  addedTime?: number;
+  isOwnGoal: boolean;
+  isPenalty: boolean;
+};
+
 // ── Core entity ───────────────────────────────────────────────────────────────
 //
 // Fixture is deliberately flat: UI components receive it as-is from the
@@ -95,6 +110,7 @@ export type Fixture = {
   preview?: string;      // plain-text match preview or post-match summary
   relatedNewsSlugs: string[];
   featured: boolean;
+  goalEvents: GoalEvent[];
 };
 
 // ── Service params & response ─────────────────────────────────────────────────

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { MatchHeader } from "@/components/football/fixtures/MatchHeader";
+import { GoalEvents } from "@/components/football/fixtures/GoalEvents";
 import { getFixture, getFixtures } from "@/lib/fixtures.cache";
 import {
   formatKickoffFull,
@@ -207,6 +208,13 @@ export default async function MatchPage({ params }: PageProps) {
         {/* ── Match header (competition, teams, score, form) ──────────────── */}
         <MatchHeader fixture={fixture} />
 
+        {/* ── Goal scorers ────────────────────────────────────────────────── */}
+        <GoalEvents
+          homeTeam={fixture.homeTeam}
+          awayTeam={fixture.awayTeam}
+          goalEvents={fixture.goalEvents}
+        />
+
         {/* ── Match preview ───────────────────────────────────────────────── */}
         {fixture.preview && (
           <section
@@ -283,10 +291,19 @@ export default async function MatchPage({ params }: PageProps) {
 
         {/* ── Fixture meta footer ──────────────────────────────────────────── */}
         <footer className="mt-7 flex flex-wrap items-center justify-between gap-3 border-t border-zinc-200 pt-5 text-xs text-zinc-400">
-          <span>
-            {fixture.competition.name}
-            {fixture.matchday != null ? ` · Matchday ${fixture.matchday}` : ""}
-          </span>
+          <div className="flex flex-wrap items-center gap-3">
+            <span>
+              {fixture.competition.name}
+              {fixture.matchday != null ? ` · Matchday ${fixture.matchday}` : ""}
+            </span>
+            <Link href={`/clubs/${fixture.homeTeam.slug}`} className="hover:text-emerald-700 hover:underline">
+              {fixture.homeTeam.shortName}
+            </Link>
+            <span aria-hidden="true">vs</span>
+            <Link href={`/clubs/${fixture.awayTeam.slug}`} className="hover:text-emerald-700 hover:underline">
+              {fixture.awayTeam.shortName}
+            </Link>
+          </div>
           <span>
             {formatKickoffFull(fixture.kickoff)} · {formatKickoffTime(fixture.kickoff)} EAT
           </span>

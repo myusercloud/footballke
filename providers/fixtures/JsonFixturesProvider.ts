@@ -77,6 +77,7 @@ function mapFixture(raw: RawFixture, data: RawData): Fixture {
     preview: raw.preview,
     relatedNewsSlugs: raw.relatedNewsSlugs,
     featured: raw.featured,
+    goalEvents: [],
   };
 }
 
