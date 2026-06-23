@@ -54,7 +54,7 @@ function buildJsonLd(player: NonNullable<Awaited<ReturnType<typeof getPlayer>>>)
     "@type": "Person",
     name: player.name,
     nationality: player.nationality.name,
-    birthDate: player.dateOfBirth,
+    ...(player.dateOfBirth ? { birthDate: player.dateOfBirth } : {}),
     jobTitle: player.position,
     url: `${BASE_URL}/players/${player.slug}`,
     memberOf: {

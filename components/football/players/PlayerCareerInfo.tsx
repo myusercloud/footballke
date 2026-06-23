@@ -5,8 +5,8 @@ type Props = { player: Player };
 
 export function PlayerCareerInfo({ player }: Props) {
   const rows: { label: string; value: string }[] = [
-    { label: "Age",            value: `${player.age} years` },
-    { label: "Date of Birth",  value: new Date(player.dateOfBirth).toLocaleDateString("en-KE", { day: "numeric", month: "long", year: "numeric" }) },
+    ...(player.age != null ? [{ label: "Age", value: `${player.age} years` }] : []),
+    ...(player.dateOfBirth ? [{ label: "Date of Birth", value: new Date(player.dateOfBirth).toLocaleDateString("en-KE", { day: "numeric", month: "long", year: "numeric" }) }] : []),
     { label: "Nationality",    value: `${player.nationality.name} (${player.nationality.code})` },
     { label: "Height",         value: `${player.height} cm` },
     { label: "Preferred Foot", value: player.preferredFoot.charAt(0).toUpperCase() + player.preferredFoot.slice(1) },

@@ -78,10 +78,10 @@ export type Player = {
   /** Null if the player does not have a recognized secondary position. */
   secondaryPosition: Position | null;
   nationality: Nationality;
-  /** ISO date "YYYY-MM-DD". Age is derived by the service at read time. */
-  dateOfBirth: string;
-  /** Derived: floor((today − dateOfBirth) / 365.25). Never stored in JSON. */
-  age: number;
+  /** ISO date "YYYY-MM-DD". Null when not publicly available. */
+  dateOfBirth: string | null;
+  /** Derived from dateOfBirth. Null when dateOfBirth is unknown. */
+  age: number | null;
   /** Height in centimetres. */
   height: number;
   preferredFoot: "right" | "left" | "both";

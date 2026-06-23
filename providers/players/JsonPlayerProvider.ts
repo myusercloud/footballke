@@ -20,7 +20,7 @@ function computeAge(dateOfBirth: string): number {
 }
 
 function mapPlayer(raw: RawPlayer): Player {
-  return { ...raw, age: computeAge(raw.dateOfBirth) };
+  return { ...raw, age: raw.dateOfBirth ? computeAge(raw.dateOfBirth) : null };
 }
 
 // ── Implementation ────────────────────────────────────────────────────────────
