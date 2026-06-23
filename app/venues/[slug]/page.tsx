@@ -81,27 +81,25 @@ export default async function VenuePage({ params }: PageProps) {
           {venueFixtures.map((f) => {
             const hasScore = f.score != null;
             return (
-              <Link
+              <div
                 key={f.id}
-                href={`/fixtures/${f.id}`}
-                className="flex items-center gap-4 px-5 py-3.5 transition-colors hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-600"
+                className="group relative flex items-center gap-4 px-5 py-3.5 transition-colors hover:bg-zinc-50"
               >
+                {/* Full-row link sits behind content */}
+                <Link
+                  href={`/fixtures/${f.id}`}
+                  className="absolute inset-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-600"
+                  aria-label={`${f.homeTeam.shortName} vs ${f.awayTeam.shortName} — match details`}
+                />
+
                 {/* Teams */}
-                <div className="min-w-0 flex-1">
+                <div className="relative z-10 min-w-0 flex-1">
                   <div className="flex items-center gap-2 text-sm font-bold">
-                    <Link
-                      href={`/clubs/${f.homeTeam.slug}`}
-                      onClick={(e) => e.stopPropagation()}
-                      className="hover:text-emerald-700 focus:outline-none focus-visible:underline"
-                    >
+                    <Link href={`/clubs/${f.homeTeam.slug}`} className="hover:text-emerald-700 focus:outline-none focus-visible:underline">
                       {f.homeTeam.shortName}
                     </Link>
                     <span className="text-zinc-400" aria-hidden="true">vs</span>
-                    <Link
-                      href={`/clubs/${f.awayTeam.slug}`}
-                      onClick={(e) => e.stopPropagation()}
-                      className="hover:text-emerald-700 focus:outline-none focus-visible:underline"
-                    >
+                    <Link href={`/clubs/${f.awayTeam.slug}`} className="hover:text-emerald-700 focus:outline-none focus-visible:underline">
                       {f.awayTeam.shortName}
                     </Link>
                   </div>
@@ -114,19 +112,19 @@ export default async function VenuePage({ params }: PageProps) {
 
                 {/* Score */}
                 {hasScore ? (
-                  <span className="shrink-0 text-sm font-black tabular-nums text-zinc-800">
+                  <span className="relative z-10 shrink-0 text-sm font-black tabular-nums text-zinc-800">
                     {f.score!.home}–{f.score!.away}
                   </span>
                 ) : (
-                  <span className="shrink-0 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                  <span className="relative z-10 shrink-0 text-xs font-semibold uppercase tracking-wide text-zinc-400">
                     {f.status === 'scheduled' ? 'Upcoming' : f.status}
                   </span>
                 )}
 
-                <svg className="h-4 w-4 shrink-0 text-zinc-300" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
+                <svg className="relative z-10 h-4 w-4 shrink-0 text-zinc-300 transition-colors group-hover:text-emerald-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
-              </Link>
+              </div>
             );
           })}
         </div>
