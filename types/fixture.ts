@@ -102,6 +102,9 @@ export type Fixture = {
   kickoff: string;       // ISO 8601 with TZ offset, e.g. "2026-06-14T15:00:00+03:00"
   status: MatchStatus;
   matchday?: number;     // KPL matchweek / cup round number
+  groupLetter?: string;  // tournament group letter, e.g. "A"
+  stage?: string;        // tournament stage, e.g. "group" | "round-of-16" | "final"
+  label?: string;        // knockout round display label, e.g. "Semi-final 1"
   score?: Score;
   liveMinute?: number;   // 1–90+ when status === "live"
   stats?: MatchStats;

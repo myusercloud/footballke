@@ -61,17 +61,11 @@ class TournamentService implements ITournamentService {
     let results = await this.provider.getFixtures();
 
     if (groupLetter) {
-      results = results.filter((f) => {
-        const raw = f as Fixture & { groupLetter?: string };
-        return raw.groupLetter === groupLetter;
-      });
+      results = results.filter((f) => f.groupLetter === groupLetter);
     }
 
     if (stage) {
-      results = results.filter((f) => {
-        const raw = f as Fixture & { stage?: string };
-        return raw.stage === stage;
-      });
+      results = results.filter((f) => f.stage === stage);
     }
 
     if (teamSlug) {

@@ -133,6 +133,9 @@ function mapFixture(
     kickoff: raw.kickoff,
     status: raw.status as MatchStatus,
     matchday: raw.matchday ?? undefined,
+    groupLetter: (raw as Record<string, unknown>).groupLetter as string | undefined,
+    stage: (raw as Record<string, unknown>).stage as string | undefined,
+    label: (raw as Record<string, unknown>).label as string | undefined,
     score: raw.score as Score | undefined ?? undefined,
     homeForm: [],
     awayForm: [],
@@ -265,20 +268,17 @@ export class JsonTournamentProvider implements TournamentProvider {
     const stageOrder: TournamentStage[] = ["round-of-16", "quarter-final", "semi-final", "final"];
     const byStage = new Map<TournamentStage, KnockoutMatch[]>();
     for (const f of knockoutFixtures) {
-      const raw = fixturesRaw.fixtures.find((r) => r.id === f.id);
-      const stage = (raw?.stage ?? "round-of-16") as TournamentStage;
-      const t1 = raw?.homeTeamSlug ? (this.teamIndex.get(raw.homeTeamSlug) ?? null) : null;
-      const t2 = raw?.awayTeamSlug ? (this.teamIndex.get(raw.awayTeamSlug) ?? null) : null;
+      const stage = (f.stage ?? "round-of-16") as TournamentStage;
       const match: KnockoutMatch = {
         id: f.id,
         stage,
-        team1: t1,
-        team2: t2,
+        team1: f.homeTeam.slug.startsWith("tbd-") ? null : (this.teamIndex.get(f.homeTeam.slug) ?? null),
+        team2: f.awayTeam.slug.startsWith("tbd-") ? null : (this.teamIndex.get(f.awayTeam.slug) ?? null),
         score: f.score,
         kickoff: f.kickoff,
         venue: f.venue.name,
         status: f.status,
-        label: (raw as Record<string, unknown>)?.label as string | undefined,
+        label: f.label,
       };
       if (!byStage.has(stage)) byStage.set(stage, []);
       byStage.get(stage)!.push(match);

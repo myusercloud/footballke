@@ -61,7 +61,7 @@ export default async function WorldCupPage() {
       getTournamentNews(5),
     ]);
 
-  const featuredFixture = fixtures.find((f: Fixture) => (f as Fixture & { featured?: boolean }).featured) ?? fixtures[0] ?? null;
+  const featuredFixture = fixtures.find((f: Fixture) => f.featured) ?? fixtures[0] ?? null;
   const recentFixtures = fixtures.slice(0, 3);
   const jsonLd = buildJsonLd(tournament);
 
