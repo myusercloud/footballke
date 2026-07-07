@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   title: "KPL Weekend Preview & Standings",
   description:
     "Pressure fixtures, derby tension, form checks, and the latest standings in the Kenyan Premier League.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "KPL Weekend Preview — FootballKE",
     description:

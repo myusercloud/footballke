@@ -36,6 +36,7 @@ export async function generateMetadata({
     title: "News",
     description:
       "Latest Kenyan Premier League news — match reports, transfers, analysis, and opinion.",
+    alternates: { canonical: "/news" },
     openGraph: {
       title: "KPL News — FootballKE",
       description:
