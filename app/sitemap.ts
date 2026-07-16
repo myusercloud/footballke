@@ -4,7 +4,7 @@ import clubService from "@/services/club.service";
 import playerService from "@/services/player.service";
 import tournamentService from "@/services/tournament.service";
 
-const BASE = "https://footballke.com";
+const BASE = "https://footballke.site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [{ articles }, { clubs }, { players }, groups, featuredPlayers] =

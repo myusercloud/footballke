@@ -7,7 +7,7 @@ import { ArticleMeta } from "@/components/football/news/ArticleMeta";
 import { RelatedArticles } from "@/components/football/news/RelatedArticles";
 import { ShareButtons } from "@/components/football/news/ShareButtons";
 
-const BASE_URL = "https://footballke.com";
+const BASE_URL = "https://footballke.site";
 
 // Unmatched slugs return 404 at runtime instead of attempting a render
 export const dynamicParams = false;
@@ -102,7 +102,7 @@ export default async function ArticlePage({ params }: PageProps) {
       name: "FootballKE",
       logo: {
         "@type": "ImageObject",
-        url: `${BASE_URL}/logo.png`,
+        url: `${BASE_URL}/trophy.png`,
       },
     },
     mainEntityOfPage: {

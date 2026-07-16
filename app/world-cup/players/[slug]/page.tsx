@@ -6,7 +6,7 @@ import { getTournamentPlayer, getFeaturedPlayers } from "@/lib/tournament.cache"
 import { TournamentNav } from "@/components/football/world-cup/TournamentNav";
 import type { TournamentPlayer } from "@/types/tournament";
 
-const BASE_URL = "https://footballke.com";
+const BASE_URL = "https://footballke.site";
 
 // ── SSG ───────────────────────────────────────────────────────────────────────
 

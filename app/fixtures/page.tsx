@@ -75,7 +75,7 @@ export async function generateMetadata({
       title,
       description,
       type: "website",
-      url: "https://footballke.com/fixtures",
+      url: "https://footballke.site/fixtures",
     },
     twitter: { card: "summary", title, description },
   };

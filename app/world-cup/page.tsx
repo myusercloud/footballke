@@ -13,7 +13,7 @@ import { FixtureCard } from "@/components/football/fixtures/FixtureCard";
 import type { Fixture } from "@/types/fixture";
 import type { GroupStandingsTable } from "@/types/tournament";
 
-const BASE_URL = "https://footballke.com";
+const BASE_URL = "https://footballke.site";
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 

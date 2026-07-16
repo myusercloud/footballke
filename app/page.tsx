@@ -19,15 +19,22 @@ import { FormBadges } from "@/components/football/fixtures/FormBadges";
 import { TransferBadge } from "@/components/football/transfers/TransferBadge";
 
 export const metadata: Metadata = {
-  title: "KPL Weekend Preview & Standings",
+  title: "Kenyan Football News, KPL Fixtures, Results & Standings",
   description:
-    "Pressure fixtures, derby tension, form checks, and the latest standings in the Kenyan Premier League.",
+    "FootballKE covers Kenyan football with KPL news, fixtures, live scores, results, league standings, transfers, club profiles, and player updates.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "KPL Weekend Preview — FootballKE",
+    title: "Kenyan Football News, KPL Fixtures & Standings | FootballKE",
     description:
-      "Pressure fixtures, derby tension, and form checks from the Kenyan Premier League.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+      "KPL news, fixtures, live scores, results, standings, transfers, clubs, and player updates from Kenya.",
+    images: [{ url: "/trophy.png", width: 512, height: 512, alt: "FootballKE" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kenyan Football News, KPL Fixtures & Standings | FootballKE",
+    description:
+      "KPL news, fixtures, live scores, results, standings, transfers, clubs, and player updates from Kenya.",
+    images: ["/trophy.png"],
   },
 };
 

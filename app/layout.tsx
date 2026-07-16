@@ -14,8 +14,32 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://footballke.site";
+const siteJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "FootballKE",
+      url: siteUrl,
+      logo: `${siteUrl}/trophy.png`,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "FootballKE",
+      description:
+        "Kenyan football news, KPL fixtures, live scores, standings, transfers, clubs, players, and analysis.",
+      publisher: { "@id": `${siteUrl}/#organization` },
+      inLanguage: "en-KE",
+    },
+  ],
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://footballke.com"),
+  metadataBase: new URL(siteUrl),
   icons: {
     icon: "trophy.png",
     shortcut: "trophy.png",
@@ -44,16 +68,18 @@ export const metadata: Metadata = {
     title: "FootballKE — Kenyan Premier League",
     description:
       "KPL news, fixtures, standings, and transfers. Kenyan football in one place.",
-    url: "https://footballke.com",
+    url: "https://footballke.site",
     siteName: "FootballKE",
     locale: "en_KE",
     type: "website",
+    images: [{ url: "/trophy.png", width: 512, height: 512, alt: "FootballKE" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "FootballKE — Kenyan Premier League",
     description:
       "KPL news, fixtures, standings, and transfers. Kenyan football in one place.",
+    images: ["/trophy.png"],
   },
   robots: {
     index: true,
@@ -73,6 +99,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
+        />
         <Script
           id="posthog"
           strategy="afterInteractive"

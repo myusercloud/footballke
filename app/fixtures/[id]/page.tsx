@@ -72,7 +72,7 @@ function buildJsonLd(fixture: Fixture): Record<string, unknown> {
     eventStatus: SCHEMA_EVENT_STATUS[fixture.status],
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     sport: "Soccer",
-    url: `https://footballke.com/fixtures/${fixture.id}`,
+    url: `https://footballke.site/fixtures/${fixture.id}`,
   };
 }
 
@@ -98,7 +98,7 @@ export async function generateMetadata({
       title: `${fixture.homeTeam.name} vs ${fixture.awayTeam.name}`,
       description,
       type: "website",
-      url: `https://footballke.com/fixtures/${id}`,
+      url: `https://footballke.site/fixtures/${id}`,
     },
     twitter: {
       card: "summary_large_image",

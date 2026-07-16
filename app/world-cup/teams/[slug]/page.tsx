@@ -6,7 +6,7 @@ import { TournamentNav } from "@/components/football/world-cup/TournamentNav";
 import { FixtureCard } from "@/components/football/fixtures/FixtureCard";
 import type { TournamentTeam, SquadPlayerPositionCode } from "@/types/tournament";
 
-const BASE_URL = "https://footballke.com";
+const BASE_URL = "https://footballke.site";
 
 // ── SSG ───────────────────────────────────────────────────────────────────────
 

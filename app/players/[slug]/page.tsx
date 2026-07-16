@@ -8,7 +8,7 @@ import { PlayerBio } from "@/components/football/players/PlayerBio";
 import { PlayerCareerInfo } from "@/components/football/players/PlayerCareerInfo";
 import { PlayerRelatedNews } from "@/components/football/players/PlayerRelatedNews";
 
-const BASE_URL = "https://footballke.com";
+const BASE_URL = "https://footballke.site";
 
 export const dynamicParams = false;
 

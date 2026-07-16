@@ -12,7 +12,7 @@ import { ClubFixturesPreview } from "@/components/football/clubs/ClubFixturesPre
 import { ClubNewsPreview } from "@/components/football/clubs/ClubNewsPreview";
 import { ClubGrid } from "@/components/football/clubs/ClubGrid";
 
-const BASE_URL = "https://footballke.com";
+const BASE_URL = "https://footballke.site";
 
 export const dynamicParams = false;
 
