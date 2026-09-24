@@ -92,9 +92,9 @@ export default async function Home() {
         {/* ── Live ticker ── */}
         <LiveTicker
           items={[
-            "Gor Mahia 2–0 Ulinzi Stars · FT",
-            "Tusker FC 1–1 AFC Leopards · FT",
-            "Police FC vs Bandari · KO 3 PM Sun",
+            //"Gor Mahia 2–0 Ulinzi Stars · FT",
+            //"Tusker FC 1–1 AFC Leopards · FT",
+            //"Police FC vs Bandari · KO 3 PM Sun",
           ]}
         />
 
@@ -298,12 +298,7 @@ export default async function Home() {
               </div>
           </section>
 
-          {/* ── World Cup Highlight ── */}
-          {eventConfig.worldCup.enabled && (
-            <div className="mt-7">
-              <WorldCupHighlight featuredFixture={wcFixture} latestArticle={wcArticle} />
-            </div>
-          )}
+
 
           {/* ── Table + Quick Reads ── */}
           <section className="mt-7 grid gap-5 lg:grid-cols-[1fr_1fr]">

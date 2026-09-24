@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getClubs } from "@/lib/clubs.cache";
 import { ClubGrid } from "@/components/football/clubs/ClubGrid";
 
-// ── Metadata ──────────────────────────────────────────────────────────────────
+// ── Metadata ──────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
   title: "Clubs",

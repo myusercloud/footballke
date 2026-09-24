@@ -26,16 +26,16 @@ export default function Footer() {
               opinion every matchday.
             </p>
             <div className="mt-4 flex gap-3">
-              {["Twitter", "Facebook", "Instagram"].map((platform) => (
+              {[{platform: "Twitter", url: "https://twitter.com/footballke.site"}, {platform: "Facebook", url: "https://facebook.com/footballke.site"}, {platform: "Instagram", url: "https://instagram.com/footballke.site"}].map((social) => (
                 <a
-                  key={platform}
-                  href="#"
+                  key={social.platform}
+                  href={social.url}
                   onClick={() =>
-                    track(events.footerLinkClick({ label: platform, destination: "#", type: "social" }))
+                    track(events.footerLinkClick({ label: social.platform, destination: social.url, type: "social" }))
                   }
                   className="rounded-sm border border-zinc-200 px-3 py-1.5 text-xs font-bold text-zinc-600 transition-colors hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
                 >
-                  {platform}
+                  {social.platform}
                 </a>
               ))}
             </div>
