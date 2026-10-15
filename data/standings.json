@@ -5,7 +5,7 @@
       "name": "Gor Mahia FC",
       "shortName": "Gor Mahia",
       "slug": "gor-mahia",
-      "logo": "/images/teams/gor-mahia.png",
+      "logo": "",
       "colors": { "primary": "#006B2D", "secondary": "#FFFFFF" }
     },
     {
@@ -13,79 +13,79 @@
       "name": "Tusker FC",
       "shortName": "Tusker",
       "slug": "tusker-fc",
-      "logo": "/images/teams/tusker-fc.png",
-      "colors": { "primary": "#003087", "secondary": "#FFD700" }
+      "logo": "",
+      "colors": { "primary": "#C9A84C", "secondary": "#000000" }
     },
     {
       "id": "police-fc",
-      "name": "Police FC",
-      "shortName": "Police",
+      "name": "Kenya Police FC",
+      "shortName": "Police FC",
       "slug": "police-fc",
-      "logo": "/images/teams/police-fc.png",
-      "colors": { "primary": "#001F5B", "secondary": "#CC0000" }
+      "logo": "",
+      "colors": { "primary": "#003087", "secondary": "#FFFFFF" }
     },
     {
       "id": "bandari-fc",
       "name": "Bandari FC",
       "shortName": "Bandari",
       "slug": "bandari-fc",
-      "logo": "/images/teams/bandari-fc.png",
-      "colors": { "primary": "#0057B8", "secondary": "#FFFFFF" }
+      "logo": "",
+      "colors": { "primary": "#00529B", "secondary": "#FFFFFF" }
     },
     {
       "id": "afc-leopards",
       "name": "AFC Leopards",
-      "shortName": "AFC Leopards",
+      "shortName": "Leopards",
       "slug": "afc-leopards",
-      "logo": "/images/teams/afc-leopards.png",
-      "colors": { "primary": "#000000", "secondary": "#FFFFFF" }
+      "logo": "",
+      "colors": { "primary": "#003087", "secondary": "#000000" }
     },
     {
       "id": "kcb-fc",
       "name": "KCB FC",
       "shortName": "KCB",
       "slug": "kcb-fc",
-      "logo": "/images/teams/kcb-fc.png",
-      "colors": { "primary": "#007A3D", "secondary": "#CC0000" }
+      "logo": "",
+      "colors": { "primary": "#006633", "secondary": "#FFFFFF" }
     },
     {
       "id": "kakamega-homeboyz",
-      "name": "Kakamega Homeboyz",
+      "name": "Kakamega Homeboyz FC",
       "shortName": "Homeboyz",
       "slug": "kakamega-homeboyz",
-      "logo": "/images/teams/kakamega-homeboyz.png",
-      "colors": { "primary": "#228B22", "secondary": "#FFD700" }
+      "logo": "",
+      "colors": { "primary": "#228B22", "secondary": "#FFFF00" }
     },
     {
       "id": "sofapaka-fc",
       "name": "Sofapaka FC",
       "shortName": "Sofapaka",
       "slug": "sofapaka-fc",
-      "logo": "/images/teams/sofapaka-fc.png",
-      "colors": { "primary": "#CC0000", "secondary": "#000000" }
+      "logo": "",
+      "colors": { "primary": "#0055A4", "secondary": "#FFDF00" }
     },
     {
       "id": "ulinzi-stars",
       "name": "Ulinzi Stars",
       "shortName": "Ulinzi",
       "slug": "ulinzi-stars",
-      "logo": "/images/teams/ulinzi-stars.png",
+      "logo": "",
       "colors": { "primary": "#1A1A1A", "secondary": "#FFD700" }
     },
     {
       "id": "kariobangi-sharks",
       "name": "Kariobangi Sharks FC",
-      "shortName": "Kariobangi",
+      "shortName": "Sharks",
       "slug": "kariobangi-sharks",
-      "logo": "/images/teams/kariobangi-sharks.png",
-      "colors": { "primary": "#FF6B00", "secondary": "#000000" }
+      "logo": "",
+      "colors": { "primary": "#FF6600", "secondary": "#000000" }
     },
     {
       "id": "bidco-united",
       "name": "Bidco United FC",
       "shortName": "Bidco United",
       "slug": "bidco-united",
-      "logo": "/images/teams/bidco-united.png",
+      "logo": "",
       "colors": { "primary": "#003580", "secondary": "#FFFFFF" }
     },
     {
@@ -93,15 +93,15 @@
       "name": "Shabana FC",
       "shortName": "Shabana",
       "slug": "shabana-fc",
-      "logo": "/images/teams/shabana-fc.png",
-      "colors": { "primary": "#006400", "secondary": "#FFD700" }
+      "logo": "",
+      "colors": { "primary": "#CC0000", "secondary": "#FFFFFF" }
     },
     {
       "id": "muranga-seal",
-      "name": "Muranga Seal FC",
+      "name": "Murang'a Seal FC",
       "shortName": "Muranga Seal",
       "slug": "muranga-seal",
-      "logo": "/images/teams/muranga-seal.png",
+      "logo": "",
       "colors": { "primary": "#8B0000", "secondary": "#FFFFFF" }
     },
     {
@@ -109,7 +109,7 @@
       "name": "Posta Rangers FC",
       "shortName": "Posta Rangers",
       "slug": "posta-rangers",
-      "logo": "/images/teams/posta-rangers.png",
+      "logo": "",
       "colors": { "primary": "#003087", "secondary": "#FFD700" }
     },
     {
@@ -117,7 +117,7 @@
       "name": "Wazito FC",
       "shortName": "Wazito",
       "slug": "wazito-fc",
-      "logo": "/images/teams/wazito-fc.png",
+      "logo": "",
       "colors": { "primary": "#FFD700", "secondary": "#000000" }
     },
     {
@@ -125,7 +125,7 @@
       "name": "Nairobi City Stars FC",
       "shortName": "City Stars",
       "slug": "city-stars",
-      "logo": "/images/teams/city-stars.png",
+      "logo": "",
       "colors": { "primary": "#00A3E0", "secondary": "#FFFFFF" }
     },
     {
@@ -133,7 +133,7 @@
       "name": "Zoo FC Kericho",
       "shortName": "Zoo Kericho",
       "slug": "zoo-kericho",
-      "logo": "/images/teams/zoo-kericho.png",
+      "logo": "",
       "colors": { "primary": "#1A1A1A", "secondary": "#FFFFFF" }
     },
     {
@@ -141,7 +141,7 @@
       "name": "Ushuru FC",
       "shortName": "Ushuru",
       "slug": "ushuru-fc",
-      "logo": "/images/teams/ushuru-fc.png",
+      "logo": "",
       "colors": { "primary": "#C8A800", "secondary": "#002060" }
     }
   ],

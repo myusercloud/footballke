@@ -6,17 +6,17 @@
       "shortName": "Gor Mahia",
       "abbreviation": "GOR",
       "slug": "gor-mahia",
-      "logo": "/images/teams/gor-mahia.png",
+      "logo": "",
       "colors": { "primary": "#006B2D", "secondary": "#FFFFFF" }
     },
     {
       "id": "afc-leopards",
       "name": "AFC Leopards",
-      "shortName": "AFC Leopards",
+      "shortName": "Leopards",
       "abbreviation": "AFC",
       "slug": "afc-leopards",
-      "logo": "/images/teams/afc-leopards.png",
-      "colors": { "primary": "#000000", "secondary": "#FFFFFF" }
+      "logo": "",
+      "colors": { "primary": "#003087", "secondary": "#000000" }
     },
     {
       "id": "tusker-fc",
@@ -24,8 +24,8 @@
       "shortName": "Tusker",
       "abbreviation": "TUS",
       "slug": "tusker-fc",
-      "logo": "/images/teams/tusker-fc.png",
-      "colors": { "primary": "#003087", "secondary": "#FFD700" }
+      "logo": "",
+      "colors": { "primary": "#C9A84C", "secondary": "#000000" }
     },
     {
       "id": "kcb-fc",
@@ -33,8 +33,8 @@
       "shortName": "KCB",
       "abbreviation": "KCB",
       "slug": "kcb-fc",
-      "logo": "/images/teams/kcb-fc.png",
-      "colors": { "primary": "#007A3D", "secondary": "#CC0000" }
+      "logo": "",
+      "colors": { "primary": "#006633", "secondary": "#FFFFFF" }
     },
     {
       "id": "bandari-fc",
@@ -42,17 +42,17 @@
       "shortName": "Bandari",
       "abbreviation": "BAN",
       "slug": "bandari-fc",
-      "logo": "/images/teams/bandari-fc.png",
-      "colors": { "primary": "#0057B8", "secondary": "#FFFFFF" }
+      "logo": "",
+      "colors": { "primary": "#00529B", "secondary": "#FFFFFF" }
     },
     {
       "id": "police-fc",
-      "name": "Police FC",
-      "shortName": "Police",
+      "name": "Kenya Police FC",
+      "shortName": "Police FC",
       "abbreviation": "POL",
       "slug": "police-fc",
-      "logo": "/images/teams/police-fc.png",
-      "colors": { "primary": "#001F5B", "secondary": "#CC0000" }
+      "logo": "",
+      "colors": { "primary": "#003087", "secondary": "#FFFFFF" }
     },
     {
       "id": "shabana-fc",
@@ -60,8 +60,8 @@
       "shortName": "Shabana",
       "abbreviation": "SHA",
       "slug": "shabana-fc",
-      "logo": "/images/teams/shabana-fc.png",
-      "colors": { "primary": "#006400", "secondary": "#FFD700" }
+      "logo": "",
+      "colors": { "primary": "#CC0000", "secondary": "#FFFFFF" }
     },
     {
       "id": "sofapaka-fc",
@@ -69,17 +69,17 @@
       "shortName": "Sofapaka",
       "abbreviation": "SOF",
       "slug": "sofapaka-fc",
-      "logo": "/images/teams/sofapaka-fc.png",
-      "colors": { "primary": "#CC0000", "secondary": "#000000" }
+      "logo": "",
+      "colors": { "primary": "#0055A4", "secondary": "#FFDF00" }
     },
     {
       "id": "kakamega-homeboyz",
-      "name": "Kakamega Homeboyz",
+      "name": "Kakamega Homeboyz FC",
       "shortName": "Homeboyz",
-      "abbreviation": "KHB",
+      "abbreviation": "HBZ",
       "slug": "kakamega-homeboyz",
-      "logo": "/images/teams/kakamega-homeboyz.png",
-      "colors": { "primary": "#228B22", "secondary": "#FFD700" }
+      "logo": "",
+      "colors": { "primary": "#228B22", "secondary": "#FFFF00" }
     },
     {
       "id": "ulinzi-stars",
@@ -87,7 +87,7 @@
       "shortName": "Ulinzi",
       "abbreviation": "ULS",
       "slug": "ulinzi-stars",
-      "logo": "/images/teams/ulinzi-stars.png",
+      "logo": "",
       "colors": { "primary": "#1A1A1A", "secondary": "#FFD700" }
     }
   ],

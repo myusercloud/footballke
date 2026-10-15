@@ -9,8 +9,11 @@
       "founded": 1968,
       "city": "Nairobi",
       "country": "Kenya",
-      "logo": "/clubs/gor-mahia.svg",
-      "colors": { "primary": "#006B2D", "secondary": "#FFFFFF" },
+      "logo": "",
+      "colors": {
+        "primary": "#006B2D",
+        "secondary": "#FFFFFF"
+      },
       "venue": {
         "id": "venue-nyayo",
         "name": "Nyayo National Stadium",
@@ -47,10 +50,24 @@
         "goalsAgainst": 22,
         "goalDifference": 29,
         "points": 57,
-        "form": ["W", "W", "L", "W", "W"]
+        "form": [
+          "W",
+          "W",
+          "L",
+          "W",
+          "W"
+        ]
       },
       "searchableName": "Gor Mahia FC",
-      "searchableKeywords": ["Green Army", "K'Ogalo", "GOR", "Gor", "Mahia", "Green Machine", "K Ogalo"],
+      "searchableKeywords": [
+        "Green Army",
+        "K'Ogalo",
+        "GOR",
+        "Gor",
+        "Mahia",
+        "Green Machine",
+        "K Ogalo"
+      ],
       "searchableSlug": "gor-mahia"
     },
     {
@@ -62,8 +79,11 @@
       "founded": 1969,
       "city": "Nairobi",
       "country": "Kenya",
-      "logo": "/clubs/tusker-fc.svg",
-      "colors": { "primary": "#C9A84C", "secondary": "#000000" },
+      "logo": "",
+      "colors": {
+        "primary": "#C9A84C",
+        "secondary": "#000000"
+      },
       "venue": {
         "id": "venue-ruaraka",
         "name": "Ruaraka Grounds",
@@ -96,10 +116,22 @@
         "goalsAgainst": 21,
         "goalDifference": 23,
         "points": 52,
-        "form": ["W", "D", "W", "W", "D"]
+        "form": [
+          "W",
+          "D",
+          "W",
+          "W",
+          "D"
+        ]
       },
       "searchableName": "Tusker FC",
-      "searchableKeywords": ["Brewers", "TUS", "Tusker", "EABL", "Gold and Black"],
+      "searchableKeywords": [
+        "Brewers",
+        "TUS",
+        "Tusker",
+        "EABL",
+        "Gold and Black"
+      ],
       "searchableSlug": "tusker-fc"
     },
     {
@@ -111,8 +143,11 @@
       "founded": 1953,
       "city": "Nairobi",
       "country": "Kenya",
-      "logo": "/clubs/police-fc.svg",
-      "colors": { "primary": "#003087", "secondary": "#FFFFFF" },
+      "logo": "",
+      "colors": {
+        "primary": "#003087",
+        "secondary": "#FFFFFF"
+      },
       "venue": {
         "id": "venue-camp-toyoyo",
         "name": "Camp Toyoyo",
@@ -143,10 +178,22 @@
         "goalsAgainst": 22,
         "goalDifference": 16,
         "points": 50,
-        "form": ["W", "W", "D", "W", "L"]
+        "form": [
+          "W",
+          "W",
+          "D",
+          "W",
+          "L"
+        ]
       },
       "searchableName": "Kenya Police FC",
-      "searchableKeywords": ["Cops", "POL", "Police", "Boys in Blue", "Kenya Police"],
+      "searchableKeywords": [
+        "Cops",
+        "POL",
+        "Police",
+        "Boys in Blue",
+        "Kenya Police"
+      ],
       "searchableSlug": "police-fc"
     },
     {
@@ -158,8 +205,11 @@
       "founded": 1964,
       "city": "Mombasa",
       "country": "Kenya",
-      "logo": "/clubs/bandari-fc.svg",
-      "colors": { "primary": "#00529B", "secondary": "#FFFFFF" },
+      "logo": "",
+      "colors": {
+        "primary": "#00529B",
+        "secondary": "#FFFFFF"
+      },
       "venue": {
         "id": "venue-mbaraki",
         "name": "Mbaraki Sports Club",
@@ -190,10 +240,23 @@
         "goalsAgainst": 24,
         "goalDifference": 15,
         "points": 48,
-        "form": ["W", "L", "D", "W", "W"]
+        "form": [
+          "W",
+          "L",
+          "D",
+          "W",
+          "W"
+        ]
       },
       "searchableName": "Bandari FC",
-      "searchableKeywords": ["Dockers", "BAN", "Bandari", "Port", "Mombasa", "KPA"],
+      "searchableKeywords": [
+        "Dockers",
+        "BAN",
+        "Bandari",
+        "Port",
+        "Mombasa",
+        "KPA"
+      ],
       "searchableSlug": "bandari-fc"
     },
     {
@@ -205,8 +268,11 @@
       "founded": 1958,
       "city": "Nairobi",
       "country": "Kenya",
-      "logo": "/clubs/afc-leopards.svg",
-      "colors": { "primary": "#003087", "secondary": "#000000" },
+      "logo": "",
+      "colors": {
+        "primary": "#003087",
+        "secondary": "#000000"
+      },
       "venue": {
         "id": "venue-kasarani",
         "name": "Moi International Sports Centre",
@@ -238,10 +304,23 @@
         "goalsAgainst": 23,
         "goalDifference": 13,
         "points": 47,
-        "form": ["D", "W", "W", "D", "W"]
+        "form": [
+          "D",
+          "W",
+          "W",
+          "D",
+          "W"
+        ]
       },
       "searchableName": "AFC Leopards",
-      "searchableKeywords": ["Ingwe", "AFC", "Leopards", "Abaluhya", "Blue and Black", "IngeFC"],
+      "searchableKeywords": [
+        "Ingwe",
+        "AFC",
+        "Leopards",
+        "Abaluhya",
+        "Blue and Black",
+        "IngeFC"
+      ],
       "searchableSlug": "afc-leopards"
     },
     {
@@ -253,8 +332,11 @@
       "founded": 1970,
       "city": "Nairobi",
       "country": "Kenya",
-      "logo": "/clubs/kcb-fc.svg",
-      "colors": { "primary": "#006633", "secondary": "#FFFFFF" },
+      "logo": "",
+      "colors": {
+        "primary": "#006633",
+        "secondary": "#FFFFFF"
+      },
       "venue": {
         "id": "venue-utalii",
         "name": "Utalii Grounds",
@@ -284,10 +366,21 @@
         "goalsAgainst": 26,
         "goalDifference": 7,
         "points": 44,
-        "form": ["W", "D", "L", "W", "W"]
+        "form": [
+          "W",
+          "D",
+          "L",
+          "W",
+          "W"
+        ]
       },
       "searchableName": "KCB FC",
-      "searchableKeywords": ["Bankers", "KCB", "Kenya Commercial Bank", "Green and White"],
+      "searchableKeywords": [
+        "Bankers",
+        "KCB",
+        "Kenya Commercial Bank",
+        "Green and White"
+      ],
       "searchableSlug": "kcb-fc"
     },
     {
@@ -299,8 +392,11 @@
       "founded": 2004,
       "city": "Kakamega",
       "country": "Kenya",
-      "logo": "/clubs/kakamega-homeboyz.svg",
-      "colors": { "primary": "#228B22", "secondary": "#FFFF00" },
+      "logo": "",
+      "colors": {
+        "primary": "#228B22",
+        "secondary": "#FFFF00"
+      },
       "venue": {
         "id": "venue-kakamega",
         "name": "Kakamega County Stadium",
@@ -330,10 +426,22 @@
         "goalsAgainst": 27,
         "goalDifference": 4,
         "points": 41,
-        "form": ["D", "W", "L", "D", "W"]
+        "form": [
+          "D",
+          "W",
+          "L",
+          "D",
+          "W"
+        ]
       },
       "searchableName": "Kakamega Homeboyz FC",
-      "searchableKeywords": ["Homeboyz", "HBZ", "Kakamega", "Boyz", "Green and Yellow"],
+      "searchableKeywords": [
+        "Homeboyz",
+        "HBZ",
+        "Kakamega",
+        "Boyz",
+        "Green and Yellow"
+      ],
       "searchableSlug": "kakamega-homeboyz"
     },
     {
@@ -345,8 +453,11 @@
       "founded": 2004,
       "city": "Nairobi",
       "country": "Kenya",
-      "logo": "/clubs/sofapaka-fc.svg",
-      "colors": { "primary": "#0055A4", "secondary": "#FFDF00" },
+      "logo": "",
+      "colors": {
+        "primary": "#0055A4",
+        "secondary": "#FFDF00"
+      },
       "venue": {
         "id": "venue-ulinzi-complex",
         "name": "Ulinzi Complex",
@@ -377,11 +488,84 @@
         "goalsAgainst": 28,
         "goalDifference": 1,
         "points": 40,
-        "form": ["W", "L", "W", "D", "L"]
+        "form": [
+          "W",
+          "L",
+          "W",
+          "D",
+          "L"
+        ]
       },
       "searchableName": "Sofapaka FC",
-      "searchableKeywords": ["Batoto ba Mungu", "SOF", "Sofapaka", "Blue and Yellow", "Children of God"],
+      "searchableKeywords": [
+        "Batoto ba Mungu",
+        "SOF",
+        "Sofapaka",
+        "Blue and Yellow",
+        "Children of God"
+      ],
       "searchableSlug": "sofapaka-fc"
+    },
+    {
+      "id": "ulinzi-stars",
+      "slug": "ulinzi-stars",
+      "name": "Ulinzi Stars",
+      "shortName": "Ulinzi",
+      "abbreviation": "ULS",
+      "founded": 1995,
+      "city": "Nairobi",
+      "country": "Kenya",
+      "logo": "",
+      "colors": {
+        "primary": "#1A1A1A",
+        "secondary": "#FFD700"
+      },
+      "venue": {
+        "id": "venue-afraha",
+        "name": "Afraha Stadium",
+        "city": "Nakuru",
+        "capacity": 12000
+      },
+      "description": "Ulinzi Stars FC is the football team of the Kenya Defence Forces. Founded in 1995, the Soldiers have been a mainstay of the Kenyan Premier League and are known for their discipline, fitness and strong youth structure. The club won its first KPL title in 2010 and has consistently competed in the top half of the table.",
+      "achievements": [
+        "KPL Champions 2010",
+        "KPL Runners-Up 2015",
+        "Consistent KPL top-half finishers",
+        "Kenya Defence Forces representative side"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/UlinziStarsFC",
+        "facebook": "https://facebook.com/UlinziStarsFC",
+        "instagram": null,
+        "website": null
+      },
+      "stats": {
+        "position": 9,
+        "played": 26,
+        "won": 10,
+        "drawn": 9,
+        "lost": 7,
+        "goalsFor": 28,
+        "goalsAgainst": 25,
+        "goalDifference": 3,
+        "points": 39,
+        "form": [
+          "D",
+          "D",
+          "W",
+          "L",
+          "D"
+        ]
+      },
+      "searchableName": "Ulinzi Stars",
+      "searchableKeywords": [
+        "Soldiers",
+        "Ulinzi",
+        "ULS",
+        "Army",
+        "KDF"
+      ],
+      "searchableSlug": "ulinzi-stars"
     },
     {
       "id": "kariobangi-sharks",
@@ -392,8 +576,11 @@
       "founded": 2003,
       "city": "Nairobi",
       "country": "Kenya",
-      "logo": "/clubs/kariobangi-sharks.svg",
-      "colors": { "primary": "#FF6600", "secondary": "#000000" },
+      "logo": "",
+      "colors": {
+        "primary": "#FF6600",
+        "secondary": "#000000"
+      },
       "venue": {
         "id": "venue-kariobangi",
         "name": "Kariobangi North Stadium",
@@ -423,11 +610,82 @@
         "goalsAgainst": 31,
         "goalDifference": -1,
         "points": 38,
-        "form": ["W", "L", "D", "W", "L"]
+        "form": [
+          "W",
+          "L",
+          "D",
+          "W",
+          "L"
+        ]
       },
       "searchableName": "Kariobangi Sharks FC",
-      "searchableKeywords": ["Orange Army", "Sharks", "KSH", "Kariobangi", "Orange"],
+      "searchableKeywords": [
+        "Orange Army",
+        "Sharks",
+        "KSH",
+        "Kariobangi",
+        "Orange"
+      ],
       "searchableSlug": "kariobangi-sharks"
+    },
+    {
+      "id": "bidco-united",
+      "slug": "bidco-united",
+      "name": "Bidco United FC",
+      "shortName": "Bidco United",
+      "abbreviation": "BID",
+      "founded": 2010,
+      "city": "Thika",
+      "country": "Kenya",
+      "logo": "",
+      "colors": {
+        "primary": "#003580",
+        "secondary": "#FFFFFF"
+      },
+      "venue": {
+        "id": "venue-thika",
+        "name": "Thika Stadium",
+        "city": "Thika",
+        "capacity": 8000
+      },
+      "description": "Bidco United FC, based in Thika, Kiambu County, was founded in 2010 and rose through the Kenyan football pyramid to establish itself in the top flight. Backed by Bidco Africa, the club is known for developing young Kenyan talent and punching above its weight against the traditional giants.",
+      "achievements": [
+        "KPL promotion 2020",
+        "National Super League champions",
+        "Consistent top-flight survival"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/BidcoUnitedFC",
+        "facebook": "https://facebook.com/BidcoUnitedFC",
+        "instagram": null,
+        "website": null
+      },
+      "stats": {
+        "position": 11,
+        "played": 26,
+        "won": 10,
+        "drawn": 6,
+        "lost": 10,
+        "goalsFor": 27,
+        "goalsAgainst": 29,
+        "goalDifference": -2,
+        "points": 36,
+        "form": [
+          "L",
+          "W",
+          "D",
+          "L",
+          "W"
+        ]
+      },
+      "searchableName": "Bidco United FC",
+      "searchableKeywords": [
+        "Bidco",
+        "Thika",
+        "BID",
+        "United"
+      ],
+      "searchableSlug": "bidco-united"
     },
     {
       "id": "shabana-fc",
@@ -438,8 +696,11 @@
       "founded": 1968,
       "city": "Kisii",
       "country": "Kenya",
-      "logo": "/clubs/shabana-fc.svg",
-      "colors": { "primary": "#CC0000", "secondary": "#FFFFFF" },
+      "logo": "",
+      "colors": {
+        "primary": "#CC0000",
+        "secondary": "#FFFFFF"
+      },
       "venue": {
         "id": "venue-gusii",
         "name": "Gusii Stadium",
@@ -470,11 +731,373 @@
         "goalsAgainst": 33,
         "goalDifference": -8,
         "points": 33,
-        "form": ["L", "D", "L", "W", "D"]
+        "form": [
+          "L",
+          "D",
+          "L",
+          "W",
+          "D"
+        ]
       },
       "searchableName": "Shabana FC",
-      "searchableKeywords": ["Red and White", "SHA", "Shabana", "Kisii", "Gusii", "Abagusii"],
+      "searchableKeywords": [
+        "Red and White",
+        "SHA",
+        "Shabana",
+        "Kisii",
+        "Gusii",
+        "Abagusii"
+      ],
       "searchableSlug": "shabana-fc"
+    },
+    {
+      "id": "muranga-seal",
+      "slug": "muranga-seal",
+      "name": "Murang'a Seal FC",
+      "shortName": "Muranga Seal",
+      "abbreviation": "MUR",
+      "founded": 2011,
+      "city": "Murang'a",
+      "country": "Kenya",
+      "logo": "",
+      "colors": {
+        "primary": "#8B0000",
+        "secondary": "#FFFFFF"
+      },
+      "venue": {
+        "id": "venue-muranga",
+        "name": "St Sebastian Park",
+        "city": "Murang'a",
+        "capacity": 5000
+      },
+      "description": "Murang'a Seal FC represent Murang'a County in the Kenyan Premier League. Founded in 2011, the club earned promotion to the top flight and has built a reputation for a passionate home support and a hard-working, organised style of play.",
+      "achievements": [
+        "KPL promotion",
+        "National Super League Play-Off winners"
+      ],
+      "social": {
+        "twitter": null,
+        "facebook": "https://facebook.com/MurangaSealFC",
+        "instagram": null,
+        "website": null
+      },
+      "stats": {
+        "position": 13,
+        "played": 26,
+        "won": 8,
+        "drawn": 8,
+        "lost": 10,
+        "goalsFor": 24,
+        "goalsAgainst": 34,
+        "goalDifference": -10,
+        "points": 32,
+        "form": [
+          "D",
+          "L",
+          "D",
+          "L",
+          "W"
+        ]
+      },
+      "searchableName": "Murang'a Seal FC",
+      "searchableKeywords": [
+        "Seal",
+        "Muranga",
+        "MUR",
+        "St Sebastian"
+      ],
+      "searchableSlug": "muranga-seal"
+    },
+    {
+      "id": "posta-rangers",
+      "slug": "posta-rangers",
+      "name": "Posta Rangers FC",
+      "shortName": "Posta Rangers",
+      "abbreviation": "POS",
+      "founded": 1974,
+      "city": "Nairobi",
+      "country": "Kenya",
+      "logo": "",
+      "colors": {
+        "primary": "#003087",
+        "secondary": "#FFD700"
+      },
+      "venue": {
+        "id": "venue-camp-toyoyo",
+        "name": "Camp Toyoyo",
+        "city": "Nairobi",
+        "capacity": 4000
+      },
+      "description": "Posta Rangers FC is the football club of the Postal Corporation of Kenya, founded in 1974. The Mailmen have spent much of their history in the Kenyan top flight, known for their resilient defensive organisation and for giving opportunities to players from across the country.",
+      "achievements": [
+        "KPL top-flight regulars",
+        "National Super League champions",
+        "Postal Corporation representative side"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/PostaRangersFC",
+        "facebook": "https://facebook.com/PostaRangersFC",
+        "instagram": null,
+        "website": null
+      },
+      "stats": {
+        "position": 14,
+        "played": 26,
+        "won": 8,
+        "drawn": 5,
+        "lost": 13,
+        "goalsFor": 25,
+        "goalsAgainst": 37,
+        "goalDifference": -12,
+        "points": 29,
+        "form": [
+          "W",
+          "L",
+          "L",
+          "D",
+          "L"
+        ]
+      },
+      "searchableName": "Posta Rangers FC",
+      "searchableKeywords": [
+        "Mailmen",
+        "Posta",
+        "POS",
+        "Rangers"
+      ],
+      "searchableSlug": "posta-rangers"
+    },
+    {
+      "id": "wazito-fc",
+      "slug": "wazito-fc",
+      "name": "Wazito FC",
+      "shortName": "Wazito",
+      "abbreviation": "WAZ",
+      "founded": 2010,
+      "city": "Nairobi",
+      "country": "Kenya",
+      "logo": "",
+      "colors": {
+        "primary": "#FFD700",
+        "secondary": "#000000"
+      },
+      "venue": {
+        "id": "venue-camp-toyoyo",
+        "name": "Camp Toyoyo",
+        "city": "Nairobi",
+        "capacity": 4000
+      },
+      "description": "Wazito FC are a Nairobi-based club founded in 2010. After rapid promotions through the lower leagues the club reached the Kenyan Premier League, becoming known for an ambitious recruitment drive and a modern, possession-based approach.",
+      "achievements": [
+        "Multiple promotions to the KPL",
+        "National Super League Play-Off winners"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/WazitoFC",
+        "facebook": "https://facebook.com/WazitoFC",
+        "instagram": null,
+        "website": null
+      },
+      "stats": {
+        "position": 15,
+        "played": 26,
+        "won": 6,
+        "drawn": 9,
+        "lost": 11,
+        "goalsFor": 24,
+        "goalsAgainst": 35,
+        "goalDifference": -11,
+        "points": 27,
+        "form": [
+          "D",
+          "L",
+          "D",
+          "D",
+          "L"
+        ]
+      },
+      "searchableName": "Wazito FC",
+      "searchableKeywords": [
+        "Wazito",
+        "WAZ",
+        "Nairobi"
+      ],
+      "searchableSlug": "wazito-fc"
+    },
+    {
+      "id": "city-stars",
+      "slug": "city-stars",
+      "name": "Nairobi City Stars FC",
+      "shortName": "City Stars",
+      "abbreviation": "NCS",
+      "founded": 1991,
+      "city": "Nairobi",
+      "country": "Kenya",
+      "logo": "",
+      "colors": {
+        "primary": "#00A3E0",
+        "secondary": "#FFFFFF"
+      },
+      "venue": {
+        "id": "venue-hope-centre",
+        "name": "Hope Centre Grounds",
+        "city": "Nairobi",
+        "capacity": 5000
+      },
+      "description": "Nairobi City Stars FC, founded in 1991, are one of the capital's most established clubs. The Stars have had several spells in the Kenyan Premier League and are recognised for their community work and youth development in Nairobi's Eastlands.",
+      "achievements": [
+        "KPL top-flight regulars",
+        "National Super League champions",
+        "Community youth development"
+      ],
+      "social": {
+        "twitter": "https://twitter.com/NairobiCityStars",
+        "facebook": "https://facebook.com/NairobiCityStars",
+        "instagram": null,
+        "website": null
+      },
+      "stats": {
+        "position": 16,
+        "played": 26,
+        "won": 6,
+        "drawn": 8,
+        "lost": 12,
+        "goalsFor": 25,
+        "goalsAgainst": 38,
+        "goalDifference": -13,
+        "points": 26,
+        "form": [
+          "L",
+          "D",
+          "W",
+          "L",
+          "L"
+        ]
+      },
+      "searchableName": "Nairobi City Stars FC",
+      "searchableKeywords": [
+        "City Stars",
+        "NCS",
+        "Nairobi",
+        "Stars"
+      ],
+      "searchableSlug": "city-stars"
+    },
+    {
+      "id": "zoo-kericho",
+      "slug": "zoo-kericho",
+      "name": "Zoo FC Kericho",
+      "shortName": "Zoo Kericho",
+      "abbreviation": "ZOO",
+      "founded": 1998,
+      "city": "Kericho",
+      "country": "Kenya",
+      "logo": "",
+      "colors": {
+        "primary": "#1A1A1A",
+        "secondary": "#FFFFFF"
+      },
+      "venue": {
+        "id": "venue-kericho",
+        "name": "Kericho Green Stadium",
+        "city": "Kericho",
+        "capacity": 6000
+      },
+      "description": "Zoo FC Kericho represent Kericho County and the heart of Kenya's tea-growing highlands. Founded in 1998, the club reached the Kenyan Premier League and are known for their strong home record and the backing of the local community.",
+      "achievements": [
+        "KPL promotion",
+        "National Super League Play-Off winners"
+      ],
+      "social": {
+        "twitter": null,
+        "facebook": "https://facebook.com/ZooFCKericho",
+        "instagram": null,
+        "website": null
+      },
+      "stats": {
+        "position": 17,
+        "played": 26,
+        "won": 5,
+        "drawn": 6,
+        "lost": 15,
+        "goalsFor": 22,
+        "goalsAgainst": 43,
+        "goalDifference": -21,
+        "points": 21,
+        "form": [
+          "L",
+          "L",
+          "W",
+          "L",
+          "D"
+        ]
+      },
+      "searchableName": "Zoo FC Kericho",
+      "searchableKeywords": [
+        "Zoo",
+        "Kericho",
+        "ZOO"
+      ],
+      "searchableSlug": "zoo-kericho"
+    },
+    {
+      "id": "ushuru-fc",
+      "slug": "ushuru-fc",
+      "name": "Ushuru FC",
+      "shortName": "Ushuru",
+      "abbreviation": "USH",
+      "founded": 1997,
+      "city": "Nairobi",
+      "country": "Kenya",
+      "logo": "",
+      "colors": {
+        "primary": "#C8A800",
+        "secondary": "#002060"
+      },
+      "venue": {
+        "id": "venue-camp-toyoyo",
+        "name": "Camp Toyoyo",
+        "city": "Nairobi",
+        "capacity": 4000
+      },
+      "description": "Ushuru FC is the football club of the Kenya Revenue Authority, founded in 1997. The Tax Collectors have competed in the Kenyan top flight and are known for their disciplined, tactically astute play and their work in developing players within the KRA ranks.",
+      "achievements": [
+        "KPL top-flight appearances",
+        "National Super League champions",
+        "Kenya Revenue Authority representative side"
+      ],
+      "social": {
+        "twitter": null,
+        "facebook": null,
+        "instagram": null,
+        "website": null
+      },
+      "stats": {
+        "position": 18,
+        "played": 26,
+        "won": 3,
+        "drawn": 5,
+        "lost": 18,
+        "goalsFor": 18,
+        "goalsAgainst": 51,
+        "goalDifference": -33,
+        "points": 14,
+        "form": [
+          "L",
+          "W",
+          "L",
+          "L",
+          "L"
+        ]
+      },
+      "searchableName": "Ushuru FC",
+      "searchableKeywords": [
+        "Ushuru",
+        "Tax Collectors",
+        "USH",
+        "KRA"
+      ],
+      "searchableSlug": "ushuru-fc"
     }
   ]
 }
