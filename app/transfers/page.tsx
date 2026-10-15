@@ -10,7 +10,6 @@ import { EmptyTransfers } from "@/components/football/transfers/EmptyTransfers";
 import type { TransferStatus } from "@/types/transfer";
 import { parseTransferStatus, parseTransferWindow } from "@/lib/transfers.utils";
 import { Suspense } from "react";
-import { TransferSkeleton } from "@/components/football/transfers/TransferSkeleton";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -39,7 +38,7 @@ const SECTION_LABELS: Record<TransferStatus, string> = {
 export async function generateMetadata({
   searchParams,
 }: PageProps): Promise<Metadata> {
-  const { status, window } = await searchParams;
+  const { status } = await searchParams;
 
   const statusLabel =
     status && status !== "all"
@@ -80,7 +79,7 @@ export default async function TransfersPage({ searchParams }: PageProps) {
   const activeClub   = club ?? "";
   const page         = Math.max(1, Number(pageParam) || 1);
 
-  const [{ transfers, total, totalPages }, windows, clubs] =
+  const [{ transfers, total }, windows, clubs] =
     await Promise.all([
       getTransfers({
         status: activeStatus,

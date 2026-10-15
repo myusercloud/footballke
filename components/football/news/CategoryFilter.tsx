@@ -37,7 +37,7 @@ export function CategoryFilter({ categories, currentSlug }: Props) {
 
       {categories.map((cat) => {
         const isActive = currentSlug === cat.slug;
-        const { badge, activeBadge } = getCategoryColors(cat.color);
+        const { activeBadge } = getCategoryColors(cat.color);
 
         return (
           <button

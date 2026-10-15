@@ -7,14 +7,15 @@ import Footer from "@/components/layout/Footer";
 import LiveTicker from "@/components/layout/LiveTicker";
 import PitchVisual from "@/components/layout/PitchVisual";
 import { getNews } from "@/lib/news.cache";
-import { getUpcomingFixtures } from "@/lib/fixtures.cache";
+import {
+  getUpcomingFixtures,
+  getFixtures,
+  getCompletedFixtures,
+} from "@/lib/fixtures.cache";
 import { formatKickoffTime } from "@/lib/fixture.utils";
 import { getCompetitionStandings } from "@/lib/standings.cache";
 import { getTransfers } from "@/lib/transfers.cache";
-import { getTournamentFixtures, getTournamentNews } from "@/lib/tournament.cache";
 import { ZONE_CLASSES } from "@/lib/standings.utils";
-import { WorldCupHighlight } from "@/components/football/world-cup/WorldCupHighlight";
-import { eventConfig } from "@/config/events";
 import { FormBadges } from "@/components/football/fixtures/FormBadges";
 import { TransferBadge } from "@/components/football/transfers/TransferBadge";
 
@@ -58,25 +59,25 @@ function kickoffBadgeTime(iso: string): string {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function Home() {
-  const [{ articles: topStories }, { articles: quickReads }, upcomingFixtures, kplStandings, { transfers: latestTransfers }] =
-    await Promise.all([
-      getNews({ pageSize: 3 }),
-      getNews({ featured: true, pageSize: 4 }),
-      getUpcomingFixtures(4),
-      getCompetitionStandings("kpl"),
-      getTransfers({ status: "confirmed", pageSize: 3 }),
-    ]);
+  const [
+    { articles: topStories },
+    { articles: quickReads },
+    upcomingFixtures,
+    kplStandings,
+    { transfers: latestTransfers },
+    { fixtures: liveFixtures },
+    recentResults,
+  ] = await Promise.all([
+    getNews({ pageSize: 3 }),
+    getNews({ featured: true, pageSize: 4 }),
+    getUpcomingFixtures(4),
+    getCompetitionStandings("kpl"),
+    getTransfers({ status: "confirmed", pageSize: 3 }),
+    getFixtures({ status: ["live", "halftime"], pageSize: 5 }),
+    getCompletedFixtures(5),
+  ]);
 
-  let wcFixture = null;
-  let wcArticle = null;
-  if (eventConfig.worldCup.enabled) {
-    const [{ fixtures: wcFixtures }, wcNews] = await Promise.all([
-      getTournamentFixtures({ status: ["live", "scheduled"], pageSize: 1 }),
-      getTournamentNews(1),
-    ]);
-    wcFixture = wcFixtures[0] ?? null;
-    wcArticle = wcNews[0] ?? null;
-  }
+  const tickerFixtures = [...liveFixtures, ...recentResults];
 
   return (
     <>
@@ -90,13 +91,7 @@ export default async function Home() {
       <div className="min-h-screen overflow-x-hidden bg-[#f2f4ef] text-zinc-950">
 
         {/* ── Live ticker ── */}
-        <LiveTicker
-          items={[
-            //"Gor Mahia 2–0 Ulinzi Stars · FT",
-            //"Tusker FC 1–1 AFC Leopards · FT",
-            //"Police FC vs Bandari · KO 3 PM Sun",
-          ]}
-        />
+        <LiveTicker fixtures={tickerFixtures} />
 
         {/* ── Header ── */}
         <Navbar />

@@ -15,8 +15,7 @@ football/
 │   │   ├── news/                        # Articles list + detail
 │   │   ├── players/                     # Player directory + profile
 │   │   ├── standings/                   # League table
-│   │   ├── transfers/                   # Transfer tracker
-│   │   └── world-cup/                   # World Cup 2026 hub
+│   │   └── transfers/                   # Transfer tracker
 │   ├── components/
 │   │   ├── football/                    # Domain UI components
 │   │   └── layout/                      # Navbar, Footer, AdSlot
@@ -26,8 +25,7 @@ football/
 │   │   ├── news.json
 │   │   ├── players.json
 │   │   ├── standings.json
-│   │   ├── transfers.json
-│   │   └── world-cup/
+│   │   └── transfers.json
 │   ├── docs/                            # All architecture / ops documentation
 │   │   ├── BACKEND_MIGRATION_PLAN.md
 │   │   ├── CMS_GUIDE.md
@@ -64,11 +62,6 @@ football/
 │   │   │   ├── CMSStandingsProvider.ts
 │   │   │   ├── JsonStandingsProvider.ts
 │   │   │   └── StandingsProvider.ts
-│   │   ├── tournaments/
-│   │   │   ├── APITournamentProvider.ts # ← NEW
-│   │   │   ├── CMSTournamentProvider.ts
-│   │   │   ├── JsonTournamentProvider.ts
-│   │   │   └── TournamentProvider.ts
 │   │   └── transfers/
 │   │       ├── APITransfersProvider.ts # ← NEW
 │   │       ├── CMSTransfersProvider.ts
@@ -89,8 +82,7 @@ football/
 │   │   ├── players.seed.ts
 │   │   ├── fixtures.seed.ts
 │   │   ├── standings.seed.ts
-│   │   ├── transfers.seed.ts
-│   │   └── tournament.seed.ts
+│   │   └── transfers.seed.ts
 │   ├── src/
 │   │   ├── main.ts                     # Bootstrap: CORS, Swagger, helmet
 │   │   ├── app.module.ts               # Root module wiring
@@ -103,7 +95,6 @@ football/
 │   │   ├── standings/                  # League table
 │   │   ├── clubs/                      # Club directory
 │   │   ├── players/                    # Player profiles
-│   │   ├── tournaments/                # World Cup 2026
 │   │   ├── transfers/                  # Transfer tracker
 │   │   ├── uploads/                    # Cloudinary image upload
 │   │   └── analytics/                  # Event tracking
@@ -120,7 +111,6 @@ football/
     │   ├── Media.ts                     # Auto Cloudinary upload
     │   ├── Players.ts
     │   ├── Standings.ts
-    │   ├── Tournaments.ts
     │   └── Users.ts                     # admin / editor / author roles
     ├── payload.config.ts
     ├── Dockerfile
@@ -171,7 +161,6 @@ football/
          │  /api/standings          │
          │  /api/clubs              │
          │  /api/players            │
-         │  /api/tournaments        │
          │  /api/transfers          │
          │  /api/uploads            │
          │  /api/health             │
@@ -219,7 +208,6 @@ football/
 
 ```env
 CONTENT_SOURCE=api
-TOURNAMENT_SOURCE=api
 NEXT_PUBLIC_API_URL=http://localhost:4000
 NEXT_PUBLIC_SITE_URL=https://footballke.com
 NEXT_PUBLIC_POSTHOG_KEY=phc_...
@@ -342,12 +330,6 @@ All endpoints are prefixed with `/api`. Full interactive docs at `http://localho
 | GET    | `/api/players`                    | Players (paginated, by club/pos)   |
 | GET    | `/api/players/:slug`              | Player by slug                     |
 | GET    | `/api/players/club/:clubSlug`     | Players for a club                 |
-| GET    | `/api/tournaments/:slug`          | Tournament overview                |
-| GET    | `/api/tournaments/:slug/groups`   | Group standings                    |
-| GET    | `/api/tournaments/:slug/fixtures` | Tournament fixtures                |
-| GET    | `/api/tournaments/:slug/teams`    | All teams                          |
-| GET    | `/api/tournaments/:slug/top-scorers` | Top scorers                    |
-| GET    | `/api/tournaments/:slug/news`     | Tournament news                    |
 | GET    | `/api/transfers`                  | Transfers (paginated, filtered)    |
 | GET    | `/api/transfers/clubs`            | All clubs in transfers             |
 | POST   | `/api/auth/login`                 | Get JWT token                      |
@@ -375,14 +357,12 @@ The frontend supports three content sources without any code changes:
 CONTENT_SOURCE=json   → reads data/*.json (default; no backend needed)
 CONTENT_SOURCE=cms    → reads Payload CMS REST API
 CONTENT_SOURCE=api    → reads NestJS API (full production path)
-TOURNAMENT_SOURCE=json|api — same toggle for World Cup data
 ```
 
 **To enable the API backend:**
 ```bash
 # footballke/.env.local
 CONTENT_SOURCE=api
-TOURNAMENT_SOURCE=api
 NEXT_PUBLIC_API_URL=http://localhost:4000
 ```
 Restart Next.js; all pages switch to the API without any frontend code change.
@@ -462,7 +442,6 @@ npm run seed:players     # players (requires clubs)
 npm run seed:fixtures    # competitions → venues → fixtures
 npm run seed:standings   # standings entries
 npm run seed:transfers   # clubs → transfers
-npm run seed:tournament  # World Cup 2026 data
 ```
 
 Seeds are idempotent — safe to re-run at any time. Uses Prisma `upsert` on original string IDs.
@@ -549,7 +528,7 @@ npm run health           # curl /api/health | jq
 - [x] Helmet, CORS, compression, ValidationPipe, rate limiting
 
 ### Phase 2 — Prisma schema
-- [x] 20+ models: User, Author, Category, Article, Fixture, Standing, Club, Player, Tournament, TournamentFixture, TournamentStanding, TopScorer, TournamentPlayer, Transfer, TransferClub, Team, Competition, Venue, Media, AnalyticsEvent
+- [x] 14+ models: User, Author, Category, Article, Fixture, Standing, Club, Player, Transfer, TransferClub, Team, Competition, Venue, Media, AnalyticsEvent
 - [x] UUID PKs, timestamps, indexes, slug uniqueness
 - [x] Soft delete on Article via `deletedAt`
 - [x] Player denormalization (`clubSlug`, `clubName`) for join-free squad queries
@@ -558,19 +537,19 @@ npm run health           # curl /api/health | jq
 ### Phase 3 — Seed scripts
 - [x] `scripts/seed/index.ts` — master seed in dependency order
 - [x] `news.seed.ts`, `clubs.seed.ts`, `players.seed.ts`, `fixtures.seed.ts`
-- [x] `standings.seed.ts`, `transfers.seed.ts`, `tournament.seed.ts`
+- [x] `standings.seed.ts`, `transfers.seed.ts`
 - [x] All seeds idempotent (upsert on original IDs)
 - [x] `docs/SEEDING.md` created
 
 ### Phase 4 — Payload CMS
 - [x] `footballke-cms/` with Payload v3 + `postgresAdapter`
-- [x] 10 collections with access control (admin/editor/author roles)
+- [x] 9 collections with access control (admin/editor/author roles)
 - [x] Draft/publish on Articles; Lexical rich-text editor
 - [x] Media collection with auto image resizing + Cloudinary hook
 - [x] `docs/CMS_GUIDE.md` created
 
 ### Phase 5 — REST API endpoints
-- [x] All domain controllers: news, fixtures, standings, clubs, players, tournaments, transfers
+- [x] All domain controllers: news, fixtures, standings, clubs, players, transfers
 - [x] Pagination, filtering, search on all list endpoints
 - [x] Auth module: JWT + local strategies, bcrypt password hashing
 - [x] Uploads: Cloudinary integration with MIME + size validation
@@ -583,7 +562,6 @@ npm run health           # curl /api/health | jq
 - [x] `APIStandingsProvider.ts` — raw entries (frontend computes positions)
 - [x] `APIClubProvider.ts` — paginated, 404-safe slug lookup
 - [x] `APIPlayerProvider.ts` — paginated, getPlayersByClub via `?clubSlug=`
-- [x] `APITournamentProvider.ts` — all 10 TournamentProvider methods
 - [x] `APITransfersProvider.ts` — paginated transfers + clubs
 - [x] `CONTENT_SOURCE=json` still works with zero backend running
 

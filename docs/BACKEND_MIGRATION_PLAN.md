@@ -24,7 +24,6 @@ Browser / SSR Request
 │  IStandingsService      │
 │  IClubService           │
 │  IPlayerService         │
-│  ITournamentService     │
 │  ITransfersService      │
 └────────────┬────────────┘
              │ calls provider
@@ -38,7 +37,7 @@ Browser / SSR Request
              ▼
 ┌─────────────────────────┐
 │  JSON Files             │  data/*.json
-│  (current default)      │  data/world-cup/*.json
+│  (current default)      │
 └─────────────────────────┘
 ```
 
@@ -52,8 +51,6 @@ Browser / SSR Request
 | `cms`            | `CMSXxxProvider`      |
 | `api`            | `APIXxxProvider`      |
 
-Tournament data uses a separate `TOURNAMENT_SOURCE` env var, allowing the KPL backend and World Cup backend to be switched independently.
-
 ---
 
 ## 2. Existing Services
@@ -65,7 +62,6 @@ Tournament data uses a separate `TOURNAMENT_SOURCE` env var, allowing the KPL ba
 | Standings | `services/standings.service.ts` | `IStandingsService` |
 | Clubs | `services/club.service.ts` | `IClubService` |
 | Players | `services/player.service.ts` | `IPlayerService` |
-| Tournament | `services/tournament.service.ts` | `ITournamentService` |
 | Transfers | `services/transfers.service.ts` | `ITransfersService` |
 
 Each service is a singleton exported at module level. Pages import the singleton directly — no dependency injection, no context providers.
@@ -83,7 +79,6 @@ Each domain has three implementations, all co-located under `providers/[domain]/
 | Standings | `JsonStandingsProvider` | `CMSStandingsProvider` | `APIStandingsProvider` |
 | Clubs | `JsonClubProvider` | `CMSClubProvider` | `APIClubProvider` |
 | Players | `JsonPlayerProvider` | `CMSPlayerProvider` | `APIPlayerProvider` |
-| Tournaments | `JsonTournamentProvider` | `CMSTournamentProvider` | `APITournamentProvider` |
 | Transfers | `JsonTransfersProvider` | `CMSTransfersProvider` | `APITransfersProvider` |
 
 CMS and API providers currently throw `"not implemented"` on every method. **The migration fills these in — it does not create new provider files.**
@@ -122,16 +117,6 @@ data/players.json
 data/transfers.json
   └─ JsonTransfersProvider
        └─ returns Transfer[]
-
-data/world-cup/
-  ├─ tournament.json     → Tournament metadata
-  ├─ groups.json         → TournamentGroup[]
-  ├─ fixtures.json       → Fixture[] (WC matches)
-  ├─ standings.json      → GroupStandingsTable[]
-  ├─ top-scorers.json    → TopScorer[]
-  ├─ featured-players.json → TournamentPlayer[]
-  └─ squads.json         → SquadPlayer[] keyed by team slug
-  └─ JsonTournamentProvider → stitches all of the above
 ```
 
 ---
@@ -146,7 +131,6 @@ data/world-cup/
 | `data/clubs.json` | 18 clubs | Full club entities |
 | `data/players.json` | ~180 players | 10 per club |
 | `data/transfers.json` | ~30 transfers | Summer 2026 window |
-| `data/world-cup/` | Full WC 2026 dataset | 32 teams, 48 fixtures, 6 groups |
 
 ---
 
@@ -171,7 +155,7 @@ data/world-cup/
 - No page or service should know or care which is active.
 
 ### JSON files
-- `data/*.json` and `data/world-cup/*.json` are **never deleted** during migration.
+- `data/*.json` are **never deleted** during migration.
 - They remain the fallback when `CONTENT_SOURCE=json`.
 
 ---
@@ -246,9 +230,6 @@ Browser / SSR Request
 | `getAllPlayers()` | `GET /api/players` |
 | `getPlayerBySlug(slug)` | `GET /api/players/:slug` |
 | `getPlayersByClub(slug)` | `GET /api/players?clubSlug=:slug` |
-| `getTournament()` | `GET /api/tournaments/:slug` |
-| `getGroups()` | `GET /api/tournaments/:slug/groups` |
-| `getFixtures()` (WC) | `GET /api/tournaments/:slug/fixtures` |
 | `getAllTransfers()` | `GET /api/transfers` |
 
 ---

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPlayer, getPlayers } from "@/lib/players.cache";
 import { getClub } from "@/lib/clubs.cache";
@@ -91,9 +92,9 @@ export default async function PlayerProfilePage({ params }: PageProps) {
         <nav aria-label="Breadcrumb" className="mb-4 text-xs text-zinc-500">
           <ol className="flex items-center gap-1">
             <li>
-              <a href="/clubs" className="hover:text-zinc-800">
+              <Link href="/clubs" className="hover:text-zinc-800">
                 Clubs
-              </a>
+              </Link>
             </li>
             <li aria-hidden="true">/</li>
             <li>

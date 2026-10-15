@@ -192,11 +192,9 @@ The content source can be switched without code changes:
 ```bash
 # Switch frontend to use API backend
 echo "CONTENT_SOURCE=api" >> footballke/.env.local
-echo "TOURNAMENT_SOURCE=api" >> footballke/.env.local
 
 # Revert to JSON files (no backend required)
 echo "CONTENT_SOURCE=json" >> footballke/.env.local
-echo "TOURNAMENT_SOURCE=json" >> footballke/.env.local
 ```
 
 Restart the frontend after changing `CONTENT_SOURCE`:

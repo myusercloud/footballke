@@ -13,14 +13,16 @@ type Props = {
   currentDateTo?: string | null;
 };
 
-// Builds the /fixtures URL from the set of active filters.
-// Any falsy value is omitted from the query string.
-function buildUrl(filters: {
+type FilterState = {
   competition: string | null;
   team: string;
   from: string;
   to: string;
-}): string {
+};
+
+// Builds the /fixtures URL from the set of active filters.
+// Any falsy value is omitted from the query string.
+function buildUrl(filters: FilterState): string {
   const params = new URLSearchParams();
   if (filters.competition) params.set("competition", filters.competition);
   if (filters.team) params.set("team", filters.team);
@@ -53,12 +55,10 @@ export function FixtureFilters({
   // Navigate with overrides applied on top of current state values.
   // Passing overrides avoids stale-closure issues when state hasn't yet
   // flushed between the setState call and the push.
-  function navigate(overrides: Partial<typeof filters> = {}) {
-    const filters = { competition, team, from, to, ...overrides };
+  function navigate(overrides: Partial<FilterState> = {}) {
+    const filters: FilterState = { competition, team, from, to, ...overrides };
     router.push(buildUrl(filters));
   }
-
-  const filters = { competition, team, from, to };
 
   const hasActiveFilters =
     competition !== null || team !== "" || from !== "" || to !== "";

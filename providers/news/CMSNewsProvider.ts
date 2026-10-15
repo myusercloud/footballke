@@ -30,9 +30,6 @@ type SMedia = {
   width: number | null; height: number | null
 }
 
-// TipTap JSON top-level document shape
-type TipTapDoc = { type: 'doc'; content: SRichBlock[] }
-
 type SRichBlock = {
   type: string; level?: number; format?: 'ordered' | 'unordered'
   content?: SNode[]   // TipTap uses `content`

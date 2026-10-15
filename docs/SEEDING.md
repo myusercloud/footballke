@@ -27,7 +27,6 @@ npm run seed:clubs       # ClubVenues → Clubs
 npm run seed:players     # Requires clubs seeded first
 npm run seed:fixtures    # Teams → Competitions → Venues → Fixtures
 npm run seed:standings   # StandingClubs → StandingCompetitions → StandingEntries → StandingRows
-npm run seed:tournaments # Tournament → TournamentTeams → Standings → Fixtures → TopScorers → Players
 npm run seed:transfers   # TransferClubs → Transfers
 ```
 
@@ -41,7 +40,6 @@ seed:clubs
   └─ seed:players (requires clubs)
 seed:fixtures
 seed:standings
-seed:tournaments
 seed:transfers
 ```
 
@@ -58,7 +56,6 @@ When running `npm run seed`, this order is enforced automatically.
 | `seed:players` | `data/players.json` | ~180 players |
 | `seed:fixtures` | `data/fixtures.json` | 18 teams, 2 competitions, ~20 fixtures |
 | `seed:standings` | `data/standings.json` | 1 entry, 18 rows |
-| `seed:tournaments` | `data/world-cup/*.json` | 1 tournament, 32 teams, 48 fixtures |
 | `seed:transfers` | `data/transfers.json` | 20 clubs, ~30 transfers |
 
 ---

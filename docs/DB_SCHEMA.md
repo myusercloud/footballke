@@ -21,12 +21,6 @@ Club ──────────── Player (clubId FK)
 
 TransferClub ──┬─ Transfer (fromClub)
                └─ Transfer (toClub)
-
-Tournament ────── TournamentTeam
-               ── TournamentFixture
-               ── TournamentStanding
-               ── TournamentPlayer
-               ── TopScorer
 ```
 
 ---
@@ -91,13 +85,6 @@ Age is NOT stored — it's derived at read time from `dateOfBirth`.
 
 ### TransferClub / Transfer
 Transfer window data. `fromClub` / `toClub` are separate entities from `Club` (includes foreign clubs, free agents).
-
----
-
-### Tournament / TournamentTeam / TournamentFixture / TournamentStanding / TournamentPlayer / TopScorer
-World Cup 2026 data model. Isolated from the KPL models to avoid schema conflicts.
-
-`TournamentFixture` maps to the frontend `Fixture` type by having homeTeam/awayTeam embed the team shape at query time.
 
 ---
 

@@ -124,7 +124,6 @@ NEXT_PUBLIC_SITE_URL=https://footballke.com
 
 # Switch content source
 CONTENT_SOURCE=api
-TOURNAMENT_SOURCE=api
 ```
 
 ---

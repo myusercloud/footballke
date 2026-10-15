@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { NavLinks } from "./NavLinks";
 
 // Shown while NavLinks suspends (e.g. during soft navigation).
@@ -26,7 +27,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white/95 shadow-sm backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:px-6 sm:py-4 lg:flex-row lg:items-center lg:justify-between lg:px-8">
         {/* Brand */}
-        <a
+        <Link
           href="/"
           className="flex items-center gap-3 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2"
         >
@@ -44,7 +45,7 @@ export default function Navbar() {
               FootballKE
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Nav — useSearchParams requires Suspense */}
         <Suspense fallback={<NavFallback />}>

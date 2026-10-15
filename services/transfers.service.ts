@@ -1,7 +1,6 @@
 import type {
   GetTransfersParams,
   ITransfersService,
-  Transfer,
   TransferClub,
   TransferWindow,
   TransfersResponse,

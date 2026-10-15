@@ -25,13 +25,6 @@ function isLastInZone(
   return current.zone !== next.zone;
 }
 
-const SORT_LABEL: Record<StandingsSortField, string> = {
-  position:       "Position",
-  points:         "Pts",
-  goalDifference: "GD",
-  goalsFor:       "GF",
-};
-
 type ThProps = {
   children: React.ReactNode;
   className?: string;
