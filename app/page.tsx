@@ -28,14 +28,14 @@ export const metadata: Metadata = {
     title: "Kenyan Football News, KPL Fixtures & Standings | FootballKE",
     description:
       "KPL news, fixtures, live scores, results, standings, transfers, clubs, and player updates from Kenya.",
-    images: [{ url: "/trophy.png", width: 512, height: 512, alt: "FootballKE" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "FootballKE" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Kenyan Football News, KPL Fixtures & Standings | FootballKE",
     description:
       "KPL news, fixtures, live scores, results, standings, transfers, clubs, and player updates from Kenya.",
-    images: ["/trophy.png"],
+    images: ["/og-image.png"],
   },
 };
 

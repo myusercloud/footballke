@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { NavLinks } from "./NavLinks";
 
 // Shown while NavLinks suspends (e.g. during soft navigation).
@@ -29,21 +30,21 @@ export default function Navbar() {
         {/* Brand */}
         <Link
           href="/"
+          aria-label="FootballKE — home"
           className="flex items-center gap-3 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2"
         >
-          <div
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-800 text-xs font-black text-white"
-            aria-hidden="true"
-          >
-            FK
-          </div>
-          <div>
+          <div className="flex flex-col">
             <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-emerald-700">
               Kenyan Premier League
             </p>
-            <span className="text-xl font-black leading-none tracking-tight sm:text-2xl">
-              FootballKE
-            </span>
+            <Image
+              src="/footballke-wordmark.png"
+              alt="FootballKE"
+              width={210}
+              height={34}
+              priority
+              className="mt-0.5 h-auto w-[160px] sm:w-[210px]"
+            />
           </div>
         </Link>
 

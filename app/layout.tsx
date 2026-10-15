@@ -40,11 +40,6 @@ const siteJsonLd = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  icons: {
-    icon: "trophy.png",
-    shortcut: "trophy.png",
-    apple: "trophy.png",
-  },
   title: {
     default: "FootballKE",
     template: "%s | FootballKE",
@@ -72,14 +67,14 @@ export const metadata: Metadata = {
     siteName: "FootballKE",
     locale: "en_KE",
     type: "website",
-    images: [{ url: "/trophy.png", width: 512, height: 512, alt: "FootballKE" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "FootballKE" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "FootballKE — Kenyan Premier League",
     description:
       "KPL news, fixtures, standings, and transfers. Kenyan football in one place.",
-    images: ["/trophy.png"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,

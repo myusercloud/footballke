@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
 import { track } from "@/lib/analytics/analytics";
 import { events } from "@/lib/analytics/events";
 
@@ -11,15 +13,19 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2">
-              <div
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-800 text-[10px] font-black text-white"
-                aria-hidden="true"
-              >
-                FK
-              </div>
-              <p className="text-base font-black">FootballKE</p>
-            </div>
+            <Link
+              href="/"
+              aria-label="FootballKE — home"
+              className="inline-flex rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2"
+            >
+              <Image
+                src="/footballke-wordmark.png"
+                alt="FootballKE"
+                width={173}
+                height={28}
+                className="h-auto w-[150px] sm:w-[173px]"
+              />
+            </Link>
             <p className="mt-2.5 max-w-sm text-sm leading-6 text-zinc-500">
               Your home for Kenyan Premier League coverage — from kickoff
               to final whistle. Match reports, standings, transfers, and
