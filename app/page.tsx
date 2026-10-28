@@ -18,6 +18,7 @@ import { getTransfers } from "@/lib/transfers.cache";
 import { ZONE_CLASSES } from "@/lib/standings.utils";
 import { FormBadges } from "@/components/football/fixtures/FormBadges";
 import { TransferBadge } from "@/components/football/transfers/TransferBadge";
+import { FeaturedStoryCard } from "@/components/football/news/FeaturedStoryCard";
 
 export const metadata: Metadata = {
   title: "Kenyan Football News, KPL Fixtures, Results & Standings",
@@ -78,6 +79,10 @@ export default async function Home() {
   ]);
 
   const tickerFixtures = [...liveFixtures, ...recentResults];
+  const featuredArticle = quickReads[0] ?? topStories[0] ?? null;
+  const topStoriesRow = topStories
+    .filter((story) => story.slug !== featuredArticle?.slug)
+    .slice(0, 2);
 
   return (
     <>
@@ -103,7 +108,7 @@ export default async function Home() {
         >
           {/* ── Hero section ── */}
           <section
-            aria-label="Lead story and upcoming fixtures"
+            aria-label="Lead story and featured story"
             className="grid gap-5 lg:grid-cols-[1.5fr_1fr]"
           >
             {/* Lead article */}
@@ -158,85 +163,20 @@ export default async function Home() {
               </div>
             </article>
 
-            {/* Fixtures widget */}
-            <section
-                id="fixtures"
-                className="rounded-sm border border-zinc-200 bg-white p-5 shadow-sm"
-                aria-labelledby="fixtures-heading"
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <h2 id="fixtures-heading" className="text-lg font-black sm:text-xl">
-                    Next Fixtures
-                  </h2>
-                  <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-[0.2em] text-emerald-800">
-                    KPL
-                  </span>
-                </div>
-
-                {upcomingFixtures.length > 0 ? (
-                  <div className="mt-3 divide-y divide-zinc-100">
-                    {upcomingFixtures.map((fixture) => (
-                      <TrackedLink
-                        key={fixture.id}
-                        href={`/fixtures/${fixture.id}`}
-                        trackEvent={events.fixtureOpen({
-                          fixture_id: fixture.id,
-                          home_team: fixture.homeTeam.shortName,
-                          away_team: fixture.awayTeam.shortName,
-                          source: "widget",
-                        })}
-                        className="group flex items-center gap-3 py-3 transition-colors hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-inset"
-                      >
-                        {/* Day + time badge */}
-                        <div className="flex w-10 shrink-0 flex-col items-center rounded-sm bg-zinc-100 py-1.5 text-center">
-                          <span className="text-[9px] font-black uppercase tracking-wide text-zinc-500">
-                            {kickoffDay(fixture.kickoff)}
-                          </span>
-                          <span className="text-[10px] font-black text-zinc-800">
-                            {kickoffBadgeTime(fixture.kickoff)}
-                          </span>
-                        </div>
-
-                        <div className="min-w-0 flex-1">
-                          <p className="truncate text-sm font-bold">
-                            {fixture.homeTeam.shortName}
-                          </p>
-                          <p className="mt-0.5 truncate text-xs font-medium text-zinc-500">
-                            vs {fixture.awayTeam.shortName}
-                          </p>
-                          <p className="mt-0.5 truncate text-[10px] text-zinc-400">
-                            {fixture.venue.name}
-                          </p>
-                        </div>
-
-                        <svg
-                          className="h-4 w-4 shrink-0 text-zinc-300 transition-colors group-hover:text-emerald-400"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                        </svg>
-                      </TrackedLink>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="mt-4 text-sm text-zinc-400">
-                    No upcoming fixtures scheduled.
-                  </p>
-                )}
-
-                <TrackedLink
-                  href="/fixtures"
-                  trackEvent={events.ctaClick({ label: "All fixtures", destination: "/fixtures", type: "internal" })}
-                  className="mt-3 block text-center text-xs font-bold text-emerald-700 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
-                >
-                  All fixtures →
-                </TrackedLink>
-              </section>
+            {/* Featured story */}
+            {featuredArticle && (
+              <div className="hidden lg:block lg:h-full">
+                <FeaturedStoryCard article={featuredArticle} />
+              </div>
+            )}
           </section>
+
+          {/* ── Featured story (mobile) ── */}
+          {featuredArticle && (
+            <section className="mt-5 lg:hidden" aria-label="Featured story">
+              <FeaturedStoryCard article={featuredArticle} />
+            </section>
+          )}
 
           {/* ── Top Stories ── */}
           <section
@@ -258,7 +198,86 @@ export default async function Home() {
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-                {topStories.map((story) => (
+                {/* Next Fixtures */}
+                <section
+                  id="fixtures"
+                  className="flex flex-col rounded-sm border border-zinc-200 bg-white p-5 shadow-sm"
+                  aria-labelledby="fixtures-heading"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <h2 id="fixtures-heading" className="text-lg font-black sm:text-xl">
+                      Next Fixtures
+                    </h2>
+                    <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-[0.2em] text-emerald-800">
+                      KPL
+                    </span>
+                  </div>
+
+                  {upcomingFixtures.length > 0 ? (
+                    <div className="mt-3 flex-1 divide-y divide-zinc-100">
+                      {upcomingFixtures.map((fixture) => (
+                        <TrackedLink
+                          key={fixture.id}
+                          href={`/fixtures/${fixture.id}`}
+                          trackEvent={events.fixtureOpen({
+                            fixture_id: fixture.id,
+                            home_team: fixture.homeTeam.shortName,
+                            away_team: fixture.awayTeam.shortName,
+                            source: "widget",
+                          })}
+                          className="group flex items-center gap-3 py-3 transition-colors hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-inset"
+                        >
+                          {/* Day + time badge */}
+                          <div className="flex w-10 shrink-0 flex-col items-center rounded-sm bg-zinc-100 py-1.5 text-center">
+                            <span className="text-[9px] font-black uppercase tracking-wide text-zinc-500">
+                              {kickoffDay(fixture.kickoff)}
+                            </span>
+                            <span className="text-[10px] font-black text-zinc-800">
+                              {kickoffBadgeTime(fixture.kickoff)}
+                            </span>
+                          </div>
+
+                          <div className="min-w-0 flex-1">
+                            <p className="truncate text-sm font-bold">
+                              {fixture.homeTeam.shortName}
+                            </p>
+                            <p className="mt-0.5 truncate text-xs font-medium text-zinc-500">
+                              vs {fixture.awayTeam.shortName}
+                            </p>
+                            <p className="mt-0.5 truncate text-[10px] text-zinc-400">
+                              {fixture.venue.name}
+                            </p>
+                          </div>
+
+                          <svg
+                            className="h-4 w-4 shrink-0 text-zinc-300 transition-colors group-hover:text-emerald-400"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </TrackedLink>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="mt-4 flex-1 text-sm text-zinc-400">
+                      No upcoming fixtures scheduled.
+                    </p>
+                  )}
+
+                  <TrackedLink
+                    href="/fixtures"
+                    trackEvent={events.ctaClick({ label: "All fixtures", destination: "/fixtures", type: "internal" })}
+                    className="mt-3 block text-center text-xs font-bold text-emerald-700 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600"
+                  >
+                    All fixtures →
+                  </TrackedLink>
+                </section>
+
+                {topStoriesRow.map((story) => (
                   <article
                     key={story.slug}
                     className="group relative flex flex-col rounded-sm border border-zinc-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md focus-within:ring-2 focus-within:ring-emerald-600"
