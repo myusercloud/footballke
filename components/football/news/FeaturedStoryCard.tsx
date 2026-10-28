@@ -11,23 +11,24 @@ type Props = {
 export function FeaturedStoryCard({ article, className = "" }: Props) {
   return (
     <article
-      className={`group relative flex min-h-[320px] overflow-hidden rounded-sm border border-zinc-200 bg-emerald-950 shadow-sm sm:min-h-[360px] lg:h-full lg:min-h-0 ${className}`}
+      className={`group relative flex h-full flex-col overflow-hidden rounded-sm border border-zinc-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-md focus-within:ring-2 focus-within:ring-emerald-600 focus-within:ring-offset-1 ${className}`}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-800 to-emerald-950">
+      <div className="relative h-52 w-full shrink-0 overflow-hidden bg-gradient-to-br from-emerald-800 to-emerald-950 sm:h-60 lg:h-56">
         {article.coverImage.src && (
           <Image
             src={article.coverImage.src}
             alt={article.coverImage.alt}
             fill
             sizes="(max-width: 1024px) 100vw, 40vw"
-            className="object-cover opacity-70 transition-transform duration-500 group-hover:scale-[1.02]"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
         )}
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/55 to-emerald-950/10" />
 
-      <div className="relative flex flex-1 flex-col justify-end p-5 text-white sm:p-6 lg:p-7">
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-zinc-950/55 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white via-white/70 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-full" />
+
+        <div className="absolute inset-x-4 top-4 flex flex-wrap items-center gap-2">
           <span className="flex items-center gap-1.5 rounded-full bg-red-600/90 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-white backdrop-blur-sm">
             <span
               className="h-1.5 w-1.5 animate-pulse rounded-full bg-white"
@@ -35,12 +36,14 @@ export function FeaturedStoryCard({ article, className = "" }: Props) {
             />
             Featured
           </span>
-          <span className="rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-white backdrop-blur-sm">
+          <span className="rounded-full bg-zinc-950/45 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-white backdrop-blur-sm">
             {article.category.name}
           </span>
         </div>
+      </div>
 
-        <h2 className="mt-3 text-xl font-black leading-tight tracking-tight text-white sm:text-2xl xl:text-3xl">
+      <div className="relative flex flex-1 flex-col p-5 sm:p-6">
+        <h2 className="text-xl font-black leading-tight tracking-tight text-zinc-950 transition-colors group-hover:text-emerald-900 sm:text-2xl xl:text-3xl">
           <Link
             href={`/news/${article.slug}`}
             className="focus:outline-none focus-visible:underline after:absolute after:inset-0"
@@ -49,15 +52,15 @@ export function FeaturedStoryCard({ article, className = "" }: Props) {
           </Link>
         </h2>
 
-        <p className="mt-3 line-clamp-3 text-sm leading-6 text-zinc-300 sm:text-base sm:leading-7">
+        <p className="mt-3 line-clamp-3 text-sm leading-6 text-zinc-600 sm:text-base sm:leading-7">
           {article.excerpt}
         </p>
 
-        <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-zinc-300">
-          <span className="font-semibold text-zinc-100">{article.author.name}</span>
-          <span className="text-zinc-500" aria-hidden="true">·</span>
+        <div className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-zinc-100 pt-4 text-xs text-zinc-500 sm:text-sm">
+          <span className="font-semibold text-zinc-700">{article.author.name}</span>
+          <span className="text-zinc-300" aria-hidden="true">·</span>
           <span>{formatRelativeDate(article.publishedAt)}</span>
-          <span className="text-zinc-500" aria-hidden="true">·</span>
+          <span className="text-zinc-300" aria-hidden="true">·</span>
           <span>{article.readingTime} min read</span>
         </div>
       </div>
