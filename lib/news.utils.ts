@@ -2,8 +2,8 @@ import type { ContentBlock } from "@/types/news";
 
 const WORDS_PER_MINUTE = 200;
 
-export function calculateReadingTime(content: ContentBlock[]): number {
-  const wordCount = content.reduce<number>((total, block) => {
+export function calculateWordCount(content: ContentBlock[]): number {
+  return content.reduce<number>((total, block) => {
     switch (block.type) {
       case "paragraph":
       case "heading":
@@ -20,8 +20,10 @@ export function calculateReadingTime(content: ContentBlock[]): number {
         return total;
     }
   }, 0);
+}
 
-  return Math.max(1, Math.ceil(wordCount / WORDS_PER_MINUTE));
+export function calculateReadingTime(content: ContentBlock[]): number {
+  return Math.max(1, Math.ceil(calculateWordCount(content) / WORDS_PER_MINUTE));
 }
 
 export function formatDate(iso: string): string {

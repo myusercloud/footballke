@@ -6,6 +6,8 @@ import { ArticleContent } from "@/components/football/news/ArticleContent";
 import { ArticleMeta } from "@/components/football/news/ArticleMeta";
 import { RelatedArticles } from "@/components/football/news/RelatedArticles";
 import { ShareButtons } from "@/components/football/news/ShareButtons";
+import { calculateWordCount } from "@/lib/news.utils";
+import type { Article, ArticleEvent } from "@/types/news";
 
 const BASE_URL = "https://footballke.site";
 
@@ -31,24 +33,41 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!article) return {};
 
-  const coverUrl = `${BASE_URL}${article.coverImage.src}`;
+  const articleUrl = `${BASE_URL}/news/${slug}`;
+  const coverUrl = `${BASE_URL}/news/${slug}/opengraph-image`;
+  const section = article.category.name;
 
   return {
     title: article.title,
     description: article.excerpt,
     authors: [{ name: article.author.name }],
     keywords: article.tags,
+    category: section,
     alternates: {
       canonical: `/news/${slug}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
     openGraph: {
       title: article.title,
       description: article.excerpt,
       type: "article",
-      url: `${BASE_URL}/news/${slug}`,
+      url: articleUrl,
+      siteName: "FootballKE",
+      locale: "en_KE",
       publishedTime: article.publishedAt,
-      modifiedTime: article.updatedAt,
+      modifiedTime: article.updatedAt ?? article.publishedAt,
       authors: [article.author.name],
+      section,
       tags: article.tags,
       images: [
         {
@@ -68,6 +87,191 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+// ── JSON-LD ───────────────────────────────────────────────────────────────────
+
+const EVENT_STATUS: Record<
+  NonNullable<ArticleEvent["status"]>,
+  string
+> = {
+  scheduled: "https://schema.org/EventScheduled",
+  postponed: "https://schema.org/EventPostponed",
+  cancelled: "https://schema.org/EventCancelled",
+};
+
+function buildJsonLd(article: Article, slug: string) {
+  const articleUrl = `${BASE_URL}/news/${slug}`;
+  const imageUrl = `${BASE_URL}/news/${slug}/opengraph-image`;
+  const event = article.event;
+
+  const graph: Record<string, unknown>[] = [
+    {
+      "@type": "NewsArticle",
+      "@id": `${articleUrl}#article`,
+      headline: article.title,
+      description: article.excerpt,
+      image: [imageUrl],
+      datePublished: article.publishedAt,
+      dateModified: article.updatedAt ?? article.publishedAt,
+      author: {
+        "@type": "Person",
+        name: article.author.name,
+        jobTitle: article.author.role,
+      },
+      publisher: { "@id": `${BASE_URL}/#organization` },
+      mainEntityOfPage: { "@id": `${articleUrl}#webpage` },
+      isPartOf: { "@id": `${BASE_URL}/#website` },
+      inLanguage: "en-KE",
+      articleSection: article.category.name,
+      keywords: article.tags.join(", "),
+      wordCount: calculateWordCount(article.content),
+      timeRequired: `PT${article.readingTime}M`,
+      isAccessibleForFree: true,
+      ...(event
+        ? {
+            about: { "@id": `${articleUrl}#event` },
+            mentions: [
+              { "@type": "SportsTeam", name: event.homeTeam, sport: "Soccer" },
+              { "@type": "SportsTeam", name: event.awayTeam, sport: "Soccer" },
+            ],
+          }
+        : {}),
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${articleUrl}#webpage`,
+      url: articleUrl,
+      name: article.title,
+      description: article.excerpt,
+      isPartOf: { "@id": `${BASE_URL}/#website` },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: imageUrl,
+        width: 1200,
+        height: 630,
+      },
+      breadcrumb: { "@id": `${articleUrl}#breadcrumb` },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${articleUrl}#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: BASE_URL,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "News",
+          item: `${BASE_URL}/news`,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: article.category.name,
+          item: `${BASE_URL}/news?category=${article.category.slug}`,
+        },
+        {
+          "@type": "ListItem",
+          position: 4,
+          name: article.title,
+          item: articleUrl,
+        },
+      ],
+    },
+  ];
+
+  if (event) {
+    graph.push({
+      "@type": "SportsEvent",
+      "@id": `${articleUrl}#event`,
+      name: event.name,
+      description: article.excerpt,
+      startDate: event.startDate,
+      ...(event.endDate ? { endDate: event.endDate } : {}),
+      eventStatus:
+        EVENT_STATUS[event.status ?? "scheduled"],
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      sport: "Soccer",
+      url: articleUrl,
+      location: {
+        "@type": "SportsActivityLocation",
+        name: event.venue.name,
+        ...(event.venue.capacity
+          ? { maximumAttendeeCapacity: event.venue.capacity }
+          : {}),
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: event.venue.addressLocality,
+          addressCountry: event.venue.addressCountry,
+        },
+      },
+      homeTeam: {
+        "@type": "SportsTeam",
+        name: event.homeTeam,
+        sport: "Soccer",
+      },
+      awayTeam: {
+        "@type": "SportsTeam",
+        name: event.awayTeam,
+        sport: "Soccer",
+      },
+      ...(event.organizer
+        ? {
+            organizer: {
+              "@type": "Organization",
+              name: event.organizer,
+            },
+          }
+        : {}),
+      ...(event.ticketUrl
+        ? {
+            offers: {
+              "@type": "Offer",
+              url: event.ticketUrl,
+              availability: "https://schema.org/PreSale",
+              ...(event.ticketSalesStart
+                ? { availabilityStarts: event.ticketSalesStart }
+                : {}),
+            },
+          }
+        : {}),
+      ...(event.broadcast?.length
+        ? {
+            broadcastOfEvent: event.broadcast.map((name) => ({
+              "@type": "BroadcastEvent",
+              name: `${event.name} on ${name}`,
+              isLiveBroadcast: true,
+              startDate: event.startDate,
+            })),
+          }
+        : {}),
+    });
+  }
+
+  if (article.faq?.length) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${articleUrl}#faq`,
+      mainEntity: article.faq.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    });
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": graph,
+  };
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function ArticlePage({ params }: PageProps) {
@@ -82,43 +286,16 @@ export default async function ArticlePage({ params }: PageProps) {
   const relatedArticles = await getRelatedNews(slug, article.category.slug);
 
   const articleUrl = `${BASE_URL}/news/${slug}`;
-
-  // Schema.org NewsArticle JSON-LD
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    headline: article.title,
-    description: article.excerpt,
-    image: [`${BASE_URL}${article.coverImage.src}`],
-    datePublished: article.publishedAt,
-    dateModified: article.updatedAt ?? article.publishedAt,
-    author: {
-      "@type": "Person",
-      name: article.author.name,
-      jobTitle: article.author.role,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "FootballKE",
-      logo: {
-        "@type": "ImageObject",
-        url: `${BASE_URL}/trophy.png`,
-      },
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": articleUrl,
-    },
-    keywords: article.tags.join(", "),
-    articleSection: article.category.name,
-  };
+  const jsonLd = buildJsonLd(article, slug);
 
   return (
     <>
       {/* JSON-LD injected into <head> by Next.js */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
       />
 
       <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -129,6 +306,32 @@ export default async function ArticlePage({ params }: PageProps) {
           {/* Prose: rich content + share + author card */}
           <div className="mx-auto mt-8 max-w-2xl">
             <ArticleContent blocks={article.content} />
+
+            {article.faq?.length ? (
+              <section
+                aria-labelledby="faq-heading"
+                className="mt-10 rounded-sm border border-zinc-200 bg-white p-5 shadow-sm sm:p-6"
+              >
+                <h2
+                  id="faq-heading"
+                  className="text-xl font-black tracking-tight text-zinc-950"
+                >
+                  Frequently asked questions
+                </h2>
+                <dl className="mt-4 divide-y divide-zinc-100">
+                  {article.faq.map((item) => (
+                    <div key={item.question} className="py-4 first:pt-0 last:pb-0">
+                      <dt className="text-sm font-bold text-zinc-900">
+                        {item.question}
+                      </dt>
+                      <dd className="mt-1.5 text-sm leading-7 text-zinc-600">
+                        {item.answer}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            ) : null}
 
             <div className="mt-10 space-y-6 border-t border-zinc-200 pt-6">
               <ShareButtons title={article.title} url={articleUrl} />

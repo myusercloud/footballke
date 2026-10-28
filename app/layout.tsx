@@ -40,46 +40,75 @@ const siteJsonLd = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  applicationName: "FootballKE",
   title: {
-    default: "FootballKE",
+    default: "FootballKE — Kenyan Football News, KPL Fixtures & Results",
     template: "%s | FootballKE",
   },
   description:
-    "Kenyan Premier League news, fixtures, standings, transfers, and analysis — from KPL to county football.",
+    "Kenyan Premier League news, fixtures, live scores, standings, transfers, and analysis — from KPL to county football.",
   keywords: [
     "Kenya football",
     "KPL",
     "Kenyan Premier League",
+    "Kenyan football news",
     "Gor Mahia",
     "AFC Leopards",
     "Tusker FC",
     "Bandari FC",
     "KPL fixtures",
+    "KPL results",
     "KPL table",
+    "KPL standings",
     "Kenya soccer",
+    "Harambee Stars",
+    "AFCON 2027",
   ],
-  authors: [{ name: "FootballKE" }],
+  authors: [{ name: "FootballKE", url: siteUrl }],
+  creator: "FootballKE",
+  publisher: "FootballKE",
+  category: "Sports",
+  alternates: {
+    types: {
+      "application/rss+xml": "/rss.xml",
+    },
+  },
+  referrer: "origin-when-cross-origin",
+  formatDetection: { telephone: false, address: false, email: false },
   openGraph: {
-    title: "FootballKE — Kenyan Premier League",
+    title: "FootballKE — Kenyan Football News, KPL Fixtures & Results",
     description:
-      "KPL news, fixtures, standings, and transfers. Kenyan football in one place.",
-    url: "https://footballke.site",
+      "KPL news, fixtures, live scores, standings, and transfers. Kenyan football in one place.",
+    url: siteUrl,
     siteName: "FootballKE",
     locale: "en_KE",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "FootballKE" }],
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "FootballKE — Kenyan football news, fixtures and standings",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FootballKE — Kenyan Premier League",
+    title: "FootballKE — Kenyan Football News, KPL Fixtures & Results",
     description:
-      "KPL news, fixtures, standings, and transfers. Kenyan football in one place.",
+      "KPL news, fixtures, live scores, standings, and transfers. Kenyan football in one place.",
     images: ["/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 

@@ -21,6 +21,8 @@ type RawArticle = {
   updatedAt?: string;
   featured: boolean;
   relatedSlugs: string[];
+  event?: Article["event"];
+  faq?: Article["faq"];
 };
 
 type RawData = {
@@ -56,6 +58,8 @@ function mapArticle(raw: RawArticle, data: RawData): Article {
     updatedAt: raw.updatedAt,
     featured: raw.featured,
     relatedSlugs: raw.relatedSlugs,
+    event: raw.event,
+    faq: raw.faq,
     readingTime: calculateReadingTime(raw.content),
   };
 }

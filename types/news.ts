@@ -114,6 +114,33 @@ export type ContentBlock =
   | ContentBlockList
   | ContentBlockHorizontalRule;
 
+// ── Event + FAQ enrichment (optional, used for SEO structured data) ──────────
+
+export type ArticleEvent = {
+  name: string;
+  /** ISO 8601 date or date-time. Time may be omitted when kick-off is TBC. */
+  startDate: string;
+  endDate?: string;
+  status?: "scheduled" | "postponed" | "cancelled";
+  venue: {
+    name: string;
+    addressLocality: string;
+    addressCountry: string;
+    capacity?: number;
+  };
+  homeTeam: string;
+  awayTeam: string;
+  organizer?: string;
+  ticketUrl?: string;
+  ticketSalesStart?: string;
+  broadcast?: string[];
+};
+
+export type ArticleFaq = {
+  question: string;
+  answer: string;
+};
+
 // ── Core entity ───────────────────────────────────────────────────────────────
 
 export type Article = {
@@ -131,6 +158,8 @@ export type Article = {
   readingTime: number; // minutes, derived by service — not stored in JSON
   featured: boolean;
   relatedSlugs: string[];
+  event?: ArticleEvent;
+  faq?: ArticleFaq[];
 };
 
 // ── Service contracts ─────────────────────────────────────────────────────────
